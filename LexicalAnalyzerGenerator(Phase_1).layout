@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_layout_file>
+	<ActiveTarget name="Debug" />
+	<File name="include\DFA.h" open="0" top="0" tabpos="0">
+		<Cursor position="30" topLine="0" />
+	</File>
+	<File name="include\Edge.h" open="0" top="0" tabpos="0">
+		<Cursor position="72" topLine="0" />
+	</File>
+	<File name="include\LexicalAnalyzer.h" open="1" top="0" tabpos="3">
+		<Cursor position="728" topLine="14" />
+	</File>
+	<File name="include\LexicalAnalyzerGenerator.h" open="1" top="0" tabpos="4">
+		<Cursor position="473" topLine="0" />
+	</File>
+	<File name="include\RegDef.h" open="0" top="0" tabpos="0">
+		<Cursor position="166" topLine="0" />
+	</File>
+	<File name="include\RegEx.h" open="0" top="0" tabpos="0">
+		<Cursor position="149" topLine="0" />
+	</File>
+	<File name="include\State.h" open="0" top="0" tabpos="0">
+		<Cursor position="100" topLine="0" />
+	</File>
+	<File name="include\Token.h" open="0" top="0" tabpos="0">
+		<Cursor position="75" topLine="0" />
+	</File>
+	<File name="include\TokenClass.h" open="0" top="0" tabpos="0">
+		<Cursor position="90" topLine="0" />
+	</File>
+	<File name="main.cpp" open="0" top="0" tabpos="0">
+		<Cursor position="117" topLine="0" />
+	</File>
+	<File name="src\DFA.cpp" open="0" top="0" tabpos="0">
+		<Cursor position="18" topLine="0" />
+	</File>
+	<File name="src\LexicalAnalyzer.cpp" open="1" top="0" tabpos="6">
+		<Cursor position="250" topLine="3" />
+	</File>
+	<File name="src\LexicalAnalyzerGenerator.cpp" open="1" top="0" tabpos="5">
+		<Cursor position="259" topLine="2" />
+	</File>
+	<File name="src\Phase1.cpp" open="1" top="1" tabpos="2">
+		<Cursor position="132" topLine="0" />
+	</File>
+</CodeBlocks_layout_file>
