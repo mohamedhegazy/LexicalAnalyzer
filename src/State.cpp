@@ -34,7 +34,7 @@ void State::set_accepting(bool accepting) {
  }
 
  void State:: state_print() {
-    cout<<token_class->name<<", "<<token_class->priority<<" ... ";
+    cout<<"("<<token_class->name<<", "<<token_class->priority<<", "<<accepting<<" ) ... ";
     for(int i = 0; i < adjList->size(); i++) {
         Edge*e = adjList->at(i);
         cout<<"("<<e->get_to_State()->get_token_class()->name<<", "<<e->get_trans_char()<<") ";
