@@ -1,6 +1,7 @@
 #ifndef LEXICALANALYZERGENERATOR_H
 #define LEXICALANALYZERGENERATOR_H
 #include "LexicalAnalyzer.h"
+#include "RegExParser.h"
 #include <string>
 using namespace std;
         // take regExp txt file and creat lexal analyizer
