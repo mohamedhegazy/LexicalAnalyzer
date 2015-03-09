@@ -26,6 +26,7 @@ class RegExParser
     bool openInputFile(string filePath);//filePath: the absolute file path
 	bool getNextLine(string *line);//return false if end of file is reached
     bool endOfFile;
+    int getCharType(char in);
 };
 
 #endif // REGEXPARSER_H
