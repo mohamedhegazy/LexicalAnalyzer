@@ -4,20 +4,23 @@
 #include <stdio.h>
 #include <iostream>
 #include <vector>
+#include <set>
+#include <queue>
 class NFA
 {
     public:
         NFA();
-        NFA(TokenClass *start_state_token_class);
-        vector <State*>* closure(State current);
+        NFA(TokenClass *start_state_token_class, char trans_char);
+        vector <State*>* closure(State* current);
         vector<State*>* move(vector<State*>* current, char trans_char);
         NFA* oring(NFA* nfa);
         NFA* concatenation(NFA* nfa);
         NFA* kleene_closure();
         NFA* positive_closure();
-        NFA* join_start_state();
+        NFA* join_NFAs(vector<NFA*>* nfas);
         void set_accepting_state(State* accepting_state);
         void NFA_print();
+        State * get_start_state();
         virtual ~NFA();
     protected:
     private:

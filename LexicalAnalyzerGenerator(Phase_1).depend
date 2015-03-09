@@ -83,7 +83,7 @@
 1425925842 source:d:\csed\codeblocksworkspace\lexicalanalyzergenerator(phase_1)\src\tokenclass.cpp
 	"TokenClass.h"
 
-1425924624 source:/home/hero/codeBlocks/LexicalAnalyzer/main.cpp
+1425934612 source:/home/hero/codeBlocks/LexicalAnalyzer/main.cpp
 	<iostream>
 	"src/NFA.h"
 
@@ -93,7 +93,7 @@
 1425861163 /home/hero/codeBlocks/LexicalAnalyzer/src/DFA.h
 	"State.h"
 
-1425923325 /home/hero/codeBlocks/LexicalAnalyzer/src/State.h
+1425926889 /home/hero/codeBlocks/LexicalAnalyzer/src/State.h
 	<vector>
 	"Edge.h"
 	"TokenClass.h"
@@ -124,14 +124,16 @@
 	"LexicalAnalyzer.h"
 	<string>
 
-1425924495 source:/home/hero/codeBlocks/LexicalAnalyzer/src/NFA.cpp
+1425934583 source:/home/hero/codeBlocks/LexicalAnalyzer/src/NFA.cpp
 	"NFA.h"
 
-1425923192 /home/hero/codeBlocks/LexicalAnalyzer/src/NFA.h
+1425932789 /home/hero/codeBlocks/LexicalAnalyzer/src/NFA.h
 	"State.h"
 	<stdio.h>
 	<iostream>
 	<vector>
+	<set>
+	<queue>
 
 1425861163 source:/home/hero/codeBlocks/LexicalAnalyzer/src/Phase1.cpp
 	"Phase1.h"
@@ -154,7 +156,7 @@
 	<string>
 	"NFA.h"
 
-1425923525 source:/home/hero/codeBlocks/LexicalAnalyzer/src/State.cpp
+1425934708 source:/home/hero/codeBlocks/LexicalAnalyzer/src/State.cpp
 	"State.h"
 
 1425861163 source:/home/hero/codeBlocks/LexicalAnalyzer/src/Token.cpp
