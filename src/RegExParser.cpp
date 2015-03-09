@@ -25,21 +25,16 @@ RegExParser::RegExParser(string regex)
     while(getNextLine(line))
     {
         string temp = "";
-        int length = strlen(&line[0]);
+        int length = (*line).size();
         for(int i = 0; i < length; i++)
         {
-            int type=getCharType(line[i]);
-            switch(type){
-
-
-
-            }
+            int type=getCharType((*line)[i]);
 
         }
 
 
     }
-
+}
     RegExParser::~RegExParser()
     {
         //dtor
