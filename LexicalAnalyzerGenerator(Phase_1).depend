@@ -78,3 +78,86 @@
 1425850070 source:d:\csed\codeblocksworkspace\lexicalanalyzergenerator(phase_1)\src\tokenclass.cpp
 	"TokenClass.h"
 
+1425924624 source:/home/hero/codeBlocks/LexicalAnalyzer/main.cpp
+	<iostream>
+	"src/NFA.h"
+
+1425917045 source:/home/hero/codeBlocks/LexicalAnalyzer/src/DFA.cpp
+	"DFA.h"
+
+1425861163 /home/hero/codeBlocks/LexicalAnalyzer/src/DFA.h
+	"State.h"
+
+1425923325 /home/hero/codeBlocks/LexicalAnalyzer/src/State.h
+	<vector>
+	"Edge.h"
+	"TokenClass.h"
+	<iostream>
+
+1425916428 /home/hero/codeBlocks/LexicalAnalyzer/src/Edge.h
+	"State.h"
+	"TokenClass.h"
+
+1425923885 /home/hero/codeBlocks/LexicalAnalyzer/src/TokenClass.h
+	<string>
+
+1425861163 source:/home/hero/codeBlocks/LexicalAnalyzer/src/LexicalAnalyzer.cpp
+	"LexicalAnalyzer.h"
+
+1425861163 /home/hero/codeBlocks/LexicalAnalyzer/src/LexicalAnalyzer.h
+	"Token.h"
+	"DFA.h"
+
+1425861163 /home/hero/codeBlocks/LexicalAnalyzer/src/Token.h
+	<string>
+	"TokenClass.h"
+
+1425861163 source:/home/hero/codeBlocks/LexicalAnalyzer/src/LexicalAnalyzerGenerator.cpp
+	"LexicalAnalyzerGenerator.h"
+
+1425861163 /home/hero/codeBlocks/LexicalAnalyzer/src/LexicalAnalyzerGenerator.h
+	"LexicalAnalyzer.h"
+	<string>
+
+1425924495 source:/home/hero/codeBlocks/LexicalAnalyzer/src/NFA.cpp
+	"NFA.h"
+
+1425923192 /home/hero/codeBlocks/LexicalAnalyzer/src/NFA.h
+	"State.h"
+	<stdio.h>
+	<iostream>
+	<vector>
+
+1425861163 source:/home/hero/codeBlocks/LexicalAnalyzer/src/Phase1.cpp
+	"Phase1.h"
+	"LexicalAnalyzerGenerator.h"
+	<iostream>
+
+1425861163 /home/hero/codeBlocks/LexicalAnalyzer/src/Phase1.h
+
+1425917066 source:/home/hero/codeBlocks/LexicalAnalyzer/src/RegDef.cpp
+	"RegDef.h"
+
+1425861163 /home/hero/codeBlocks/LexicalAnalyzer/src/RegDef.h
+	<string>
+	"NFA.h"
+
+1425917074 source:/home/hero/codeBlocks/LexicalAnalyzer/src/RegEx.cpp
+	"RegEx.h"
+
+1425861163 /home/hero/codeBlocks/LexicalAnalyzer/src/RegEx.h
+	<string>
+	"NFA.h"
+
+1425923525 source:/home/hero/codeBlocks/LexicalAnalyzer/src/State.cpp
+	"State.h"
+
+1425861163 source:/home/hero/codeBlocks/LexicalAnalyzer/src/Token.cpp
+	"Token.h"
+
+1425921549 source:/home/hero/codeBlocks/LexicalAnalyzer/src/TokenClass.cpp
+	"TokenClass.h"
+
+1425916470 source:/home/hero/codeBlocks/LexicalAnalyzer/src/Edge.cpp
+	"Edge.h"
+
