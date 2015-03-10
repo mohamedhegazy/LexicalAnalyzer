@@ -402,11 +402,12 @@ NFA* RegExParser::getNFA(string name)
         {
             return def->transitions;
         }
-        if(name.size()==1)
+    }
+            if(name.size()==1)
         {
             return NFA::get_char(name.at(0));
         }
-    }
+
 
 }
 NFA* RegExParser::evaluate(NFA *a,NFA *b,char operator_)
