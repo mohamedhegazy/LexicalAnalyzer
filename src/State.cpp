@@ -6,6 +6,11 @@ State::State(TokenClass *tokenClass, bool accepting_state) {
     this->dead_state = false;
     this->adjList = new vector<Edge*>();
 }
+
+State::State() {
+
+}
+
 void State:: set_dead_state(bool dead_state) {
     this->dead_state = dead_state;
 }
@@ -24,7 +29,23 @@ vector<Edge*>* State:: get_adjList() {
 
 
 void State::set_accepting(bool accepting) {
+
     this->accepting = accepting;
+}
+
+State* State::clone() {
+   State * result = new State();
+   result->accepting = this->accepting;
+   result->dead_state = this->dead_state;
+   result->state_priority = this->state_priority;
+   result->token_class = this->token_class->clone();
+   result->adjList = new vector<Edge*>;
+
+   return result;
+}
+
+bool State::get_accepting() {
+    return accepting;
 }
 
 
@@ -41,6 +62,10 @@ void State::set_accepting(bool accepting) {
     }
     cout<<endl;
  }
+
+void State::set_token_class(TokenClass *cl){
+this->token_class=cl;
+}
 
 State::~State()
 {

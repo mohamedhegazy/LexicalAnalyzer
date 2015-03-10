@@ -12,8 +12,8 @@ class Expression
         string operand;
         char operator_;
         Expression();
-        Expression(int type,string value);
-        Expression(int type,char value);
+        Expression(string value);//case of operand
+        Expression(char value);//case of operator
         virtual ~Expression();
     protected:
     private:

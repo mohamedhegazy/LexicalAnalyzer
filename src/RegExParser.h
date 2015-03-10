@@ -14,11 +14,11 @@ class RegExParser
 
     public:
         ifstream *inputFile;
-        vector<RegDef> regular_defintions;
-        vector<RegEx> regular_expressions;
+        vector<RegDef *> *regular_defintions;
+        vector<RegEx *> *regular_expressions;
         vector<TokenClass> tokenClasses;
         RegExParser(string name);
-        NFA constructNFA();
+        NFA* constructNFA();
 
         RegExParser();
         virtual ~RegExParser();
@@ -28,6 +28,12 @@ class RegExParser
 	bool getNextLine(string *line);//return false if end of file is reached
     bool endOfFile;
     int getCharType(char in);
+    int getOperatorPrecedence(char operator_);
+    void parse();
+    string* prepareIfConcatenation(string line,bool exp_def);
+    void evaluateExpression(string temp_lhs_name,vector<Expression *> *output,bool exp_def);
+    NFA* getNFA(string name);
+    NFA* evaluate(NFA *a,NFA *b,char operator_);
 };
 
 #endif // REGEXPARSER_H

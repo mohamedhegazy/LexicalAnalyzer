@@ -9,7 +9,7 @@ class RegDef
 {
     public:
         string name;
-        NFA transitions;
+        NFA* transitions;
 
         RegDef();
         virtual ~RegDef();

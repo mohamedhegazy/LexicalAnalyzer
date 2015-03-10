@@ -10,11 +10,11 @@ Expression::~Expression()
     //dtor
 }
 
-Expression::Expression(int type,string value){
-this->type=type;
+Expression::Expression(string value){
+this->type=OPERAND;
 this->operand=value;
 }
-Expression::Expression(int type,char value){
-this->type=type;
+Expression::Expression(char value){
+this->type=OPERATOR;
 this->operator_=value;
 }

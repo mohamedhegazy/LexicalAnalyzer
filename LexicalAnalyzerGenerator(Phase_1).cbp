@@ -41,6 +41,8 @@
 		<Unit filename="src\DFA.h" />
 		<Unit filename="src\Edge.cpp" />
 		<Unit filename="src\Edge.h" />
+		<Unit filename="src\Expression.cpp" />
+		<Unit filename="src\Expression.h" />
 		<Unit filename="src\LexicalAnalyzer.cpp" />
 		<Unit filename="src\LexicalAnalyzer.h" />
 		<Unit filename="src\LexicalAnalyzerGenerator.cpp" />
