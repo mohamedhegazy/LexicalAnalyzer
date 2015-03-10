@@ -403,12 +403,15 @@ NFA* RegExParser::getNFA(string name)
             return def->transitions;
         }
     }
-            if(name.size()==1)
-        {
-            return NFA::get_char(name.at(0));
-        }
+    if(name.size()==1)
+    {
+        return NFA::get_char(name.at(0));
+    }
+    if(strcmp(name.c_str(),"epsilon"))
+    {
+        return new NFA();
 
-
+    }
 }
 NFA* RegExParser::evaluate(NFA *a,NFA *b,char operator_)
 {
@@ -426,13 +429,15 @@ NFA* RegExParser::evaluate(NFA *a,NFA *b,char operator_)
 
 }
 
-NFA * RegExParser::constructNFA(){
-vector <NFA *> *nfas=new vector<NFA *>();
-for(int i=0;i<regular_expressions->size();i++){
-    RegEx * reg=regular_expressions->at(i);
-    nfas->push_back(reg->transitions);
-}
-return NFA::join_NFAs(nfas);
+NFA * RegExParser::constructNFA()
+{
+    vector <NFA *> *nfas=new vector<NFA *>();
+    for(int i=0; i<regular_expressions->size(); i++)
+    {
+        RegEx * reg=regular_expressions->at(i);
+        nfas->push_back(reg->transitions);
+    }
+    return NFA::join_NFAs(nfas);
 
 }
 
