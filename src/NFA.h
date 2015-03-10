@@ -18,7 +18,9 @@ class NFA
         static NFA* get_digit();
         static NFA* get_digits();
         static NFA* get_string(string str);
-
+        static NFA* get_char(char c);
+        static NFA* join_NFAs(vector<NFA*>* nfas);
+        static NFA* get_range(char a, char b);
 
         NFA();
         NFA(TokenClass *start_state_token_class, char trans_char);
@@ -30,11 +32,11 @@ class NFA
         NFA* concatenation(NFA* nfa);
         NFA* kleene_closure();
         NFA* positive_closure();
-        NFA* join_NFAs(vector<NFA*>* nfas);
         NFA* clone();
         void set_accepting_state(State* accepting_state);
         void NFA_print();
         State * get_start_state();
+        State * get_accepting_state();
         bool acceptes(string str);
         virtual ~NFA();
     protected:

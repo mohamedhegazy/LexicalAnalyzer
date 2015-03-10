@@ -1,6 +1,7 @@
 #include <iostream>
 #include <map>
 #include "src/NFA.h"
+#include "src/DFA.h"
 
 
 using namespace std;
@@ -9,15 +10,9 @@ int main()
 {
     cout << "Hello world!" << endl;
 
-    NFA* what = NFA::get_string("what");
-    NFA* where = NFA::get_string("where");
-    NFA* how = NFA::get_string("how")->kleene_closure();
+    DFA * dfa = new DFA();
 
-    NFA* nfa = new NFA();
-    nfa = nfa->oring(what)->oring(where)->oring(how);
-    cout<<nfa->acceptes("howu")<<endl;
-
-
+    cout<<dfa->move(0,0)<<endl;
     cout << "done!" << endl;
     return 0;
 }

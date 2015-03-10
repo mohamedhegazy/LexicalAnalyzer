@@ -12,4 +12,6 @@ LexicalAnalyzerGenerator::~LexicalAnalyzerGenerator()
 LexicalAnalyzer LexicalAnalyzerGenerator::createLexicalAnalyzer(string regex)
 {
     //dtor
+    RegExParser *parser=new RegExParser(regex);
+
 }

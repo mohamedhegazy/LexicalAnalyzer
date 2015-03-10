@@ -63,6 +63,8 @@ bool State::get_accepting() {
     cout<<endl;
  }
 
+
+
 State::~State()
 {
     //dtor

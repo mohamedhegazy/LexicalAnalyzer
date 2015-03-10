@@ -231,26 +231,30 @@ NFA* NFA::positive_closure() {
 }
 
 NFA* NFA::join_NFAs(vector<NFA*>* nfas) {
-    State * start = new State(TokenClass::epsilon, TokenClass::epsilon_char);
-    State * accept = new State(TokenClass::epsilon, TokenClass::epsilon_char);
 
-    this->states->push_back(start);
-    this->states->push_back(accept);
+    NFA * result = new NFA();
+    result->states = new vector<State*>();
+    result->start_state = new State(TokenClass::epsilon, false);
+    result->accepting_state = new State(TokenClass::epsilon, true);
+    result->states->push_back(result->start_state);
+    result->states->push_back(result->accepting_state);
 
-    this->start_state = start;
-    this->accepting_state = accept;
-    for(int i = 0 ;i < (int)nfas->size(); i++) {
 
+    for(int i = 0; i < (int)nfas->size(); i++) {
         NFA* nfa = nfas->at(i);
-        start->add_edge(nfa->start_state, TokenClass::epsilon_char);
+        result->start_state->add_edge(nfa->start_state, TokenClass::epsilon_char);
+        nfa->accepting_state->add_edge(result->accepting_state, TokenClass::epsilon_char);
         nfa->accepting_state->set_accepting(false);
-        nfa->accepting_state->add_edge(accept, TokenClass::epsilon_char);
-        for(int j = 0 ;j < (int)nfa->states->size(); i++) {
-            this->states->push_back(nfa->states->at(j));
+
+        for(int j = 0; j < (int)nfa->states->size(); j++) {
+            result->states->push_back(nfa->states->at(j));
         }
+
     }
 
-    return NULL;
+
+    return result;
+
 }
 
 void NFA::set_accepting_state(State* accepting_state) {
@@ -344,6 +348,9 @@ void NFA::NFA_print() {
     cout<<"----------------------------------------"<<endl;
 }
 
+State * NFA::get_accepting_state() {
+    return accepting_state;
+}
 
  bool NFA::acceptes(string str) {
     vector<State*>*v = move(str);
@@ -387,12 +394,30 @@ NFA* NFA::get_digits() {
 
 NFA* NFA::get_string(string str) {
     NFA* result = new NFA();
-    for(int i = 0; i < strlen(&str[0]); i++) {
+    for(int i = 0; i < (int)strlen(&str[0]); i++) {
         result = result->concatenation(new NFA(str[i]));
     }
     return result;
 }
 
+
+NFA* NFA::get_range(char a, char b) {
+    if(a > b) {
+        return NULL;
+    }
+
+    vector<NFA*>*nfas = new vector<NFA*>();
+    for(char c = a; c <= b; c++) {
+        nfas->push_back(get_char(c));
+    }
+
+    return join_NFAs(nfas);
+
+}
+
+NFA* NFA::get_char(char c) {
+    return new NFA(c);
+}
 
 
 
