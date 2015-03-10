@@ -7,6 +7,7 @@
 #include "RegDef.h"
 #include "RegEx.h"
 #include <string>
+#include "Expression.h"
 
 class RegExParser
 {

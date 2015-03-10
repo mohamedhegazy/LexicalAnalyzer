@@ -170,15 +170,23 @@
 1425916470 source:/home/hero/codeBlocks/LexicalAnalyzer/src/Edge.cpp
 	"Edge.h"
 
-1425928874 source:d:\csed\codeblocksworkspace\lexicalanalyzergenerator(phase_1)\src\regexparser.cpp
+1426009770 source:d:\csed\codeblocksworkspace\lexicalanalyzergenerator(phase_1)\src\regexparser.cpp
 	"RegExParser.h"
+	<stack>
 
-1425937807 d:\csed\codeblocksworkspace\lexicalanalyzergenerator(phase_1)\src\regexparser.h
+1426009858 d:\csed\codeblocksworkspace\lexicalanalyzergenerator(phase_1)\src\regexparser.h
 	<iostream>
 	<cstring>
 	<fstream>
 	<vector>
 	"RegDef.h"
 	"RegEx.h"
+	<string>
+	"Expression.h"
+
+1426009825 source:d:\csed\codeblocksworkspace\lexicalanalyzergenerator(phase_1)\src\expression.cpp
+	"Expression.h"
+
+1426009875 d:\csed\codeblocksworkspace\lexicalanalyzergenerator(phase_1)\src\expression.h
 	<string>
 

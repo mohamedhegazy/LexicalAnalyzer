@@ -4,8 +4,8 @@
 	<File name="src\LexicalAnalyzerGenerator.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="331" topLine="0" />
 	</File>
-	<File name="src\NFA.cpp" open="1" top="1" tabpos="2">
-		<Cursor position="36" topLine="4" />
+	<File name="src\NFA.cpp" open="1" top="0" tabpos="2">
+		<Cursor position="252" topLine="4" />
 	</File>
 	<File name="src\NFA.h" open="0" top="0" tabpos="0">
 		<Cursor position="524" topLine="3" />
@@ -16,11 +16,11 @@
 	<File name="src\RegEx.h" open="0" top="0" tabpos="0">
 		<Cursor position="53" topLine="0" />
 	</File>
-	<File name="src\RegExParser.cpp" open="1" top="0" tabpos="1">
-		<Cursor position="16" topLine="0" />
+	<File name="src\RegExParser.cpp" open="1" top="1" tabpos="1">
+		<Cursor position="1071" topLine="22" />
 	</File>
-	<File name="src\RegExParser.h" open="0" top="0" tabpos="0">
-		<Cursor position="449" topLine="4" />
+	<File name="src\RegExParser.h" open="1" top="0" tabpos="3">
+		<Cursor position="475" topLine="15" />
 	</File>
 	<File name="src\State.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="95" topLine="0" />
