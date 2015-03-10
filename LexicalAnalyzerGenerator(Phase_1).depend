@@ -94,8 +94,9 @@
 1425985999 source:/home/hero/codeBlocks/LexicalAnalyzer/src/DFA.cpp
 	"DFA.h"
 
-1425985899 /home/hero/codeBlocks/LexicalAnalyzer/src/DFA.h
+1426004418 /home/hero/codeBlocks/LexicalAnalyzer/src/DFA.h
 	"State.h"
+	"NFA.h"
 	<vector>
 	<map>
 

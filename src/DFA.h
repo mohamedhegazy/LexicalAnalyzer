@@ -1,6 +1,7 @@
 #ifndef DFA_H
 #define DFA_H
 #include "State.h"
+#include "NFA.h"
 #include <vector>
 #include <map>
 
@@ -8,7 +9,7 @@ class DFA
 {
     public:
         DFA();
-        DFA(*NFA);//transfrom NFA to DFA and minimize it
+        DFA(NFA * nfa);//transfrom NFA to DFA and minimize it
         int move(int current_state, char trans_char);//get the next state for the transition char
         void print();//prints dfa as table
         virtual ~DFA();

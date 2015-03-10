@@ -8,7 +8,7 @@ DFA::DFA()
      table->push_back(dead_state);
 }
 
-DFA::DFA(*NFA) {
+DFA::DFA(NFA * nfa) {
 
     table = new vector<map<char, int>*>();
     map<char, int>* dead_state = new map<char, int>();
