@@ -5,7 +5,12 @@
 TokenClass* TokenClass::epsilon = new TokenClass("epsilon",-1);
 char TokenClass::epsilon_char = (char)0xde;
 
-
+ TokenClass* TokenClass:: clone() {
+    TokenClass* result= new TokenClass();
+    result->priority = this->priority;
+    result->name = this->name;
+    return result;
+ }
 
 
 TokenClass::TokenClass()

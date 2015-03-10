@@ -16,6 +16,7 @@ class TokenClass
 
         TokenClass(string name, int priority);
         TokenClass();
+        TokenClass* clone();
         virtual ~TokenClass();
     protected:
     private:

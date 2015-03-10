@@ -16,10 +16,13 @@ class State
         vector <Edge*>* get_adjList();
         void set_accepting(bool accepting);
         TokenClass* get_token_class();
+        bool get_accepting();
+        State* clone();
         void state_print();
         virtual ~State();
     protected:
     private:
+        State();
         bool accepting;
         bool dead_state;
         int state_priority;
