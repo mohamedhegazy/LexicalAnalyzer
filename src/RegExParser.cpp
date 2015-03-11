@@ -1,6 +1,6 @@
 #include "RegExParser.h"
 #include <stack>          // std::stack
-const int RIGHT_PARENTHESE_PRIORITY=-1;
+
 const int SYMBOL=0;
 const int ALPHA=1;
 const int REG_DEF_SEPARATOR=2;
@@ -14,10 +14,11 @@ const int LEFT_CURLY=9;//keyword class
 const int RIGHT_CURLY=10;
 const int OPERATOR=11;// +,|,(,),*,-
 const int SPACE=12;
-const int PUNCTUATION=13;
-const int ORING_RANGE_PRIORITY=14;
-const int CONCAT_PRIORITY=15;
-const int CLOSURE_PRIORITY=16;
+const int LEFT_PARENTHESE_PRIORITY=15;
+const int OR_PRIORITY=16;
+const int RANGE_PRIORITY=17;
+const int CONCAT_PRIORITY=18;
+const int CLOSURE_PRIORITY=19;
 RegExParser::RegExParser()
 {
     //ctor
@@ -28,6 +29,8 @@ RegExParser::RegExParser(string regex)
     endOfFile=false;
     openInputFile(regex);
     inputFile = new ifstream(&regex[0], ios::in);
+    regular_defintions=new vector<RegDef *>();
+    regular_expressions=new vector<RegEx *>();
     parse();
 }
 RegExParser::~RegExParser()
@@ -41,9 +44,11 @@ void RegExParser::parse()
 
     while(getNextLine(line))
     {
-        priority_by_line_num++;
+
         string temp = "";
         int length = (*line).size();
+        if(length==0)
+            continue;
         stack<Expression *>* operators=new stack<Expression *>();
         vector<Expression *>* output=new vector<Expression *>();
         bool separated=false;
@@ -74,13 +79,15 @@ void RegExParser::parse()
                 temp_lhs_name=temp;
                 regular_defintions->push_back(def);
                 line=prepareIfConcatenation(*line,0);
-                i=0;
+                i=-1;
                 length=(*line).size();
+                temp="";
             }
             break;
 
             case REG_EXP_SEPARATOR:
             {
+                priority_by_line_num++;
                 separated=true;
                 reg_exp=1;
                 RegEx * exp=new RegEx();
@@ -89,9 +96,9 @@ void RegExParser::parse()
                 temp_lhs_name=temp;
                 regular_expressions->push_back(exp);
                 line=prepareIfConcatenation(*line,1);
-                i=0;
+                i=-1;
                 length=(*line).size();
-
+                temp="";
             }
             break;
             case SPACE:
@@ -109,12 +116,12 @@ void RegExParser::parse()
                     }
                     else if(temp.size() > 0 && punctuation) //case read punctuation mark
                     {
-                        RegEx *keyword=new RegEx();
-                        keyword->transitions=new NFA(temp.at(0));
+                        RegEx *punc=new RegEx();
+                        punc->transitions=new NFA(temp.at(0));
                         TokenClass* cl=new TokenClass(temp,0);//priority of punctuations ?
-                        keyword->transitions->get_accepting_state()->set_token_class(cl);
-                        keyword->priority=0;
-                        regular_expressions->push_back(keyword);
+                        punc->transitions->get_accepting_state()->set_token_class(cl);
+                        punc->priority=0;
+                        regular_expressions->push_back(punc);
                         temp="";
                     }
                 }
@@ -132,6 +139,13 @@ void RegExParser::parse()
             case OPERATOR:
                 if(separated)
                 {
+                    if(temp.size()>0)
+                    {
+                        Expression * exp=new Expression(temp);
+                        output->push_back(exp);
+                        temp="";
+                    }
+
                     while(!(operators->empty()) )
                     {
                         Expression *exp=operators->top();
@@ -153,6 +167,13 @@ void RegExParser::parse()
             case RIGHT_PARENTHESE:
                 if(separated)
                 {
+                    if(temp.size()>0)
+                    {
+                        Expression * exp=new Expression(temp);
+                        output->push_back(exp);
+                        temp="";
+                    }
+
                     Expression *exp=operators->top();
                     operators->pop();
                     while(exp->operator_!='(')
@@ -167,13 +188,19 @@ void RegExParser::parse()
             case LEFT_PARENTHESE:
                 if(separated) //parenthese in reg_def or reg_ex
                 {
+                    if(temp.size()>0)
+                    {
+                        Expression * exp=new Expression(temp);
+                        output->push_back(exp);
+                        temp="";
+                    }
                     Expression * exp=new Expression('(');
                     operators->push(exp);
                 }
                 break;
 
             case ESCAPE:
-                if((*line)[i+1]=='L')
+                if((*line)[i+1]=='L' && separated)
                 {
                     Expression * exp=new Expression("epsilon");
                     output->push_back(exp);
@@ -200,25 +227,67 @@ void RegExParser::parse()
                 if(punctuation)
                     break_out=true;
                 break;
-
             case LEFT_PARENTHESE_INDEX:
                 punctuation=true;
-
                 break;
             }
             if(break_out)
                 break;
-            else if(reg_def || reg_exp) //pop operators stacks to evaluate
-            {
-                while(!operators->empty())
-                {
-                    Expression *exp=operators->top();
-                    operators->pop();
-                    output->push_back(exp);
-                }
-                evaluateExpression(temp_lhs_name,output,reg_def==0?0:1);
-            }
         }
+        if(punctuation && temp.size()>0)
+        {
+            RegEx *punc=new RegEx();
+            punc->transitions=new NFA(temp.at(0));
+            TokenClass* cl=new TokenClass(temp,0);//priority of punctuations ?
+            punc->transitions->get_accepting_state()->set_token_class(cl);
+            punc->priority=0;
+            regular_expressions->push_back(punc);
+            temp="";
+
+        }
+        else if(keyword && temp.size() >0)
+        {
+            RegEx *keyword=new RegEx();
+            keyword->transitions=NFA::get_string(temp);
+            TokenClass* cl=new TokenClass(temp,RegEx::KEYWORD_PRIORITY);
+            keyword->transitions->get_accepting_state()->set_token_class(cl);
+            keyword->priority=RegEx::KEYWORD_PRIORITY;
+            regular_expressions->push_back(keyword);
+            temp="";
+
+        }
+        else if(reg_def || reg_exp) //pop operators stacks to evaluate
+        {
+            if(temp.size()>0)
+            {
+                Expression *exp=new Expression(temp);
+                output->push_back(exp);
+            }
+            while(!operators->empty())
+            {
+                Expression *exp=operators->top();
+                operators->pop();
+                output->push_back(exp);
+            }
+            //debug purpose
+            for(int i=0; i<output->size(); i++)
+            {
+                Expression * exp=output->at(i);
+                if(exp->type == Expression::OPERAND)
+                {
+                    cout <<  "operand :" << exp->operand.c_str()<<endl;
+                }
+
+                else
+                {
+                    cout <<  "operator :";
+                    cout << string(1,exp->operator_ )<<endl;
+                }
+            }
+            cout<<"--------------------------------------------"<<endl;
+            evaluateExpression(temp_lhs_name,output,reg_def==0?1:0);
+        }
+
     }
 
 }
@@ -246,9 +315,9 @@ int RegExParser::getCharType(char in)
     if(((int )in >=65 && (int )in <=90) || ((int )in >=97 && (int )in <=122))
         return ALPHA;
     else if(in==':')
-        return REG_DEF_SEPARATOR;
-    else if(in=='=')
         return REG_EXP_SEPARATOR;
+    else if(in=='=')
+        return REG_DEF_SEPARATOR;
     else if(in=='\\')
         return ESCAPE;
     else if(in=='(')
@@ -267,22 +336,21 @@ int RegExParser::getCharType(char in)
         return OPERATOR;
     else  if(in==' ')
         return SPACE;
-    else if(in==';' || in==',' || in=='(' || in == ')' || in=='{' || in =='}')
-        return PUNCTUATION;
 
-    return 0;
+    return SYMBOL;
 }
 int RegExParser::getOperatorPrecedence(char operator_)
 {
-    if(operator_=='|' || operator_=='-')
-        return ORING_RANGE_PRIORITY;
-
+    if(operator_=='|' )
+        return OR_PRIORITY;
+    else if(operator_=='-')
+        return RANGE_PRIORITY;
     else if(operator_=='+' || operator_=='*')
         return CLOSURE_PRIORITY;
     else if(operator_=='~')
         return CONCAT_PRIORITY;
     else if (operator_=='(')
-        return RIGHT_PARENTHESE_PRIORITY;
+        return LEFT_PARENTHESE_PRIORITY;
 
 }
 //this function inserts an operator as concatenation in empty spaces and before/after the left/right
@@ -303,9 +371,14 @@ string* RegExParser::prepareIfConcatenation(string line,bool exp_def)
     while(line.at(begin)==' ')
         begin++;
     string* temp=new string(line.substr(begin));
-    for(int i=0; (*temp).size(); i++)
+    for(int i=0; i<(*temp).size(); i++)
     {
-        if((*temp)[i]==' ')
+        if((*temp)[i]=='\\')
+        {
+            continue;
+        }
+
+        else if((*temp)[i]==' ')
         {
             (*temp)[i]='~';
         }
@@ -323,19 +396,32 @@ string* RegExParser::prepareIfConcatenation(string line,bool exp_def)
         }
 
     }
-    for(int i=0; (*temp).size(); i++)//eliminate ~ around the OR(ranged or normal)
+    for(int i=0; i<(*temp).size(); i++)//eliminate ~ around the OR(ranged or normal) and after '(' and before ')'
     {
         if((*temp)[i]=='|' || ((*temp)[i]=='-' && i>0 && (*temp)[i-1]!='\\' ))
         {
             int j=i-1;
-            int k=j+1;
+            int k=i+1;
             while(j>0 && ((*temp)[j] =='~'||(*temp)[j] ==' '))
-                temp[j--]=' ';
+                (*temp)[j--]=' ';
             while(k<(*temp).size() && ( (*temp)[k] =='~'||(*temp)[k] ==' ')  )
-                temp[k++]=' ';
+                (*temp)[k++]=' ';
         }
-        return temp;
+        else if((*temp)[i]=='(')
+        {
+            int k=i+1;
+            while(k<(*temp).size() && ( (*temp)[k] =='~'||(*temp)[k] ==' ')  )
+                (*temp)[k++]=' ';
+        }
+        else if((*temp)[i]==')')
+        {
+            int j=i-1;
+            while(j>0 && ((*temp)[j] =='~'||(*temp)[j] ==' '))
+                (*temp)[j--]=' ';
+
+        }
     }
+    return temp;
 }
 //if(0 it is in regular definition 1 in regex)
 void RegExParser::evaluateExpression(string temp_lhs_name,vector<Expression *> * output,bool exp_def)
@@ -350,6 +436,8 @@ void RegExParser::evaluateExpression(string temp_lhs_name,vector<Expression *> *
         {
             NFA* a=getNFA(exp->operand);
             value->push(a);
+            //cout<<exp->operand.c_str()<<endl;
+            //cout<<a->get_accepting_state()->get_token_class()->name<<endl;
         }
         else
         {
@@ -380,6 +468,8 @@ void RegExParser::evaluateExpression(string temp_lhs_name,vector<Expression *> *
                 break;
         }
         exp->transitions=value->top();
+        exp->transitions->get_accepting_state()->get_token_class()->priority=exp->priority;
+        exp->transitions->get_accepting_state()->get_token_class()->name=temp_lhs_name;
     }
     else
     {
@@ -390,26 +480,32 @@ void RegExParser::evaluateExpression(string temp_lhs_name,vector<Expression *> *
                 break;
         }
         def->transitions=value->top();
+        def->transitions->get_accepting_state()->get_token_class()->name=temp_lhs_name;
     }
 }
 NFA* RegExParser::getNFA(string name)
 {
+
     RegDef * def;
     for(int i=0; i<regular_defintions->size(); i++)
     {
         def=regular_defintions->at(i);
         if(strcmp(def->name.c_str(),name.c_str())==0)
         {
-            return def->transitions;
+            return def->transitions;//case where regex/regdef is defined as function of another regdef
         }
     }
     if(name.size()==1)
     {
-        return NFA::get_char(name.at(0));
+        return NFA::get_char(name.at(0));//case one char
+    }
+
+    if(name.size()>1){
+    return NFA ::get_string(name);//case string
     }
     if(strcmp(name.c_str(),"epsilon"))
     {
-        return new NFA();
+        return new NFA();//epsilon state
 
     }
 }
@@ -422,10 +518,10 @@ NFA* RegExParser::evaluate(NFA *a,NFA *b,char operator_)
     else if(operator_=='|')
         return a->oring(b);
     else if(operator_=='~')
-        return a->concatenation(b);
+        return b->concatenation(a);
     else if(operator_=='-')
-        return NFA::get_range(a->get_accepting_state()->get_token_class()->name.at(0),
-                              b->get_accepting_state()->get_token_class()->name.at(0));
+        return NFA::get_range(b->get_accepting_state()->get_token_class()->name.at(0),
+                              a->get_accepting_state()->get_token_class()->name.at(0));
 
 }
 

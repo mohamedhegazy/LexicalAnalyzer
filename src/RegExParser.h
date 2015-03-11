@@ -19,7 +19,7 @@ class RegExParser
         vector<TokenClass> tokenClasses;
         RegExParser(string name);
         NFA* constructNFA();
-
+        static string* prepareIfConcatenation(string line,bool exp_def);
         RegExParser();
         virtual ~RegExParser();
     protected:
@@ -30,7 +30,7 @@ class RegExParser
     int getCharType(char in);
     int getOperatorPrecedence(char operator_);
     void parse();
-    string* prepareIfConcatenation(string line,bool exp_def);
+
     void evaluateExpression(string temp_lhs_name,vector<Expression *> *output,bool exp_def);
     NFA* getNFA(string name);
     NFA* evaluate(NFA *a,NFA *b,char operator_);
