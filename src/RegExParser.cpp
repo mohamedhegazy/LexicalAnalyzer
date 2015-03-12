@@ -19,6 +19,7 @@ const int OR_PRIORITY=16;
 const int RANGE_PRIORITY=17;
 const int CONCAT_PRIORITY=18;
 const int CLOSURE_PRIORITY=19;
+const char CONCAT_OP=17;
 RegExParser::RegExParser()
 {
     //ctor
@@ -332,7 +333,7 @@ int RegExParser::getCharType(char in)
         return LEFT_CURLY;
     else if(in=='}')
         return RIGHT_CURLY;
-    else if(in=='+' || in=='*' || in=='|' || in=='-'|| in=='~')
+    else if(in=='+' || in=='*' || in=='|' || in=='-'|| in==CONCAT_OP)
         return OPERATOR;
     else  if(in==' ')
         return SPACE;
@@ -347,7 +348,7 @@ int RegExParser::getOperatorPrecedence(char operator_)
         return RANGE_PRIORITY;
     else if(operator_=='+' || operator_=='*')
         return CLOSURE_PRIORITY;
-    else if(operator_=='~')
+    else if(operator_==CONCAT_OP)
         return CONCAT_PRIORITY;
     else if (operator_=='(')
         return LEFT_PARENTHESE_PRIORITY;
@@ -380,9 +381,9 @@ string* RegExParser::prepareIfConcatenation(string line,bool exp_def)
 
         else if((*temp)[i]==' ')
         {
-            (*temp)[i]='~';
+            (*temp)[i]=CONCAT_OP;
         }
-        else if((*temp)[i]=='(' && i>0 && (*temp)[i-1]!='~' )
+        else if((*temp)[i]=='(' && i>0 && (*temp)[i-1]!=CONCAT_OP )
         {
             temp=new string((*temp).substr(0,i)+"~"+(*temp).substr(i));
         }
@@ -402,21 +403,21 @@ string* RegExParser::prepareIfConcatenation(string line,bool exp_def)
         {
             int j=i-1;
             int k=i+1;
-            while(j>0 && ((*temp)[j] =='~'||(*temp)[j] ==' '))
+            while(j>0 && ((*temp)[j] ==CONCAT_OP||(*temp)[j] ==' '))
                 (*temp)[j--]=' ';
-            while(k<(*temp).size() && ( (*temp)[k] =='~'||(*temp)[k] ==' ')  )
+            while(k<(*temp).size() && ( (*temp)[k] ==CONCAT_OP||(*temp)[k] ==' ')  )
                 (*temp)[k++]=' ';
         }
         else if((*temp)[i]=='(')
         {
             int k=i+1;
-            while(k<(*temp).size() && ( (*temp)[k] =='~'||(*temp)[k] ==' ')  )
+            while(k<(*temp).size() && ( (*temp)[k] ==CONCAT_OP||(*temp)[k] ==' ')  )
                 (*temp)[k++]=' ';
         }
         else if((*temp)[i]==')')
         {
             int j=i-1;
-            while(j>0 && ((*temp)[j] =='~'||(*temp)[j] ==' '))
+            while(j>0 && ((*temp)[j] ==CONCAT_OP||(*temp)[j] ==' '))
                 (*temp)[j--]=' ';
 
         }
@@ -517,7 +518,7 @@ NFA* RegExParser::evaluate(NFA *a,NFA *b,char operator_)
         return a->kleene_closure();
     else if(operator_=='|')
         return a->oring(b);
-    else if(operator_=='~')
+    else if(operator_==CONCAT_OP)
         return b->concatenation(a);
     else if(operator_=='-')
         return NFA::get_range(b->get_accepting_state()->get_token_class()->name.at(0),

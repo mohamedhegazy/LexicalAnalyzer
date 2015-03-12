@@ -235,16 +235,12 @@ NFA* NFA::join_NFAs(vector<NFA*>* nfas) {
     NFA * result = new NFA();
     result->states = new vector<State*>();
     result->start_state = new State(TokenClass::epsilon, false);
-    result->accepting_state = new State(TokenClass::epsilon, true);
+    result->accepting_state = NULL;
     result->states->push_back(result->start_state);
-    result->states->push_back(result->accepting_state);
-
 
     for(int i = 0; i < (int)nfas->size(); i++) {
         NFA* nfa = nfas->at(i);
         result->start_state->add_edge(nfa->start_state, TokenClass::epsilon_char);
-        nfa->accepting_state->add_edge(result->accepting_state, TokenClass::epsilon_char);
-        nfa->accepting_state->set_accepting(false);
 
         for(int j = 0; j < (int)nfa->states->size(); j++) {
             result->states->push_back(nfa->states->at(j));
@@ -402,17 +398,17 @@ NFA* NFA::get_string(string str) {
 
 
 NFA* NFA::get_range(char a, char b) {
-    if(a > b) {
+   if(a > b) {
         return NULL;
     }
 
-    vector<NFA*>*nfas = new vector<NFA*>();
-    for(char c = a; c <= b; c++) {
-        nfas->push_back(get_char(c));
+
+    NFA* nfa = new NFA(a);
+    for(char c = a+1; c <= b; c++) {
+        nfa = nfa->oring(NFA::get_char(c));
     }
 
-    return join_NFAs(nfas);
-
+    return nfa;
 }
 
 NFA* NFA::get_char(char c) {

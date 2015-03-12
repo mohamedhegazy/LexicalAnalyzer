@@ -15,6 +15,8 @@ int main(int argc, char* argv[])
     RegExParser *parser=new RegExParser("regex.txt");
     NFA *a=parser->constructNFA();
     string t="a";
+    char s=41;
+    cout<<string(1,(char)s);
     cout<< a->acceptes("a") <<endl;
     string lol;
     //a->NFA_print();
@@ -25,7 +27,7 @@ int main(int argc, char* argv[])
     NFA * letterORDigit=letter->oring(digits);
     NFA * closure=letterORDigit->kleene_closure();
     NFA *id =letter->concatenation(closure);
-    cout<<a->get_accepting_state()->get_token_class()->name;
+    //cout<<a->get_accepting_state()->get_token_class()->name;
     while(true)
     {
         cin>>lol;
