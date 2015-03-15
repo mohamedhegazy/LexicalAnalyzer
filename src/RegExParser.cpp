@@ -399,7 +399,7 @@ string* RegExParser::prepareIfConcatenation(string line,bool exp_def)
             new_line=new string((*new_line).substr(0,i+1)+string(1,CONCAT_OP)+(*new_line).substr(i+1));
         }
     }
-    //cout<<(*new_line)<<endl;
+    cout<<(*new_line)<<endl;
     return new_line;
 }
 //if(0 it is in regular definition 1 in regex)
@@ -488,7 +488,7 @@ NFA* RegExParser::getNFA(string name)
         return NFA::get_char(name.at(0));//case one char
     }
 
-    else if(strcmp(name.c_str(),"epsilon"))
+    else if(strcmp(name.c_str(),"epsilon")==0)
     {
         return new NFA();//epsilon state
 
@@ -574,7 +574,7 @@ string  RegExParser::addSpaces(string line)
         }
 
     }
-    //cout<<temp<<endl;
+    cout<<temp<<endl;
     return temp;
 
 }

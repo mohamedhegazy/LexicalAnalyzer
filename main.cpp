@@ -27,12 +27,22 @@ int main(int argc, char* argv[])
     NFA * letterORDigit=letter->oring(digits);
     NFA * closure=letterORDigit->kleene_closure();
     NFA *id =letter->concatenation(closure);
+    NFA * digit_pos=digits->positive_closure();
+    NFA * num=digit_pos->concatenation(NFA::get_char('.'))->concatenation(digit_pos);
+    NFA * eps=new NFA();
+    eps=eps->oring(NFA::get_char('E')->concatenation(digit_pos));
+    NFA * final=num->concatenation(eps);
+    NFA * final_final=digit_pos->oring(final);
+    vector <NFA*> *NFAs=new vector<NFA *>();
+    NFAs->push_back(id);
+    NFAs->push_back(final_final);
+    NFA *test=NFA::join_NFAs(NFAs);
     //cout<<a->get_accepting_state()->get_token_class()->name;
     while(true)
     {
         cin>>lol;
-        //cout<<id->acceptes(lol)<<endl;
-        cout<<a->acceptes(lol)<<endl;
+        cout<<test->acceptes(lol)<<endl;
+        //cout<<a->acceptes(lol)<<endl;
     }
     //end hegazy test
 
