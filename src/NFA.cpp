@@ -271,7 +271,7 @@ NFA* NFA::join_NFAs(vector<NFA*>* nfas) {
 
     }
 
-    result->compress();
+    //result->compress();
     return result;
 
 }

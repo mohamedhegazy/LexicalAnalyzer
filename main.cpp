@@ -12,7 +12,7 @@ int main(int argc, char* argv[])
 {
     cout << "Hello Parser!" << endl;
 
-
+    RegExParser_test();
     DFA_test();
     cout<<"done !"<<endl;
     return 0;
@@ -87,6 +87,23 @@ void RegExParser_test() {
     //hegazy test
     RegExParser *parser=new RegExParser("regex.txt");
     NFA *a=parser->constructNFA();
+
+    DFA *hussein=new DFA(a);
+       cout<<"dfa states count : "<<hussein->get_states()->size()<<endl;
+   cout<<"nfa states count : "<<a->get_states()->size()<<endl;
+
+       while(true) {
+        string str;
+        cin>>str;
+        DFAState * ss = hussein->get_start_state()->move(str);
+        if(ss == NULL) {
+             cout<<"anser is : NULL"<<endl;
+        }
+        else
+            cout<<"anser is : "<<ss->get_accepting()<<" class : "<<ss->get_tokenClass()->name<<endl;
+        //cout<<"the anser is : "<<nfa->acceptes(str)<<endl;
+   }
+
     string t="a";
     char s=41;
     cout<<string(1,(char)s);

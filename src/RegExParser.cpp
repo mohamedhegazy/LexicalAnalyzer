@@ -445,8 +445,8 @@ void RegExParser::evaluateExpression(string temp_lhs_name,vector<Expression *> *
                 break;
         }
         exp->transitions=value->top();
-        exp->transitions->get_accepting_state()->get_token_class()->priority=exp->priority;
-        exp->transitions->get_accepting_state()->get_token_class()->name=temp_lhs_name;
+        TokenClass * tok=new TokenClass(temp_lhs_name,exp->priority);
+        exp->transitions->get_accepting_state()->set_token_class(tok);
     }
     else
     {
@@ -457,7 +457,8 @@ void RegExParser::evaluateExpression(string temp_lhs_name,vector<Expression *> *
                 break;
         }
         def->transitions=value->top();
-        def->transitions->get_accepting_state()->get_token_class()->name=temp_lhs_name;
+        TokenClass * tok=new TokenClass(temp_lhs_name,0);
+        def->transitions->get_accepting_state()->set_token_class(tok);
     }
 }
 NFA* RegExParser::getNFA(string name)
