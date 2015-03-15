@@ -1,31 +1,46 @@
+
 #ifndef DFASTATE_H
 #define DFASTATE_H
-#include <vector>
-#include "TokenClass.h"
-#include "State.h"
-#include "DFAEdge.h"
-#include <iostream>
 
-class DFAEdge;
+#include "TokenClass.h"
+#include <iostream>
+#include <string>
+#include <string.h>
+#include <map>
+
+
+using namespace std;
+
 class DFAState
 {
     public:
-        DFAState(vector <State*>* NFAStates );
-        void setStart();
-        void addEdge(DFAEdge* DFAEdge);
-        void addEdge(DFAState* to,char trans_char);
+        DFAState();
+        DFAState*move(char trans_char);
+        DFAState*move(string str);
+        map<char,DFAState*>* get_adjList();
+        TokenClass*get_tokenClass();
+        void add_edge(DFAState*state, char trans_char);
+        void printer();
+        void set_tokenClass(TokenClass* tokenClass);
+        bool get_accepting();
+        void set_accepting(bool b);
         virtual ~DFAState();
-        void setMarked();
-        bool isMarked();
-        vector<State*>* getNFAStates();
+
+
+
     protected:
     private:
-        std::vector <State*> * NFAStates;
-        std::vector <DFAEdge*> * DFAEdges;
-        bool isStart;
-        bool isAccepting;
-        bool Marked;
+        bool accepting;
+        map<char,DFAState*>* adjList;
+        TokenClass* token_class;
+
+
 
 };
 
+
 #endif // DFASTATE_H
+
+
+
+

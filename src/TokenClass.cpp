@@ -2,7 +2,7 @@
 
 
 
-TokenClass* TokenClass::epsilon = new TokenClass("epsilon",-1);
+TokenClass* TokenClass::epsilon = new TokenClass("epsilon",10000000);
 char TokenClass::epsilon_char = (char)0xde;
 
  TokenClass* TokenClass:: clone() {
@@ -17,6 +17,11 @@ TokenClass::TokenClass()
 {
 
 }
+
+
+ string TokenClass::get_token_name() {
+    return name;
+ }
 
 TokenClass::TokenClass(string name, int priority)
 {

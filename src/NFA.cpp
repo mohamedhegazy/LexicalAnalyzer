@@ -230,6 +230,29 @@ NFA* NFA::positive_closure() {
     return this;
 }
 
+
+
+void NFA::compress() {
+
+    for(int i = 0 ;i < (int)states->size(); i++) {
+        states->at(i)->compress();
+    }
+
+    vector<State*>* s = new vector<State*>();
+
+
+    for(int i = 0 ;i < (int)states->size(); i++) {
+        if(states->at(i)->get_in_degree() != 0) {
+            s->push_back(states->at(i));
+        }
+    }
+
+    this->states = s;
+
+}
+
+
+
 NFA* NFA::join_NFAs(vector<NFA*>* nfas) {
 
     NFA * result = new NFA();
@@ -248,7 +271,7 @@ NFA* NFA::join_NFAs(vector<NFA*>* nfas) {
 
     }
 
-
+    result->compress();
     return result;
 
 }
@@ -298,7 +321,9 @@ NFA* NFA::clone() {
 
     return result;
 }
-
+ vector<State*>* NFA::get_states(){
+    return states;
+ }
 
 
 void NFA::NFA_print() {
@@ -362,15 +387,8 @@ State * NFA::get_accepting_state() {
 
 
 NFA* NFA::get_letter() {
-    NFA* result = new NFA('a');
-    for(char c = 'b'; c <= 'z'; c++) {
-        result = result->oring(new NFA(c));
-    }
 
-    for(char c = 'A'; c <= 'Z'; c++) {
-        result = result->oring(new NFA(c));
-    }
-    return result;
+    return get_range('a','z')->oring(get_range('A','Z'));
 }
 
 NFA* NFA::get_letters() {
@@ -378,21 +396,35 @@ NFA* NFA::get_letters() {
 }
 
 NFA* NFA::get_digit() {
-    NFA* result = new NFA('0');
-    for(char i = '1'; i <= '9' ;i++) {
-        result = result->oring(new NFA(i));
-    }
-    return result;
+    return get_range('0','9');
 }
+
 NFA* NFA::get_digits() {
     return get_digit()->positive_closure();
 }
 
 NFA* NFA::get_string(string str) {
+
     NFA* result = new NFA();
+
+    result->states = new vector<State*>();
+    result->start_state = new State(TokenClass::epsilon, false);
+    result->accepting_state = new State(TokenClass::epsilon, true);
+
+    result->states->push_back(result->start_state);
+    result->states->push_back(result->accepting_state);
+
+    State* current = result->start_state;
+
     for(int i = 0; i < (int)strlen(&str[0]); i++) {
-        result = result->concatenation(new NFA(str[i]));
+        State * s = new State(TokenClass::epsilon, false);
+        current->add_edge(s, str[i]);
+        current = s;
+        result->states->push_back(current);
     }
+
+    current->add_edge(result->accepting_state, TokenClass::epsilon_char);
+
     return result;
 }
 
@@ -402,11 +434,21 @@ NFA* NFA::get_range(char a, char b) {
         return NULL;
     }
 
+    NFA* nfa = new NFA();
+    nfa->states = new vector<State*>();
+    nfa->start_state = new State(TokenClass::epsilon, false);
+    nfa->accepting_state = new State(TokenClass::epsilon, true);
 
-    NFA* nfa = new NFA(a);
-    for(char c = a+1; c <= b; c++) {
-        nfa = nfa->oring(NFA::get_char(c));
+    nfa->states->push_back(nfa->start_state);
+    nfa->states->push_back(nfa->accepting_state);
+
+
+    for(char c = a; c <= b; c++) {
+
+        nfa->start_state->add_edge(nfa->accepting_state, c);
+
     }
+
 
     return nfa;
 }

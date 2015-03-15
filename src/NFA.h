@@ -28,6 +28,7 @@ class NFA
         vector <State*>* closure(State* current);
         vector<State*>* move(vector<State*>* current, char trans_char);
         vector<State*>* move(string str);
+        vector<State*>* get_states();
         NFA* oring(NFA* nfa);
         NFA* concatenation(NFA* nfa);
         NFA* kleene_closure();
@@ -41,7 +42,7 @@ class NFA
         virtual ~NFA();
     protected:
     private:
-
+        void compress();
         vector<State*>*states;
         State *start_state;
         State *accepting_state;//null if there is multiple accepting states

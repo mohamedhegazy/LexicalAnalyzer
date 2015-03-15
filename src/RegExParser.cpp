@@ -472,17 +472,6 @@ NFA* RegExParser::getNFA(string name)
             return def->transitions;//case where regex/regdef is defined as function of another regdef
         }
     }
-
-    RegEx * exp;
-    for(int i=0; i<regular_expressions->size(); i++)
-    {
-        exp=regular_expressions->at(i);
-        if(strcmp(exp->name.c_str(),name.c_str())==0)
-        {
-            return exp->transitions;//case where regex/regdef is defined as function of another regex
-        }
-    }
-
     if(name.size()==1)
     {
         return NFA::get_char(name.at(0));//case one char
@@ -502,13 +491,13 @@ NFA* RegExParser::getNFA(string name)
 NFA* RegExParser::evaluate(NFA *a,NFA *b,char operator_)
 {
     if(operator_=='+')
-        return a->positive_closure();
+        return a->clone()->positive_closure();
     else if(operator_=='*')
-        return a->kleene_closure();
+        return a->clone()->kleene_closure();
     else if(operator_=='|')
-        return a->oring(b);
+        return a->clone()->oring(b);
     else if(operator_==CONCAT_OP)
-        return b->concatenation(a);
+        return b->clone()->concatenation(a);
     else if(operator_=='-')
         return NFA::get_range(b->get_accepting_state()->get_token_class()->name.at(0),
                               a->get_accepting_state()->get_token_class()->name.at(0));
@@ -532,7 +521,6 @@ string  RegExParser::addSpaces(string line)
 {
     string temp=line;
     sortRegDef();
-    sortRegExp();
     for(int i=0; i<regular_defintions->size(); i++)
     {
         string Result;
@@ -574,27 +562,11 @@ string  RegExParser::addSpaces(string line)
         }
 
     }
-    cout<<temp<<endl;
+    //cout<<temp<<endl;
     return temp;
 
 }
-//sorts regex by descending order of the length of their names
-void RegExParser::sortRegExp()
-{
-    for(int i=1; i<regular_expressions->size(); i++)
-    {
-        for(int j=0; j<regular_expressions->size()-i; j++)
-        {
-            RegEx *first=regular_expressions->at(j);
-            RegEx *second=regular_expressions->at(j+1);
-            if(first->name.size()<second->name.size())
-            {
-                iter_swap(regular_expressions->begin()+j,regular_expressions->begin()+j+1);
-            }
-        }
-    }
-
-}
+//sorts regdef by descending order of the length of their names
 void RegExParser::sortRegDef()
 {
     for(int i=1; i<regular_defintions->size(); i++)

@@ -1,41 +1,80 @@
 #include "DFAState.h"
 
-DFAState::DFAState(vector <State*>* NFAStates )
+DFAState::DFAState()
 {
-    this->Marked=false;
-    this->NFAStates=NFAStates;
-    for(int j=0;j<NFAStates->size();j++){
-        if(NFAStates->at(j)->get_accepting()){
-            this->isAccepting=true;
-            break;
-        }
+        accepting = false;
+        adjList = new map<char,DFAState*>();
+        token_class = TokenClass::epsilon;
+}
 
+
+
+
+
+DFAState*DFAState::move(char trans_char) {
+
+    DFAState*result = NULL;
+
+
+    if(adjList->find(trans_char) != adjList->end()) {
+        result = adjList->at(trans_char);
     }
+
+    return result;
+
 }
 
-void DFAState::addEdge( DFAEdge* DFAEdge){
-    //TODO
+
+DFAState*DFAState::move(string str) {
+
+    DFAState* current = this;
+    int i = 0;
+    int n = strlen(&str[0]);
+    while(current != NULL && i < n) {
+        current = current->move(str[i]);
+        i++;
+    }
+
+    return current;
 }
 
-void DFAState::addEdge(DFAState* to,char trans_char){
-    //TODO
+bool DFAState::get_accepting() {
+    return accepting;
 }
 
-void DFAState::setMarked(){
-    Marked=true;
+  void DFAState::set_accepting(bool b) {
+    accepting = b;
+  }
+
+void DFAState::set_tokenClass(TokenClass* tokenClass) {
+    token_class = tokenClass;
 }
 
-bool DFAState::isMarked(){
-    return Marked;
+ void DFAState::add_edge(DFAState*state, char trans_char) {
+        (*adjList)[trans_char] = state;
+ }
+
+
+void DFAState::printer() {
+
+    cout<<"accepting : "<<accepting<<", "<<get_tokenClass()->get_token_name()<<" .. ";
+    for(map<char,DFAState*>::iterator it = adjList->begin(); it != adjList->end(); it++) {
+        cout<<"("<<(it->second)->get_tokenClass()->get_token_name()<<", "<<it->first<<")";
+    }
+
 }
 
-void DFAState::setStart(){
-    this->isStart=true;
+
+
+map<char,DFAState*>* DFAState::get_adjList() {
+    return adjList;
 }
 
-vector<State*>* DFAState::getNFAStates(){
-    return this->NFAStates;
+TokenClass*DFAState::get_tokenClass() {
+    return token_class;
 }
+
+
 DFAState::~DFAState()
 {
     //dtor

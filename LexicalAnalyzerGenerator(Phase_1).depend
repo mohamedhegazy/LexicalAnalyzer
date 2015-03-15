@@ -1,36 +1,37 @@
 # depslib dependency file v1.0
-1426382575 source:d:\csed\codeblocksworkspace\lexicalanalyzergenerator(phase_1)\main.cpp
+1426432713 source:d:\csed\codeblocksworkspace\lexicalanalyzergenerator(phase_1)\main.cpp
 	<iostream>
 	<map>
 	"src/NFA.h"
 	"src/DFA.h"
 	"src/RegExParser.h"
 
-1426353590 source:d:\csed\codeblocksworkspace\lexicalanalyzergenerator(phase_1)\src\dfa.cpp
+1426386922 source:d:\csed\codeblocksworkspace\lexicalanalyzergenerator(phase_1)\src\dfa.cpp
 	"DFA.h"
-	"DFAState.h"
 
-1426343473 d:\csed\codeblocksworkspace\lexicalanalyzergenerator(phase_1)\src\dfa.h
+1426385376 d:\csed\codeblocksworkspace\lexicalanalyzergenerator(phase_1)\src\dfa.h
 	"State.h"
 	"NFA.h"
+	"DFAState.h"
+	"State.h"
 	<vector>
 	<map>
-	"DFAState.h"
-	"string.h"
-	"NFA.h"
-	<algorithm>
+	<queue>
+	<string>
 
-1426022859 d:\csed\codeblocksworkspace\lexicalanalyzergenerator(phase_1)\src\state.h
+1426436990 d:\csed\codeblocksworkspace\lexicalanalyzergenerator(phase_1)\src\state.h
 	<vector>
 	"Edge.h"
 	"TokenClass.h"
+	<set>
+	<queue>
 	<iostream>
 
 1425925842 d:\csed\codeblocksworkspace\lexicalanalyzergenerator(phase_1)\src\edge.h
 	"State.h"
 	"TokenClass.h"
 
-1426011558 d:\csed\codeblocksworkspace\lexicalanalyzergenerator(phase_1)\src\tokenclass.h
+1426432886 d:\csed\codeblocksworkspace\lexicalanalyzergenerator(phase_1)\src\tokenclass.h
 	<string>
 
 1425925842 source:d:\csed\codeblocksworkspace\lexicalanalyzergenerator(phase_1)\src\edge.cpp
@@ -55,10 +56,10 @@
 	"RegExParser.h"
 	<string>
 
-1426193793 source:d:\csed\codeblocksworkspace\lexicalanalyzergenerator(phase_1)\src\nfa.cpp
+1426438514 source:d:\csed\codeblocksworkspace\lexicalanalyzergenerator(phase_1)\src\nfa.cpp
 	"NFA.h"
 
-1426011558 d:\csed\codeblocksworkspace\lexicalanalyzergenerator(phase_1)\src\nfa.h
+1426436796 d:\csed\codeblocksworkspace\lexicalanalyzergenerator(phase_1)\src\nfa.h
 	"State.h"
 	<stdio.h>
 	<iostream>
@@ -89,13 +90,13 @@
 	<string>
 	"NFA.h"
 
-1426022687 source:d:\csed\codeblocksworkspace\lexicalanalyzergenerator(phase_1)\src\state.cpp
+1426437538 source:d:\csed\codeblocksworkspace\lexicalanalyzergenerator(phase_1)\src\state.cpp
 	"State.h"
 
 1425850053 source:d:\csed\codeblocksworkspace\lexicalanalyzergenerator(phase_1)\src\token.cpp
 	"Token.h"
 
-1426011558 source:d:\csed\codeblocksworkspace\lexicalanalyzergenerator(phase_1)\src\tokenclass.cpp
+1426432906 source:d:\csed\codeblocksworkspace\lexicalanalyzergenerator(phase_1)\src\tokenclass.cpp
 	"TokenClass.h"
 
 1425986062 source:/home/hero/codeBlocks/LexicalAnalyzer/main.cpp
@@ -191,7 +192,7 @@
 1425916470 source:/home/hero/codeBlocks/LexicalAnalyzer/src/Edge.cpp
 	"Edge.h"
 
-1426381484 source:d:\csed\codeblocksworkspace\lexicalanalyzergenerator(phase_1)\src\regexparser.cpp
+1426432687 source:d:\csed\codeblocksworkspace\lexicalanalyzergenerator(phase_1)\src\regexparser.cpp
 	"RegExParser.h"
 	<stack>
 	<algorithm>
@@ -231,13 +232,13 @@
 1426262444 d:\csed\codeblocksworkspace\lexicalanalyzergenerator(phase_1)\src\dfaedge.h
 	"DFAState.h"
 
-1426339501 d:\csed\codeblocksworkspace\lexicalanalyzergenerator(phase_1)\src\dfastate.h
-	<vector>
+1426387932 d:\csed\codeblocksworkspace\lexicalanalyzergenerator(phase_1)\src\dfastate.h
 	"TokenClass.h"
-	"State.h"
-	"DFAEdge.h"
 	<iostream>
+	<string>
+	<string.h>
+	<map>
 
-1426353555 source:d:\csed\codeblocksworkspace\lexicalanalyzergenerator(phase_1)\src\dfastate.cpp
+1426387972 source:d:\csed\codeblocksworkspace\lexicalanalyzergenerator(phase_1)\src\dfastate.cpp
 	"DFAState.h"
 

@@ -1,6 +1,7 @@
 #ifndef TOKENCLASS_H
 #define TOKENCLASS_H
 #include <string>
+#include <iostream>
 
 using namespace std;
 
@@ -10,6 +11,7 @@ class TokenClass
 
         static TokenClass* epsilon;
         static char epsilon_char;
+        string get_token_name();
         string name;
         int priority;//may be deleted later
 
