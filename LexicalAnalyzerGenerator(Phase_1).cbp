@@ -39,6 +39,10 @@
 		<Unit filename="src\Constants.h" />
 		<Unit filename="src\DFA.cpp" />
 		<Unit filename="src\DFA.h" />
+		<Unit filename="src\DFAEdge.cpp" />
+		<Unit filename="src\DFAEdge.h" />
+		<Unit filename="src\DFAState.cpp" />
+		<Unit filename="src\DFAState.h" />
 		<Unit filename="src\Edge.cpp" />
 		<Unit filename="src\Edge.h" />
 		<Unit filename="src\Expression.cpp" />

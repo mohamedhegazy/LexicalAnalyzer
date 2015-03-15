@@ -34,8 +34,6 @@ int main(int argc, char* argv[])
         //cout<<id->acceptes(lol)<<endl;
         cout<<a->acceptes(lol)<<endl;
     }
-    string temp=*(RegExParser::prepareIfConcatenation("id: letter (letter|digit)*",1));
-    cout << temp<<endl;
     //end hegazy test
 
 

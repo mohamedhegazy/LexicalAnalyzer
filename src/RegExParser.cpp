@@ -1,6 +1,7 @@
 #include "RegExParser.h"
 #include <stack>          // std::stack
-
+#include <algorithm>
+#include <sstream>
 const int SYMBOL=0;
 const int ALPHA=1;
 const int REG_DEF_SEPARATOR=2;
@@ -20,6 +21,8 @@ const int RANGE_PRIORITY=17;
 const int CONCAT_PRIORITY=18;
 const int CLOSURE_PRIORITY=19;
 const char CONCAT_OP=17;
+const char TEMP_OP=18;
+
 RegExParser::RegExParser()
 {
     //ctor
@@ -359,6 +362,7 @@ int RegExParser::getOperatorPrecedence(char operator_)
 string* RegExParser::prepareIfConcatenation(string line,bool exp_def)
 {
 
+
     int begin;
     if(exp_def) //regex
     {
@@ -369,60 +373,34 @@ string* RegExParser::prepareIfConcatenation(string line,bool exp_def)
         begin=line.find_first_of("=");
     }
     begin++;
-    while(line.at(begin)==' ')
-        begin++;
-    string* temp=new string(line.substr(begin));
-    for(int i=0; i<(*temp).size(); i++)
+    string temp=line.substr(begin);
+    string::iterator end_pos = remove(temp.begin(), temp.end(), ' ');
+    temp.erase(end_pos, temp.end());
+    string * new_line=new string(addSpaces(temp));
+    for(int i=0; i<(*new_line).size(); i++)
     {
-        if((*temp)[i]=='\\')
+        if((*new_line)[i]==' ' && (i>0 && (*new_line)[i-1]!='|' && (*new_line)[i-1]!='(')
+                && (i+1<(*new_line).size() && (*new_line)[i+1]!='|' && (*new_line)[i+1]!=')'))
         {
-            continue;
+            (*new_line)[i]=CONCAT_OP;
         }
-
-        else if((*temp)[i]==' ')
+        else if((*new_line)[i]=='('&& (i>0 && (*new_line)[i-1]!='|'&& (*new_line)[i-1]!=CONCAT_OP))
         {
-            (*temp)[i]=CONCAT_OP;
+            new_line=new string((*new_line).substr(0,i)+string(1,CONCAT_OP)+(*new_line).substr(i));
         }
-        else if((*temp)[i]=='(' && i>0 && (*temp)[i-1]!=CONCAT_OP )
+        else if((*new_line)[i]==')' && i+1<(*new_line).size()
+                &&  ((*new_line)[i+1]=='*' || (*new_line)[i+1]=='+'))
         {
-            temp=new string((*temp).substr(0,i)+"~"+(*temp).substr(i));
+            if(i+2<(*new_line).size() &&  (*new_line)[i+2]!=' ' && (*new_line)[i+2]!='|')
+                new_line=new string((*new_line).substr(0,i+2)+string(1,CONCAT_OP)+(*new_line).substr(i+2));
         }
-        else if( (*temp)[i]==')' && i+1<(*temp).size() && (*temp)[i+1]!='+' && (*temp)[i+1]!='*')
+        else if((*new_line)[i]==')' && i+1 <(*new_line).size() && (*new_line)[i+1]!=' ' && (*new_line)[i+1]!='|')
         {
-            temp=new string((*temp).substr(0,i+1)+"~"+(*temp).substr(i+1));
-        }
-        else if( (*temp)[i]==')' && i+2<(*temp).size() && (*temp)[i+2]!='+' && (*temp)[i+2]!='*')
-        {
-            temp=new string((*temp).substr(0,i+2)+"~"+(*temp).substr(i+2));
-        }
-
-    }
-    for(int i=0; i<(*temp).size(); i++)//eliminate ~ around the OR(ranged or normal) and after '(' and before ')'
-    {
-        if((*temp)[i]=='|' || ((*temp)[i]=='-' && i>0 && (*temp)[i-1]!='\\' ))
-        {
-            int j=i-1;
-            int k=i+1;
-            while(j>0 && ((*temp)[j] ==CONCAT_OP||(*temp)[j] ==' '))
-                (*temp)[j--]=' ';
-            while(k<(*temp).size() && ( (*temp)[k] ==CONCAT_OP||(*temp)[k] ==' ')  )
-                (*temp)[k++]=' ';
-        }
-        else if((*temp)[i]=='(')
-        {
-            int k=i+1;
-            while(k<(*temp).size() && ( (*temp)[k] ==CONCAT_OP||(*temp)[k] ==' ')  )
-                (*temp)[k++]=' ';
-        }
-        else if((*temp)[i]==')')
-        {
-            int j=i-1;
-            while(j>0 && ((*temp)[j] ==CONCAT_OP||(*temp)[j] ==' '))
-                (*temp)[j--]=' ';
-
+            new_line=new string((*new_line).substr(0,i+1)+string(1,CONCAT_OP)+(*new_line).substr(i+1));
         }
     }
-    return temp;
+    //cout<<(*new_line)<<endl;
+    return new_line;
 }
 //if(0 it is in regular definition 1 in regex)
 void RegExParser::evaluateExpression(string temp_lhs_name,vector<Expression *> * output,bool exp_def)
@@ -437,8 +415,6 @@ void RegExParser::evaluateExpression(string temp_lhs_name,vector<Expression *> *
         {
             NFA* a=getNFA(exp->operand);
             value->push(a);
-            //cout<<exp->operand.c_str()<<endl;
-            //cout<<a->get_accepting_state()->get_token_class()->name<<endl;
         }
         else
         {
@@ -496,19 +472,32 @@ NFA* RegExParser::getNFA(string name)
             return def->transitions;//case where regex/regdef is defined as function of another regdef
         }
     }
+
+    RegEx * exp;
+    for(int i=0; i<regular_expressions->size(); i++)
+    {
+        exp=regular_expressions->at(i);
+        if(strcmp(exp->name.c_str(),name.c_str())==0)
+        {
+            return exp->transitions;//case where regex/regdef is defined as function of another regex
+        }
+    }
+
     if(name.size()==1)
     {
         return NFA::get_char(name.at(0));//case one char
     }
 
-    if(name.size()>1){
-    return NFA ::get_string(name);//case string
-    }
-    if(strcmp(name.c_str(),"epsilon"))
+    else if(strcmp(name.c_str(),"epsilon"))
     {
         return new NFA();//epsilon state
 
     }
+    else if(name.size()>1)
+    {
+        return NFA ::get_string(name);//case string
+    }
+
 }
 NFA* RegExParser::evaluate(NFA *a,NFA *b,char operator_)
 {
@@ -539,11 +528,88 @@ NFA * RegExParser::constructNFA()
 }
 
 
+string  RegExParser::addSpaces(string line)
+{
+    string temp=line;
+    sortRegDef();
+    sortRegExp();
+    for(int i=0; i<regular_defintions->size(); i++)
+    {
+        string Result;
+        ostringstream convert;
+        convert << i;
+        Result = convert.str();
+        RegDef* def=regular_defintions->at(i);
+        int found=temp.find(def->name);
+        while(found!=std::string::npos)
+        {
 
+            if(found+def->name.size() <temp.size() &&
+                    (temp[found+def->name.size()]=='*' || temp[found+def->name.size()]=='+' ))
+            {
+                temp=temp.substr(0,found)+" "+string(1,TEMP_OP)+Result+string(1,TEMP_OP)+temp.substr(found+def->name.size(),1)+" "+temp.substr(found+def->name.size()+1);
+            }
+            else
+            {
+                temp=temp.substr(0,found)+" "+string(1,TEMP_OP)+Result+string(1,TEMP_OP)+" "+temp.substr(found+def->name.size());
+            }
 
+            found=temp.find(def->name,found+def->name.size());
+        }
+    }
+    for(int i=0; i<temp.size(); i++)
+    {
+        if(temp[i]==TEMP_OP)
+        {
+            string index="";
+            int k=i+1;
+            while(temp[k]!=TEMP_OP)
+            {
+                index=index+temp[k];
+                k++;
+            }
+            int value = atoi(index.c_str());
+            RegDef *def=regular_defintions->at(value);
+            temp=temp.substr(0,i)+def->name+temp.substr(k+1);
+        }
 
+    }
+    //cout<<temp<<endl;
+    return temp;
 
+}
+//sorts regex by descending order of the length of their names
+void RegExParser::sortRegExp()
+{
+    for(int i=1; i<regular_expressions->size(); i++)
+    {
+        for(int j=0; j<regular_expressions->size()-i; j++)
+        {
+            RegEx *first=regular_expressions->at(j);
+            RegEx *second=regular_expressions->at(j+1);
+            if(first->name.size()<second->name.size())
+            {
+                iter_swap(regular_expressions->begin()+j,regular_expressions->begin()+j+1);
+            }
+        }
+    }
 
+}
+void RegExParser::sortRegDef()
+{
+    for(int i=1; i<regular_defintions->size(); i++)
+    {
+        for(int j=0; j<regular_defintions->size()-i; j++)
+        {
+            RegDef *first=regular_defintions->at(j);
+            RegDef *second=regular_defintions->at(j+1);
+            if(first->name.size()<second->name.size())
+            {
+                iter_swap(regular_defintions->begin()+j,regular_defintions->begin()+j+1);
+            }
+        }
+    }
+}
 
 
 

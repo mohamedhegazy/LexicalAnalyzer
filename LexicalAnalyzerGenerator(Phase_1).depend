@@ -1,19 +1,24 @@
 # depslib dependency file v1.0
-1426194189 source:d:\csed\codeblocksworkspace\lexicalanalyzergenerator(phase_1)\main.cpp
+1426365843 source:d:\csed\codeblocksworkspace\lexicalanalyzergenerator(phase_1)\main.cpp
 	<iostream>
 	<map>
 	"src/NFA.h"
 	"src/DFA.h"
 	"src/RegExParser.h"
 
-1426011558 source:d:\csed\codeblocksworkspace\lexicalanalyzergenerator(phase_1)\src\dfa.cpp
+1426353590 source:d:\csed\codeblocksworkspace\lexicalanalyzergenerator(phase_1)\src\dfa.cpp
 	"DFA.h"
+	"DFAState.h"
 
-1426011558 d:\csed\codeblocksworkspace\lexicalanalyzergenerator(phase_1)\src\dfa.h
+1426343473 d:\csed\codeblocksworkspace\lexicalanalyzergenerator(phase_1)\src\dfa.h
 	"State.h"
 	"NFA.h"
 	<vector>
 	<map>
+	"DFAState.h"
+	"string.h"
+	"NFA.h"
+	<algorithm>
 
 1426022859 d:\csed\codeblocksworkspace\lexicalanalyzergenerator(phase_1)\src\state.h
 	<vector>
@@ -186,11 +191,13 @@
 1425916470 source:/home/hero/codeBlocks/LexicalAnalyzer/src/Edge.cpp
 	"Edge.h"
 
-1426194075 source:d:\csed\codeblocksworkspace\lexicalanalyzergenerator(phase_1)\src\regexparser.cpp
+1426379302 source:d:\csed\codeblocksworkspace\lexicalanalyzergenerator(phase_1)\src\regexparser.cpp
 	"RegExParser.h"
 	<stack>
+	<algorithm>
+	<sstream>
 
-1426087059 d:\csed\codeblocksworkspace\lexicalanalyzergenerator(phase_1)\src\regexparser.h
+1426378630 d:\csed\codeblocksworkspace\lexicalanalyzergenerator(phase_1)\src\regexparser.h
 	<iostream>
 	<cstring>
 	<fstream>
@@ -217,4 +224,20 @@
 
 1425948624 source:/home/hero/codeBlocks/LexicalAnalyzer/src/RegExParser.cpp
 	"RegExParser.h"
+
+1426262332 source:d:\csed\codeblocksworkspace\lexicalanalyzergenerator(phase_1)\src\dfaedge.cpp
+	"DFAEdge.h"
+
+1426262444 d:\csed\codeblocksworkspace\lexicalanalyzergenerator(phase_1)\src\dfaedge.h
+	"DFAState.h"
+
+1426339501 d:\csed\codeblocksworkspace\lexicalanalyzergenerator(phase_1)\src\dfastate.h
+	<vector>
+	"TokenClass.h"
+	"State.h"
+	"DFAEdge.h"
+	<iostream>
+
+1426353555 source:d:\csed\codeblocksworkspace\lexicalanalyzergenerator(phase_1)\src\dfastate.cpp
+	"DFAState.h"
 
