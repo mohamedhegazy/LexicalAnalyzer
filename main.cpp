@@ -89,13 +89,14 @@ void RegExParser_test() {
     NFA *a=parser->constructNFA();
 
     DFA *hussein=new DFA(a);
-       cout<<"dfa states count : "<<hussein->get_states()->size()<<endl;
-   cout<<"nfa states count : "<<a->get_states()->size()<<endl;
+    cout<<"dfa states count : "<<hussein->get_states()->size()<<endl;
+    cout<<"dfa mini states count : "<<hussein->get_mini_states()->size()<<endl;
+    cout<<"nfa states count : "<<a->get_states()->size()<<endl;
 
        while(true) {
         string str;
         cin>>str;
-        DFAState * ss = hussein->get_start_state()->move(str);
+        DFAState * ss = hussein->get_mini_start_state()->move_mini(str);
         if(ss == NULL) {
              cout<<"anser is : NULL"<<endl;
         }

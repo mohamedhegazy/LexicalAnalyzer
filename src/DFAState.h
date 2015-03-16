@@ -24,6 +24,15 @@ class DFAState
         void set_tokenClass(TokenClass* tokenClass);
         bool get_accepting();
         void set_accepting(bool b);
+
+
+        DFAState*move_mini(char trans_char);
+        DFAState*move_mini(string str);
+        map<char,DFAState*>* get_adjList_mini();
+        void add_edge_mini(DFAState*state, char trans_char);
+        bool get_representative();
+        void set_representative(bool b);
+
         virtual ~DFAState();
 
 
@@ -34,6 +43,9 @@ class DFAState
         map<char,DFAState*>* adjList;
         TokenClass* token_class;
 
+
+        bool representative;//if this is true the state was chosen to be representative
+        map<char,DFAState*>* adjList_mini;//this contains edges to other representative states
 
 
 };

@@ -8,7 +8,7 @@
 #include <map>
 #include <queue>
 #include <string>
-
+#include "SubGroup.h"
 using namespace std;
 
 class DFA
@@ -21,6 +21,16 @@ class DFA
         DFAState* get_start_state();
         vector<DFAState*>*get_states();
         bool accepts(string str);
+
+        vector<SubGroup *>*  findGrouping(map< DFAState *,map<char,int> > map);
+        bool equivalent(vector<SubGroup *>* a,vector<SubGroup *>* b);
+        bool sameStates(SubGroup *aa,SubGroup *bb);
+        bool map_compare (map<char,int> lhs, map<char,int> rhs);
+        int getGroup(DFAState * state,vector <SubGroup *> * groups);
+        bool accepts_mini(string str);
+        vector<DFAState*>*get_mini_states();
+        DFAState* get_mini_start_state();
+
         virtual ~DFA();
     protected:
     private:
@@ -30,6 +40,8 @@ class DFA
         DFAState*start_state;
         vector<DFAState*>*states;
 
+        DFAState*start_state_minimized;
+        vector<DFAState*>*states_minimized;
 
 };
 
