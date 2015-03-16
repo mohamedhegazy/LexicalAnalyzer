@@ -1,10 +1,25 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <CodeBlocks_layout_file>
 	<ActiveTarget name="Debug" />
-	<File name="main.cpp" open="1" top="1" tabpos="3">
-		<Cursor position="1099" topLine="25" />
+	<File name="main.cpp" open="0" top="0" tabpos="3">
+		<Cursor position="2858" topLine="83" />
 	</File>
-	<File name="src\Expression.cpp" open="1" top="0" tabpos="6">
+	<File name="src\DFA.cpp" open="1" top="1" tabpos="0">
+		<Cursor position="10037" topLine="377" />
+	</File>
+	<File name="src\DFA.h" open="0" top="0" tabpos="2">
+		<Cursor position="1407" topLine="18" />
+	</File>
+	<File name="src\DFAState.cpp" open="0" top="0" tabpos="4">
+		<Cursor position="1921" topLine="95" />
+	</File>
+	<File name="src\DFAState.h" open="0" top="0" tabpos="5">
+		<Cursor position="372" topLine="7" />
+	</File>
+	<File name="src\Edge.h" open="0" top="0" tabpos="0">
+		<Cursor position="422" topLine="0" />
+	</File>
+	<File name="src\Expression.cpp" open="0" top="0" tabpos="6">
 		<Cursor position="261" topLine="0" />
 	</File>
 	<File name="src\Expression.h" open="0" top="0" tabpos="3">
@@ -13,43 +28,55 @@
 	<File name="src\LexicalAnalyzerGenerator.cpp" open="0" top="0" tabpos="5">
 		<Cursor position="333" topLine="0" />
 	</File>
-	<File name="src\NFA.cpp" open="1" top="0" tabpos="9">
-		<Cursor position="9406" topLine="322" />
+	<File name="src\NFA.cpp" open="0" top="0" tabpos="4">
+		<Cursor position="7681" topLine="253" />
 	</File>
-	<File name="src\NFA.h" open="0" top="0" tabpos="8">
-		<Cursor position="1367" topLine="31" />
+	<File name="src\NFA.h" open="0" top="0" tabpos="6">
+		<Cursor position="1217" topLine="21" />
 	</File>
 	<File name="src\Phase1.cpp" open="0" top="0" tabpos="0">
-		<Cursor position="213" topLine="0" />
+		<Cursor position="550" topLine="0" />
 	</File>
-	<File name="src\RegDef.cpp" open="1" top="0" tabpos="5">
+	<File name="src\RegDef.cpp" open="0" top="0" tabpos="5">
 		<Cursor position="21" topLine="0" />
 	</File>
-	<File name="src\RegDef.h" open="1" top="0" tabpos="4">
+	<File name="src\RegDef.h" open="0" top="0" tabpos="4">
 		<Cursor position="289" topLine="0" />
 	</File>
 	<File name="src\RegEx.cpp" open="0" top="0" tabpos="0">
-		<Cursor position="93" topLine="2" />
+		<Cursor position="93" topLine="0" />
 	</File>
 	<File name="src\RegEx.h" open="0" top="0" tabpos="2">
-		<Cursor position="421" topLine="0" />
+		<Cursor position="513" topLine="0" />
 	</File>
-	<File name="src\RegExParser.cpp" open="1" top="0" tabpos="1">
-		<Cursor position="16431" topLine="507" />
+	<File name="src\RegExParser.cpp" open="0" top="0" tabpos="1">
+		<Cursor position="109" topLine="0" />
 	</File>
-	<File name="src\RegExParser.h" open="1" top="0" tabpos="2">
-		<Cursor position="1119" topLine="12" />
+	<File name="src\RegExParser.h" open="0" top="0" tabpos="2">
+		<Cursor position="1178" topLine="12" />
 	</File>
-	<File name="src\State.cpp" open="1" top="0" tabpos="7">
-		<Cursor position="1138" topLine="42" />
+	<File name="src\State.cpp" open="0" top="0" tabpos="7">
+		<Cursor position="0" topLine="0" />
 	</File>
-	<File name="src\State.h" open="0" top="0" tabpos="5">
-		<Cursor position="527" topLine="5" />
+	<File name="src\State.h" open="0" top="0" tabpos="11">
+		<Cursor position="1029" topLine="15" />
 	</File>
-	<File name="src\TokenClass.cpp" open="1" top="0" tabpos="8">
-		<Cursor position="413" topLine="5" />
+	<File name="src\SubGroup.cpp" open="0" top="0" tabpos="6">
+		<Cursor position="202" topLine="0" />
 	</File>
-	<File name="src\TokenClass.h" open="0" top="0" tabpos="0">
-		<Cursor position="213" topLine="0" />
+	<File name="src\SubGroup.h" open="0" top="0" tabpos="0">
+		<Cursor position="234" topLine="0" />
+	</File>
+	<File name="src\Token.cpp" open="0" top="0" tabpos="10">
+		<Cursor position="0" topLine="0" />
+	</File>
+	<File name="src\Token.h" open="0" top="0" tabpos="0">
+		<Cursor position="273" topLine="0" />
+	</File>
+	<File name="src\TokenClass.cpp" open="0" top="0" tabpos="8">
+		<Cursor position="140" topLine="0" />
+	</File>
+	<File name="src\TokenClass.h" open="0" top="0" tabpos="9">
+		<Cursor position="518" topLine="0" />
 	</File>
 </CodeBlocks_layout_file>

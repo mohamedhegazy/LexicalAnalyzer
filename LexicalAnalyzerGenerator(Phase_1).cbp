@@ -39,8 +39,6 @@
 		<Unit filename="src\Constants.h" />
 		<Unit filename="src\DFA.cpp" />
 		<Unit filename="src\DFA.h" />
-		<Unit filename="src\DFAEdge.cpp" />
-		<Unit filename="src\DFAEdge.h" />
 		<Unit filename="src\DFAState.cpp" />
 		<Unit filename="src\DFAState.h" />
 		<Unit filename="src\Edge.cpp" />
@@ -63,6 +61,8 @@
 		<Unit filename="src\RegExParser.h" />
 		<Unit filename="src\State.cpp" />
 		<Unit filename="src\State.h" />
+		<Unit filename="src\SubGroup.cpp" />
+		<Unit filename="src\SubGroup.h" />
 		<Unit filename="src\Token.cpp" />
 		<Unit filename="src\Token.h" />
 		<Unit filename="src\TokenClass.cpp" />

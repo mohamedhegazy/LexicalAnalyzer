@@ -1,7 +1,10 @@
-
+#include <fstream>
 #include "DFA.h"
 #include "SubGroup.h"
 #include <algorithm>
+#include <sstream>
+#include <math.h>       /* ceil */
+
 DFA::DFA()
 {
 
@@ -13,6 +16,7 @@ DFA::DFA(NFA * nfa)
     states_minimized =new vector<DFAState*>();
     convertNFAtoDFA(nfa);
     minimizeDFA();
+    print();
 }
 
 
@@ -142,24 +146,39 @@ DFAState* DFA::get_start_state()
 
 void DFA::minimizeDFA()
 {
+    for(int i=0;i<states->size();i++){
+    DFAState * st=states->at(i);
+    cout<<st->get_accepting()<<","<<st->get_tokenClass()->name<<endl;
+    }
     vector <SubGroup *>* groups=new vector<SubGroup *>();
     vector <SubGroup *>* new_groups=new vector<SubGroup *>();
 //split by accepting and rejecting
-    SubGroup* accepting=new SubGroup();
     SubGroup* rejecting=new SubGroup();
+    map<TokenClass*,SubGroup*> tok_sub;
     for(int i=0; i<states->size(); i++)
     {
         DFAState* st=states->at(i);
         if(st->get_accepting())
         {
-            accepting->put(st);
+            //accepting states are differentiated by the pattern they accept
+            SubGroup* accepting=tok_sub[st->get_tokenClass()];
+            if(accepting==NULL)
+            {
+                accepting=new SubGroup();
+                accepting->put(st);
+                groups->push_back(accepting);
+                tok_sub[st->get_tokenClass()]=accepting;
+            }
+            else
+            {
+                accepting->put(st);
+            }
         }
         else
         {
             rejecting->put(st);
         }
     }
-    groups->push_back(accepting);
     groups->push_back(rejecting);
     while(true)
     {
@@ -209,9 +228,8 @@ void DFA::minimizeDFA()
         SubGroup * gr=groups->at(i);
         DFAState * rep=gr->group->at(0);
         rep->set_representative(true);
-        map[gr->group->at(0)]=rep;
         states_minimized->push_back(rep);
-        for(int j=1; j<gr->group->size(); j++)
+        for(int j=0; j<gr->group->size(); j++)
         {
             map[gr->group->at(j)]=rep;
         }
@@ -256,7 +274,7 @@ vector<SubGroup *>* DFA::findGrouping(map< DFAState *,map<char,int> > m)
         {
             if(map_compare(iterator->second,iterator_2->second) && iterator->first!=iterator_2->first)
             {
-                if(!in[iterator_2->first])
+                if(!in[iterator_2->first] )
                 {
                     new_sub->put(iterator_2->first);
                     in[iterator_2->first]=true;
@@ -364,6 +382,85 @@ DFA::~DFA()
 {
     //dtor
 }
-void DFA::print(){
+void DFA::print()
+{
+    string delim="";
+    bool open=openOutputFile("table.txt");
+    for(int i=32 ;i<127;i++){
+    delim=delim+"--------";
+    }
+    delim=delim+"--------";
+    writeToFile(delim);
+    string chars="|state  |";
+    for(int i=32 ;i<127;i++){
+        char s=(char)i;
+    chars=chars+"    "+string(1,s)+"  |";
+    }
+    chars=chars+"accepts|";
+    writeToFile(chars);
+    writeToFile(delim);
 
+    for(int i=0; i<states_minimized->size(); i++)
+    {
+        string line="";
+        string Result;
+        ostringstream convert;
+        convert << i;
+        Result = convert.str();
+        while(Result.size()<=6){
+        Result=Result+" ";
+        if(Result.size()==7)
+            break;
+        Result=" "+Result;
+        }
+        line=line+"|"+Result+"|";
+        DFAState * st=states_minimized->at(i);
+        for(int j=32; j<127; j++)
+        {
+            char trans_char=(char)j;
+            DFAState *trans=st->move(trans_char);
+            if(trans==NULL)
+            {
+                    line=line+"    -1 |";
+            }else{
+            int index=std::find(states->begin(), states->end(), trans)-states->begin();
+            string Result;
+            ostringstream convert;
+            convert << index;
+            Result = convert.str();
+            while(Result.size()<=6){
+            Result=Result+" ";
+            if(Result.size()==7)
+            break;
+            Result=" "+Result;
+            }
+            line=line+Result+"|";
+            }
+
+        }
+        if(st->get_accepting()){
+                        string Result;
+            ostringstream convert;
+            convert << st->get_tokenClass()->priority;
+            Result = convert.str();
+
+            line=line+st->get_tokenClass()->name+","+Result;
+        }
+        else{
+            line=line+"NULL";
+        }
+        writeToFile(line);
+        writeToFile(delim);
+    }
+
+}
+bool DFA::openOutputFile(string filePath)
+{
+    outputFile = new ofstream(&filePath[0], ios::out);
+    return outputFile->is_open() && !outputFile->fail();
+}
+void DFA::writeToFile(string line)
+{
+    outputFile->write("\n",1);
+    outputFile->write(&line[0],strlen(&line[0]));
 }
