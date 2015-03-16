@@ -11,8 +11,12 @@ using namespace std;
 class LexicalAnalyzerGenerator
 {
     public:
+
+        //leave the constructer empty
         LexicalAnalyzerGenerator();
-        LexicalAnalyzer createLexicalAnalyzer(string regxFile);
+
+        //create lexical analyzer
+        LexicalAnalyzer* createLexicalAnalyzer(string regxFile);
 
         virtual ~LexicalAnalyzerGenerator();
     protected:

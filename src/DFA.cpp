@@ -147,7 +147,7 @@ void DFA::minimizeDFA()
 //split by accepting and rejecting
     SubGroup* accepting=new SubGroup();
     SubGroup* rejecting=new SubGroup();
-    for(int i=0; i<states->size(); i++)
+    for(int i=0; i< (int)states->size(); i++)
     {
         DFAState* st=states->at(i);
         if(st->get_accepting())
@@ -164,12 +164,12 @@ void DFA::minimizeDFA()
     while(true)
     {
         //loop each subgroup
-        for(int i=0; i<groups->size(); i++)
+        for(int i=0; i<(int)groups->size(); i++)
         {
             SubGroup *sub=groups->at(i);
             map< DFAState*, map<char,int> >m;//map each state to groups it can go to for every symbol
             //loop states of each subgroup
-            for(int j=0; j<sub->group->size(); j++)
+            for(int j=0; j<(int)sub->group->size(); j++)
             {
                 DFAState * st=sub->group->at(j);
                 map<char,int> s;
@@ -186,7 +186,7 @@ void DFA::minimizeDFA()
                 }
             }
             vector<SubGroup *>* temp=findGrouping(m);
-            for(int k=0; k<temp->size(); k++)
+            for(int k=0; k<(int)temp->size(); k++)
             {
                 new_groups->push_back(temp->at(k));
             }
@@ -196,7 +196,7 @@ void DFA::minimizeDFA()
             break;
         }//terminating condition
         groups->clear();
-        for(int i=0; i<new_groups->size(); i++)
+        for(int i=0; i<(int)new_groups->size(); i++)
         {
             groups->push_back(new_groups->at(i));
         }
@@ -204,21 +204,21 @@ void DFA::minimizeDFA()
     }
     map<DFAState *,DFAState *> map;//used to map states to its representatives
     // assumption to take first state in group as representative
-    for(int i=0; i<groups->size(); i++)
+    for(int i=0; i<(int)groups->size(); i++)
     {
         SubGroup * gr=groups->at(i);
         DFAState * rep=gr->group->at(0);
         rep->set_representative(true);
         map[gr->group->at(0)]=rep;
         states_minimized->push_back(rep);
-        for(int j=1; j<gr->group->size(); j++)
+        for(int j=1; j<(int)gr->group->size(); j++)
         {
             map[gr->group->at(j)]=rep;
         }
     }
     start_state_minimized=map[start_state];
     //constructing minimized graph
-    for(int i=0; i<groups->size(); i++)
+    for(int i=0; i<(int)groups->size(); i++)
     {
         SubGroup * gr=groups->at(i);
         DFAState * rep=gr->group->at(0);
@@ -275,10 +275,10 @@ bool DFA::equivalent(vector<SubGroup *>* a,vector<SubGroup *>* b)
         return false;
     }
     bool *match=new bool[a->size()];
-    for(int i=0; i<a->size(); i++)
+    for(int i=0; i<(int)a->size(); i++)
     {
         SubGroup *aa=a->at(i);
-        for(int j=0; j<b->size(); j++)
+        for(int j=0; j<(int)b->size(); j++)
         {
             SubGroup *bb=b->at(j);
             if(aa->group->size()==bb->group->size() && sameStates(aa,bb))
@@ -288,7 +288,7 @@ bool DFA::equivalent(vector<SubGroup *>* a,vector<SubGroup *>* b)
             }
         }
     }
-    for(int i=0; i<a->size(); i++)
+    for(int i=0; i<(int)a->size(); i++)
     {
         if(match[i]==false)
         {
@@ -303,10 +303,10 @@ bool DFA::equivalent(vector<SubGroup *>* a,vector<SubGroup *>* b)
 bool DFA::sameStates(SubGroup *aa,SubGroup *bb)
 {
     bool *match=new bool[aa->group->size()];
-    for(int i=0; i<aa->group->size(); i++)
+    for(int i=0; i<(int)aa->group->size(); i++)
     {
         DFAState * staa=aa->group->at(i);
-        for(int j=0; j<bb->group->size(); j++)
+        for(int j=0; j<(int)bb->group->size(); j++)
         {
             DFAState *stbb=bb->group->at(j);
             if(staa==stbb)
@@ -315,7 +315,7 @@ bool DFA::sameStates(SubGroup *aa,SubGroup *bb)
             }
         }
     }
-    for(int i=0; i<aa->group->size(); i++)
+    for(int i=0; i<(int)aa->group->size(); i++)
     {
         if(match[i]==false)
         {
@@ -334,7 +334,7 @@ bool DFA::map_compare (map<char,int> lhs, map<char,int> rhs)
 }
 int DFA::getGroup(DFAState * state,vector <SubGroup *> * groups)
 {
-    for(int i=0; i<groups->size(); i++)
+    for(int i=0; i<(int)groups->size(); i++)
     {
         SubGroup *gr=groups->at(i);
         if(std::find(gr->group->begin(), gr->group->end(), state)!=gr->group->end())

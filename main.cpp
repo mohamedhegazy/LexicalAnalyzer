@@ -3,20 +3,35 @@
 #include "src/NFA.h"
 #include "src/DFA.h"
 #include "src/RegExParser.h"
+#include "src/Phase1.h"
 
 using namespace std;
 
 void DFA_test();
 void RegExParser_test();
+void phase1_test();
+
 int main(int argc, char* argv[])
 {
     cout << "Hello Parser!" << endl;
 
-    RegExParser_test();
-    DFA_test();
+    //RegExParser_test();
+    //DFA_test();
+    phase1_test();
+
     cout<<"done !"<<endl;
+
     return 0;
 }
+
+
+
+void phase1_test() {
+    cout<<"Phase1 test"<<endl;
+    Phase1::start_phase1();
+    cout<<"Phase1 test done !"<<endl;
+}
+
 
 
 void DFA_test() {
@@ -117,7 +132,7 @@ void RegExParser_test() {
     NFA * letter=small->oring(capital);
     NFA * letterORDigit=letter->oring(digits);
     NFA * closure=letterORDigit->kleene_closure();
-    NFA *id =letter->concatenation(closure);
+//    NFA *id =letter->concatenation(closure);
     //cout<<a->get_accepting_state()->get_token_class()->name;
     while(true)
     {

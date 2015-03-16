@@ -7,7 +7,7 @@ class Token
 {
     public:
         string attribute_value;
-        TokenClass tokenClass;
+        TokenClass* tokenClass;
 
         Token();
         virtual ~Token();

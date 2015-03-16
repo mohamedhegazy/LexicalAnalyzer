@@ -2,6 +2,9 @@
 #define LEXICALANALYZER_H
 #include "Token.h"
 #include "DFA.h"
+#include <iostream>
+#include <stdio.h>
+#include <fstream>
 // given the minimized dfa and the source code file
         // read the input file and provid tokens through
         // the next token method applying the max munch rule
@@ -12,14 +15,26 @@
 class LexicalAnalyzer
 {
     public:
-            Token getTokenNextToken();
-            LexicalAnalyzer(DFA minimizedDFA);
+            //get the tokens of the source file in sequence
+            Token* getTokenNextToken();
+
+            //constructor that sets the DFA which will be used by the
+            //lexical analyzer
+            LexicalAnalyzer(DFA* minimizedDFA);
+
+            //set the source code file which will be parsed
+            //for example test.java
             void setSourceCodeFile(string file_name);
 
-        LexicalAnalyzer();
+
         virtual ~LexicalAnalyzer();
     protected:
     private:
+        LexicalAnalyzer();
+        string file_name;
+        DFA* dfa;
+        ifstream source_file;
+
 };
 
 #endif // LEXICALANALYZER_H

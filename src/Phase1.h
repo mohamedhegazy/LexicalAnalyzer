@@ -5,10 +5,11 @@
 class Phase1
 {
     public:
-        Phase1();
+        static void start_phase1();
         virtual ~Phase1();
     protected:
     private:
+     Phase1();
 };
 
 #endif // PHASE1_H
