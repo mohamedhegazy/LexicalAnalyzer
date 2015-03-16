@@ -31,6 +31,7 @@ class DFA
         vector<DFAState*>*get_mini_states();
         DFAState* get_mini_start_state();
 
+
         virtual ~DFA();
     protected:
     private:
@@ -39,7 +40,9 @@ class DFA
         void minimizeDFA();// using disjoint set will be cool
         DFAState*start_state;
         vector<DFAState*>*states;
-
+        void writeToFile(string line);
+        bool openOutputFile(string filePath);
+        ofstream *outputFile;
         DFAState*start_state_minimized;
         vector<DFAState*>*states_minimized;
 

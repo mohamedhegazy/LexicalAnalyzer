@@ -102,7 +102,7 @@ void RegExParser_test() {
     //hegazy test
     RegExParser *parser=new RegExParser("regex.txt");
     NFA *a=parser->constructNFA();
-
+    a->NFA_print();
     DFA *hussein=new DFA(a);
     cout<<"dfa states count : "<<hussein->get_states()->size()<<endl;
     cout<<"dfa mini states count : "<<hussein->get_mini_states()->size()<<endl;

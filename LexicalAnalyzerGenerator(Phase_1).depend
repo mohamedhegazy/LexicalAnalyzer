@@ -1,17 +1,20 @@
 # depslib dependency file v1.0
-1426460239 source:d:\csed\codeblocksworkspace\lexicalanalyzergenerator(phase_1)\main.cpp
+1426527970 source:d:\csed\codeblocksworkspace\lexicalanalyzergenerator(phase_1)\main.cpp
 	<iostream>
 	<map>
 	"src/NFA.h"
 	"src/DFA.h"
 	"src/RegExParser.h"
 
-1426467388 source:d:\csed\codeblocksworkspace\lexicalanalyzergenerator(phase_1)\src\dfa.cpp
+1426525211 source:d:\csed\codeblocksworkspace\lexicalanalyzergenerator(phase_1)\src\dfa.cpp
+	<fstream>
 	"DFA.h"
 	"SubGroup.h"
 	<algorithm>
+	<sstream>
+	<math.h>
 
-1426459971 d:\csed\codeblocksworkspace\lexicalanalyzergenerator(phase_1)\src\dfa.h
+1426515493 d:\csed\codeblocksworkspace\lexicalanalyzergenerator(phase_1)\src\dfa.h
 	"State.h"
 	"NFA.h"
 	"DFAState.h"
@@ -60,7 +63,7 @@
 	"RegExParser.h"
 	<string>
 
-1426460454 source:d:\csed\codeblocksworkspace\lexicalanalyzergenerator(phase_1)\src\nfa.cpp
+1426524878 source:d:\csed\codeblocksworkspace\lexicalanalyzergenerator(phase_1)\src\nfa.cpp
 	"NFA.h"
 
 1426441590 d:\csed\codeblocksworkspace\lexicalanalyzergenerator(phase_1)\src\nfa.h
@@ -94,7 +97,7 @@
 	<string>
 	"NFA.h"
 
-1426441647 source:d:\csed\codeblocksworkspace\lexicalanalyzergenerator(phase_1)\src\state.cpp
+1426524638 source:d:\csed\codeblocksworkspace\lexicalanalyzergenerator(phase_1)\src\state.cpp
 	"State.h"
 
 1425850053 source:d:\csed\codeblocksworkspace\lexicalanalyzergenerator(phase_1)\src\token.cpp
@@ -253,7 +256,7 @@
 1426447424 source:d:\csed\codeblocksworkspace\lexicalanalyzergenerator(phase_1)\src\subgroup.cpp
 	"SubGroup.h"
 
-1426523640 source:/home/hero/lexicalAnalyzer/LexicalAnalyzer/main.cpp
+1426529416 source:/home/hero/lexicalAnalyzer/LexicalAnalyzer/main.cpp
 	<iostream>
 	<map>
 	"src/NFA.h"
@@ -287,7 +290,7 @@
 	<string>
 	<iostream>
 
-1426522562 /home/hero/lexicalAnalyzer/LexicalAnalyzer/src/DFA.h
+1426529416 /home/hero/lexicalAnalyzer/LexicalAnalyzer/src/DFA.h
 	"State.h"
 	"NFA.h"
 	"DFAState.h"
@@ -364,7 +367,7 @@
 	<string>
 	"TokenClass.h"
 
-1426524973 source:/home/hero/lexicalAnalyzer/LexicalAnalyzer/src/LexicalAnalyzerGenerator.cpp
+1426529053 source:/home/hero/lexicalAnalyzer/LexicalAnalyzer/src/LexicalAnalyzerGenerator.cpp
 	"LexicalAnalyzerGenerator.h"
 
 1426524231 /home/hero/lexicalAnalyzer/LexicalAnalyzer/src/LexicalAnalyzerGenerator.h
@@ -399,7 +402,7 @@
 1426522562 source:/home/hero/lexicalAnalyzer/LexicalAnalyzer/src/TokenClass.cpp
 	"TokenClass.h"
 
-1426528931 source:/home/hero/lexicalAnalyzer/LexicalAnalyzer/src/Phase1.cpp
+1426529007 source:/home/hero/lexicalAnalyzer/LexicalAnalyzer/src/Phase1.cpp
 	"Phase1.h"
 	"LexicalAnalyzerGenerator.h"
 	<iostream>
