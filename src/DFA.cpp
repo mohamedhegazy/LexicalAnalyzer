@@ -94,7 +94,8 @@ void DFA::convertNFAtoDFA(NFA * nfa)
 
     }
 
-    for(int i = 0; i < (int)states->size(); i++) {
+    for(int i = 0; i < (int)states->size(); i++)
+    {
         states->at(i)->id = i;
     }
 }
@@ -154,9 +155,10 @@ DFAState* DFA::get_start_state()
 
 void DFA::minimizeDFA()
 {
-    for(int i=0;i<states->size();i++){
-    DFAState * st=states->at(i);
-    cout<<st->get_accepting()<<","<<st->get_tokenClass()->name<<endl;
+    for(int i=0; i<states->size(); i++)
+    {
+        DFAState * st=states->at(i);
+        cout<<st->get_accepting()<<","<<st->get_tokenClass()->name<<endl;
     }
     vector <SubGroup *>* groups=new vector<SubGroup *>();
     vector <SubGroup *>* new_groups=new vector<SubGroup *>();
@@ -260,6 +262,9 @@ void DFA::minimizeDFA()
         }
     }
 }
+
+
+
 vector<SubGroup *>* DFA::findGrouping(map< DFAState *,map<char,int> > m)
 {
     map < DFAState *,bool> in;
@@ -394,15 +399,17 @@ void DFA::print()
 {
     string delim="";
     bool open=openOutputFile("table.txt");
-    for(int i=32 ;i<127;i++){
-    delim=delim+"--------";
+    for(int i=32 ; i<127; i++)
+    {
+        delim=delim+"--------";
     }
     delim=delim+"--------";
     writeToFile(delim);
     string chars="|state  |";
-    for(int i=32 ;i<127;i++){
+    for(int i=32 ; i<127; i++)
+    {
         char s=(char)i;
-    chars=chars+"    "+string(1,s)+"  |";
+        chars=chars+"    "+string(1,s)+"  |";
     }
     chars=chars+"accepts|";
     writeToFile(chars);
@@ -415,11 +422,12 @@ void DFA::print()
         ostringstream convert;
         convert << i;
         Result = convert.str();
-        while(Result.size()<=6){
-        Result=Result+" ";
-        if(Result.size()==7)
-            break;
-        Result=" "+Result;
+        while(Result.size()<=6)
+        {
+            Result=Result+" ";
+            if(Result.size()==7)
+                break;
+            Result=" "+Result;
         }
         line=line+"|"+Result+"|";
         DFAState * st=states_minimized->at(i);
@@ -429,32 +437,37 @@ void DFA::print()
             DFAState *trans=st->move(trans_char);
             if(trans==NULL)
             {
-                    line=line+"    -1 |";
-            }else{
-            int index=std::find(states->begin(), states->end(), trans)-states->begin();
-            string Result;
-            ostringstream convert;
-            convert << index;
-            Result = convert.str();
-            while(Result.size()<=6){
-            Result=Result+" ";
-            if(Result.size()==7)
-            break;
-            Result=" "+Result;
+                line=line+"    -1 |";
             }
-            line=line+Result+"|";
+            else
+            {
+                int index=std::find(states->begin(), states->end(), trans)-states->begin();
+                string Result;
+                ostringstream convert;
+                convert << index;
+                Result = convert.str();
+                while(Result.size()<=6)
+                {
+                    Result=Result+" ";
+                    if(Result.size()==7)
+                        break;
+                    Result=" "+Result;
+                }
+                line=line+Result+"|";
             }
 
         }
-        if(st->get_accepting()){
-                        string Result;
+        if(st->get_accepting())
+        {
+            string Result;
             ostringstream convert;
             convert << st->get_tokenClass()->priority;
             Result = convert.str();
 
             line=line+st->get_tokenClass()->name+","+Result;
         }
-        else{
+        else
+        {
             line=line+"NULL";
         }
         writeToFile(line);
@@ -482,16 +495,20 @@ void DFA::minimizeDFA2()
     DFAState *s1, *s2;
 
 
-    for(int i = 0; i < n; i++) {
+    for(int i = 0; i < n; i++)
+    {
         s1 = states->at(i);
-        for(int j = 0; j < n; j++) {
+        for(int j = 0; j < n; j++)
+        {
             s2 = states->at(j);
 
             if(s1->get_tokenClass()->name != s2->get_tokenClass()->name||
-               s1->get_accepting() != s2->get_accepting()) {
+                    s1->get_accepting() != s2->get_accepting())
+            {
                 marked[i][j] = true;
             }
-            else {
+            else
+            {
                 marked[i][j] = false;
             }
         }
@@ -503,24 +520,29 @@ void DFA::minimizeDFA2()
 
 
     int count_marked;
-    do {
+    do
+    {
 
         count_marked = 0;
 
-        for(int i = 0; i < n; i++) {
+        for(int i = 0; i < n; i++)
+        {
             s1 = states->at(i);
-            for(int j = 0; j < n; j++) {
+            for(int j = 0; j < n; j++)
+            {
                 s2 = states->at(j);
 
-                for(int k = 0; k < 256 && !marked[i][j]; k++) {
+                for(int k = 0; k < 256 && !marked[i][j]; k++)
+                {
                     char c = (char)k;
                     DFAState * m1 = s1->move(c);
                     DFAState * m2 = s2->move(c);
 
                     if((m1 == NULL && m2 != NULL)||(m1 != NULL and m2 == NULL)||
-                    ( m1 != NULL && m2 != NULL && marked[m1->id][m2->id])) {
-                         marked[i][j] = true;
-                         count_marked++;
+                            ( m1 != NULL && m2 != NULL && marked[m1->id][m2->id]))
+                    {
+                        marked[i][j] = true;
+                        count_marked++;
                     }
 
                 }
@@ -529,27 +551,29 @@ void DFA::minimizeDFA2()
             }
         }
 
-    }while(count_marked != 0);
-
-/**
-    for(int i =0 ; i < n; i++) {
-        for(int j = 0; j < n; j++){
-            if(!marked[i][j]) {
-                count_marked++;
-            }
-            cout<<marked[i][j]<<" ";
-        }
-        cout<<" , "<<states->at(i)->get_tokenClass()->name<<", "<<states->at(i)->get_accepting()<<" .. ";
-        map<char,DFAState*>*m = states->at(i)->get_adjList();
-        for(map<char,DFAState*>::iterator it = m->begin(); it != m->end(); it++) {
-            cout<<"("<<it->first<<", "<<it->second->id<<") ";
-        }
-        cout<<endl;
     }
-*/
+    while(count_marked != 0);
+
+    /**
+        for(int i =0 ; i < n; i++) {
+            for(int j = 0; j < n; j++){
+                if(!marked[i][j]) {
+                    count_marked++;
+                }
+                cout<<marked[i][j]<<" ";
+            }
+            cout<<" , "<<states->at(i)->get_tokenClass()->name<<", "<<states->at(i)->get_accepting()<<" .. ";
+            map<char,DFAState*>*m = states->at(i)->get_adjList();
+            for(map<char,DFAState*>::iterator it = m->begin(); it != m->end(); it++) {
+                cout<<"("<<it->first<<", "<<it->second->id<<") ";
+            }
+            cout<<endl;
+        }
+    */
 
     bool unused[n];
-    for(int i = 0; i < n; i++) {
+    for(int i = 0; i < n; i++)
+    {
         unused[i] = true;
     }
 
@@ -557,8 +581,10 @@ void DFA::minimizeDFA2()
     vector<DFAState*> *r = new vector<DFAState*>();
     map<DFAState*,DFAState*>mapper;
 
-    for(int i = 0; i < n; i++) {
-        if(unused[i]) {
+    for(int i = 0; i < n; i++)
+    {
+        if(unused[i])
+        {
 
             DFAState* s = new DFAState();
             s->set_accepting(states->at(i)->get_accepting());
@@ -566,8 +592,10 @@ void DFA::minimizeDFA2()
             nState->push_back(s);
             r->push_back(states->at(i));
 
-            for(int j = 0; j < n; j++) {
-                if(!marked[i][j]) {
+            for(int j = 0; j < n; j++)
+            {
+                if(!marked[i][j])
+                {
                     unused[j] = false;
                     mapper[states->at(j)] = s;
                 }
@@ -576,12 +604,14 @@ void DFA::minimizeDFA2()
 
     }
 
-    for(int i = 0; i <(int)r->size(); i++) {
+    for(int i = 0; i <(int)r->size(); i++)
+    {
         DFAState*s = r->at(i);
         DFAState*ns = mapper[s];
 
         map<char,DFAState*>*m = s->get_adjList();
-        for(map<char,DFAState*>::iterator it = m->begin(); it != m->end(); it++) {
+        for(map<char,DFAState*>::iterator it = m->begin(); it != m->end(); it++)
+        {
             ns->add_edge(mapper[it->second], it->first);
         }
 

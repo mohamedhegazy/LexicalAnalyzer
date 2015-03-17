@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1426537217 source:d:\csed\codeblocksworkspace\lexicalanalyzergenerator(phase_1)\main.cpp
+1426611166 source:d:\csed\codeblocksworkspace\lexicalanalyzergenerator(phase_1)\main.cpp
 	<iostream>
 	<map>
 	"src/NFA.h"
@@ -7,7 +7,7 @@
 	"src/RegExParser.h"
 	"src/Phase1.h"
 
-1426610017 source:d:\csed\codeblocksworkspace\lexicalanalyzergenerator(phase_1)\src\dfa.cpp
+1426611112 source:d:\csed\codeblocksworkspace\lexicalanalyzergenerator(phase_1)\src\dfa.cpp
 	<fstream>
 	"DFA.h"
 	"SubGroup.h"
@@ -68,7 +68,7 @@
 	"RegExParser.h"
 	<string>
 
-1426609049 source:d:\csed\codeblocksworkspace\lexicalanalyzergenerator(phase_1)\src\nfa.cpp
+1426610708 source:d:\csed\codeblocksworkspace\lexicalanalyzergenerator(phase_1)\src\nfa.cpp
 	"NFA.h"
 
 1426441590 d:\csed\codeblocksworkspace\lexicalanalyzergenerator(phase_1)\src\nfa.h
@@ -245,7 +245,7 @@
 1426534424 d:\csed\codeblocksworkspace\lexicalanalyzergenerator(phase_1)\src\dfaedge.h
 	"DFAState.h"
 
-1426609116 d:\csed\codeblocksworkspace\lexicalanalyzergenerator(phase_1)\src\dfastate.h
+1426610859 d:\csed\codeblocksworkspace\lexicalanalyzergenerator(phase_1)\src\dfastate.h
 	"TokenClass.h"
 	<iostream>
 	<string>
@@ -262,7 +262,7 @@
 1426447424 source:d:\csed\codeblocksworkspace\lexicalanalyzergenerator(phase_1)\src\subgroup.cpp
 	"SubGroup.h"
 
-1426529416 source:/home/hero/lexicalAnalyzer/LexicalAnalyzer/main.cpp
+1426600560 source:/home/hero/lexicalAnalyzer/LexicalAnalyzer/main.cpp
 	<iostream>
 	<map>
 	"src/NFA.h"
@@ -270,7 +270,7 @@
 	"src/RegExParser.h"
 	"src/Phase1.h"
 
-1426522562 /home/hero/lexicalAnalyzer/LexicalAnalyzer/src/NFA.h
+1426599545 /home/hero/lexicalAnalyzer/LexicalAnalyzer/src/NFA.h
 	"State.h"
 	<stdio.h>
 	<iostream>
@@ -296,7 +296,7 @@
 	<string>
 	<iostream>
 
-1426529416 /home/hero/lexicalAnalyzer/LexicalAnalyzer/src/DFA.h
+1426589232 /home/hero/lexicalAnalyzer/LexicalAnalyzer/src/DFA.h
 	"State.h"
 	"NFA.h"
 	"DFAState.h"
@@ -307,7 +307,7 @@
 	<string>
 	"SubGroup.h"
 
-1426522562 /home/hero/lexicalAnalyzer/LexicalAnalyzer/src/DFAState.h
+1426597229 /home/hero/lexicalAnalyzer/LexicalAnalyzer/src/DFAState.h
 	"TokenClass.h"
 	<iostream>
 	<string>
@@ -339,10 +339,13 @@
 1426522562 /home/hero/lexicalAnalyzer/LexicalAnalyzer/src/Expression.h
 	<string>
 
-1426523422 source:/home/hero/lexicalAnalyzer/LexicalAnalyzer/src/DFA.cpp
+1426600483 source:/home/hero/lexicalAnalyzer/LexicalAnalyzer/src/DFA.cpp
+	<fstream>
 	"DFA.h"
 	"SubGroup.h"
 	<algorithm>
+	<sstream>
+	<math.h>
 
 1426522562 source:/home/hero/lexicalAnalyzer/LexicalAnalyzer/src/DFAEdge.cpp
 	"DFAEdge.h"
@@ -350,7 +353,7 @@
 1426522562 /home/hero/lexicalAnalyzer/LexicalAnalyzer/src/DFAEdge.h
 	"DFAState.h"
 
-1426522562 source:/home/hero/lexicalAnalyzer/LexicalAnalyzer/src/DFAState.cpp
+1426597226 source:/home/hero/lexicalAnalyzer/LexicalAnalyzer/src/DFAState.cpp
 	"DFAState.h"
 
 1426522562 source:/home/hero/lexicalAnalyzer/LexicalAnalyzer/src/Edge.cpp
@@ -381,7 +384,7 @@
 	"RegExParser.h"
 	<string>
 
-1426522562 source:/home/hero/lexicalAnalyzer/LexicalAnalyzer/src/NFA.cpp
+1426533736 source:/home/hero/lexicalAnalyzer/LexicalAnalyzer/src/NFA.cpp
 	"NFA.h"
 
 1426522562 source:/home/hero/lexicalAnalyzer/LexicalAnalyzer/src/RegDef.cpp

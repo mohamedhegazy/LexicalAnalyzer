@@ -37,14 +37,11 @@ class DFAState
                 int id;
 
 
-
     protected:
     private:
         bool accepting;
         map<char,DFAState*>* adjList;
         TokenClass* token_class;
-
-
         bool representative;//if this is true the state was chosen to be representative
         map<char,DFAState*>* adjList_mini;//this contains edges to other representative states
 
