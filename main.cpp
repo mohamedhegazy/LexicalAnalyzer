@@ -152,7 +152,7 @@ void RegExParser_test() {
     while(true) {
         string str;
         cin>>str;
-        DFAState * ss = hussein->get_start_state()->move(str);
+        DFAState * ss = hussein->get_mini_start_state()->move(str);
         if(ss == NULL) {
              cout<<"anser is : NULL"<<endl;
         }
