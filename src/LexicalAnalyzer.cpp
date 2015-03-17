@@ -37,7 +37,7 @@ Token* LexicalAnalyzer::getTokenNextToken() {
 
 void LexicalAnalyzer::setSourceCodeFile(string file){
     this->file_name = file;
-    source_file.open(file);
+   // source_file.open(file);
 
 }
 

@@ -15,9 +15,10 @@ int main(int argc, char* argv[])
 {
     cout << "Hello Parser!" << endl;
 
-    //RegExParser_test();
+
+    RegExParser_test();
     //DFA_test();
-    phase1_test();
+    //phase1_test();
 
     cout<<"done !"<<endl;
 
@@ -107,7 +108,8 @@ void RegExParser_test() {
     cout<<"dfa states count : "<<hussein->get_states()->size()<<endl;
     cout<<"dfa mini states count : "<<hussein->get_mini_states()->size()<<endl;
     cout<<"nfa states count : "<<a->get_states()->size()<<endl;
-
+    NFA * boolean=NFA::get_string("boolean");
+    cout<<boolean->get_states()->size()<<"       lol";
        while(true) {
         string str;
         cin>>str;
@@ -132,6 +134,7 @@ void RegExParser_test() {
     NFA * letter=small->oring(capital);
     NFA * letterORDigit=letter->oring(digits);
     NFA * closure=letterORDigit->kleene_closure();
+
 //    NFA *id =letter->concatenation(closure);
     //cout<<a->get_accepting_state()->get_token_class()->name;
     while(true)

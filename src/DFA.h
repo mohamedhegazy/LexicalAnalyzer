@@ -30,7 +30,7 @@ class DFA
         bool accepts_mini(string str);
         vector<DFAState*>*get_mini_states();
         DFAState* get_mini_start_state();
-
+        void minimizeDFA2();
 
         virtual ~DFA();
     protected:

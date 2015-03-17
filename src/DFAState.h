@@ -34,6 +34,7 @@ class DFAState
         void set_representative(bool b);
 
         virtual ~DFAState();
+                int id;
 
 
 

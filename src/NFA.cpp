@@ -148,34 +148,22 @@ NFA* NFA::concatenation(NFA* nfa) {
 
     NFA* result = new NFA();
 
-
-    result->start_state = new State(TokenClass::epsilon, false);
-
-    result->start_state->add_edge(this->start_state, TokenClass::epsilon_char);
-    this->start_state->set_accepting(false);
-
+    result->states = new vector<State*>();
+    result->start_state = this->start_state;
+    result->accepting_state = nfa->accepting_state;
 
     this->accepting_state->set_accepting(false);
     this->accepting_state->add_edge(nfa->start_state, TokenClass::epsilon_char);
-
-    nfa->accepting_state->set_accepting(false);
-
-    result->accepting_state = new State(TokenClass::epsilon, true);
-
-    nfa->accepting_state->add_edge(result->accepting_state, TokenClass::epsilon_char);
-
-    result->states->push_back(result->start_state);
 
 
     for(int i = 0; i < (int)this->states->size(); i++) {
         result->states->push_back(this->states->at(i));
     }
 
-     for(int i = 0; i < (int)nfa->states->size(); i++) {
-        result->states->push_back(nfa->states->at(i));
+    for(int i = 0; i < (int)nfa->states->size(); i++) {
+       result->states->push_back(nfa->states->at(i));
     }
 
-    result->states->push_back(result->accepting_state);
 
     return result;
 
@@ -409,10 +397,9 @@ NFA* NFA::get_string(string str) {
 
     result->states = new vector<State*>();
     result->start_state = new State(TokenClass::epsilon, false);
-    result->accepting_state = new State(TokenClass::epsilon, true);
 
     result->states->push_back(result->start_state);
-    result->states->push_back(result->accepting_state);
+
 
     State* current = result->start_state;
 
@@ -423,7 +410,10 @@ NFA* NFA::get_string(string str) {
         result->states->push_back(current);
     }
 
-    current->add_edge(result->accepting_state, TokenClass::epsilon_char);
+    current->set_accepting(true);
+    result->accepting_state = current;
+
+
 
     return result;
 }
@@ -444,9 +434,7 @@ NFA* NFA::get_range(char a, char b) {
 
 
     for(char c = a; c <= b; c++) {
-
         nfa->start_state->add_edge(nfa->accepting_state, c);
-
     }
 
 
@@ -465,7 +453,6 @@ State* NFA::get_start_state() {
 NFA::~NFA() {
 
 }
-
 
 
 
