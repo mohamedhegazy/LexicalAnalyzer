@@ -16,7 +16,7 @@ DFA::DFA(NFA * nfa)
     states_minimized =new vector<DFAState*>();
     convertNFAtoDFA(nfa);
     minimizeDFA();
-    print();
+   // print();
 }
 
 
@@ -48,7 +48,7 @@ void DFA::convertNFAtoDFA(NFA * nfa)
         TokenClass* t = TokenClass::epsilon;
         for(int i = 0; i < (int)v->size(); i++)
         {
-            if(v->at(i)->get_accepting() && t->priority > v->at(i)->get_token_class()->priority)
+            if(v->at(i)->get_accepting() && t->priority >= v->at(i)->get_token_class()->priority)
             {
                 t = v->at(i)->get_token_class();
                 current_state->set_accepting(true);
@@ -57,9 +57,11 @@ void DFA::convertNFAtoDFA(NFA * nfa)
         current_state->set_tokenClass(t);
         states->push_back(current_state);
 
-        for(int i = -127; i < 128; i++)
+        for(int i = 0; i < 265; i++)
         {
             char trans_char = (char)i;
+            if(trans_char == TokenClass::epsilon_char)
+                continue;
 
             vector<State*>*r = nfa->move(v, trans_char);
 
@@ -86,6 +88,10 @@ void DFA::convertNFAtoDFA(NFA * nfa)
         }
 
 
+    }
+
+    for(int i = 0; i < (int)states->size(); i++) {
+        states->at(i)->id = i;
     }
 
 
@@ -146,146 +152,127 @@ DFAState* DFA::get_start_state()
 
 void DFA::minimizeDFA()
 {
-    for(int i=0;i<states->size();i++){
-    DFAState * st=states->at(i);
-    cout<<st->get_accepting()<<","<<st->get_tokenClass()->name<<endl;
-    }
-    vector <SubGroup *>* groups=new vector<SubGroup *>();
-    vector <SubGroup *>* new_groups=new vector<SubGroup *>();
-//split by accepting and rejecting
-    SubGroup* rejecting=new SubGroup();
-    map<TokenClass*,SubGroup*> tok_sub;
-    for(int i=0; i<states->size(); i++)
-    {
-        DFAState* st=states->at(i);
-        if(st->get_accepting())
-        {
-            //accepting states are differentiated by the pattern they accept
-            SubGroup* accepting=tok_sub[st->get_tokenClass()];
-            if(accepting==NULL)
-            {
-                accepting=new SubGroup();
-                accepting->put(st);
-                groups->push_back(accepting);
-                tok_sub[st->get_tokenClass()]=accepting;
+    int n = states->size();
+    bool marked[n][n];
+    DFAState *s1, *s2;
+
+
+    for(int i = 0; i < n; i++) {
+        s1 = states->at(i);
+        for(int j = 0; j < n; j++) {
+            s2 = states->at(j);
+
+            if(s1->get_tokenClass()->name != s2->get_tokenClass()->name||
+               s1->get_accepting() != s2->get_accepting()) {
+                marked[i][j] = true;
             }
-            else
-            {
-                accepting->put(st);
+            else {
+                marked[i][j] = false;
             }
         }
-        else
-        {
-            rejecting->put(st);
-        }
     }
-    groups->push_back(rejecting);
-    while(true)
-    {
-        //loop each subgroup
-        for(int i=0; i<groups->size(); i++)
-        {
-            SubGroup *sub=groups->at(i);
-            map< DFAState*, map<char,int> >m;//map each state to groups it can go to for every symbol
-            //loop states of each subgroup
-            for(int j=0; j<sub->group->size(); j++)
-            {
-                DFAState * st=sub->group->at(j);
-                map<char,int> s;
-                m[st]=s;
-                for(int i = -127; i < 128; i++)
-                {
-                    char trans_char = (char)i;
-                    DFAState *trans=st->move(trans_char);
-                    if(trans!=NULL)
-                    {
-                        int index=getGroup(trans,groups);//keep track of groups
-                        m[st][trans_char]=index;
+
+
+
+
+
+
+    int count_marked;
+    do {
+
+        count_marked = 0;
+
+        for(int i = 0; i < n; i++) {
+            s1 = states->at(i);
+            for(int j = 0; j < n; j++) {
+                s2 = states->at(j);
+
+                for(int k = 0; k < 256 && !marked[i][j]; k++) {
+                    char c = (char)k;
+                    DFAState * m1 = s1->move(c);
+                    DFAState * m2 = s2->move(c);
+
+                    if((m1 == NULL && m2 != NULL)||(m1 != NULL and m2 == NULL)||
+                    ( m1 != NULL && m2 != NULL && marked[m1->id][m2->id])) {
+                         marked[i][j] = true;
+                         count_marked++;
                     }
+
                 }
+
+
             }
-            vector<SubGroup *>* temp=findGrouping(m);
-            for(int k=0; k<temp->size(); k++)
-            {
-                new_groups->push_back(temp->at(k));
-            }
-        }
-        if(equivalent(groups,new_groups))
-        {
-            break;
-        }//terminating condition
-        groups->clear();
-        for(int i=0; i<new_groups->size(); i++)
-        {
-            groups->push_back(new_groups->at(i));
-        }
-        new_groups->clear();
-    }
-    map<DFAState *,DFAState *> map;//used to map states to its representatives
-    // assumption to take first state in group as representative
-    for(int i=0; i<groups->size(); i++)
-    {
-        SubGroup * gr=groups->at(i);
-        DFAState * rep=gr->group->at(0);
-        rep->set_representative(true);
-        states_minimized->push_back(rep);
-        for(int j=0; j<gr->group->size(); j++)
-        {
-            map[gr->group->at(j)]=rep;
-        }
-    }
-    start_state_minimized=map[start_state];
-    //constructing minimized graph
-    for(int i=0; i<groups->size(); i++)
-    {
-        SubGroup * gr=groups->at(i);
-        DFAState * rep=gr->group->at(0);
-        //take representative and see where it goes
-        for(int i = -127; i < 128; i++)
-        {
-            char trans_char = (char)i;
-            DFAState *trans=rep->move(trans_char);
-            if(trans!=NULL)
-            {
-                rep->add_edge_mini(map[trans],trans_char);
-            }
-        }
-    }
-}
-vector<SubGroup *>* DFA::findGrouping(map< DFAState *,map<char,int> > m)
-{
-    map < DFAState *,bool> in;
-    vector<SubGroup *>* new_grouping=new vector<SubGroup*>();
-    typedef std::map< DFAState *,map<char,int> >::iterator it_type;
-    for(it_type iterator = m.begin(); iterator != m.end(); iterator++)
-    {
-        in[iterator->first]=false;
-    }
-    for(it_type iterator = m.begin(); iterator != m.end(); iterator++)
-    {
-        SubGroup* new_sub=new SubGroup();
-        if(!in[iterator->first])
-        {
-            new_sub->put(iterator->first);
-            in[iterator->first]=true;
         }
 
-        for(it_type iterator_2 = m.begin(); iterator_2 != m.end(); iterator_2++)
-        {
-            if(map_compare(iterator->second,iterator_2->second) && iterator->first!=iterator_2->first)
-            {
-                if(!in[iterator_2->first] )
-                {
-                    new_sub->put(iterator_2->first);
-                    in[iterator_2->first]=true;
+    }while(count_marked != 0);
+
+/**
+    for(int i =0 ; i < n; i++) {
+        for(int j = 0; j < n; j++){
+
+            if(!marked[i][j]) {
+                count_marked++;
+            }
+            cout<<marked[i][j]<<" ";
+
+        }
+        cout<<" , "<<states->at(i)->get_tokenClass()->name<<", "<<states->at(i)->get_accepting()<<" .. ";
+        map<char,DFAState*>*m = states->at(i)->get_adjList();
+        for(map<char,DFAState*>::iterator it = m->begin(); it != m->end(); it++) {
+            cout<<"("<<it->first<<", "<<it->second->id<<") ";
+        }
+        cout<<endl;
+    }
+*/
+
+    bool unused[n];
+    for(int i = 0; i < n; i++) {
+        unused[i] = true;
+    }
+
+    vector<DFAState*>* nState = new vector<DFAState*>();
+    vector<DFAState*> *r = new vector<DFAState*>();
+    map<DFAState*,DFAState*>mapper;
+
+    for(int i = 0; i < n; i++) {
+        if(unused[i]) {
+
+            DFAState* s = new DFAState();
+            s->set_accepting(states->at(i)->get_accepting());
+            s->set_tokenClass(states->at(i)->get_tokenClass());
+            nState->push_back(s);
+            r->push_back(states->at(i));
+
+            for(int j = 0; j < n; j++) {
+                if(!marked[i][j]) {
+                    unused[j] = false;
+                    mapper[states->at(j)] = s;
                 }
             }
         }
-        if(new_sub->group->size()>0)
-            new_grouping->push_back(new_sub);
+
     }
-    return new_grouping;
+
+    for(int i = 0; i <(int)r->size(); i++) {
+        DFAState*s = r->at(i);
+        DFAState*ns = mapper[s];
+
+        map<char,DFAState*>*m = s->get_adjList();
+        for(map<char,DFAState*>::iterator it = m->begin(); it != m->end(); it++) {
+            ns->add_edge(mapper[it->second], it->first);
+        }
+
+    }
+
+    cout<<states->size()<<" minimized to "<<nState->size()<<endl;
+    this->states = nState;
+    this->start_state = mapper[this->start_state];
+
 }
+
+
+
+
 bool DFA::equivalent(vector<SubGroup *>* a,vector<SubGroup *>* b)
 {
     if(a->size()!=b->size())

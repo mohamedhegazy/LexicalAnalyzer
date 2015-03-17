@@ -15,9 +15,15 @@ int main(int argc, char* argv[])
 {
     cout << "Hello Parser!" << endl;
 
-    //RegExParser_test();
+
+
+    RegExParser_test();
     //DFA_test();
-    phase1_test();
+    //phase1_test();
+
+
+
+
 
     cout<<"done !"<<endl;
 
@@ -38,37 +44,64 @@ void DFA_test() {
 
    cout<<"DFA test"<<endl;
 
+    //letter = a-z | A-Z
+    TokenClass * tLetters = new TokenClass("letters", 0);
+    NFA*letter = NFA::get_letters();
+    letter->get_accepting_state()->set_token_class(tLetters);
 
-   TokenClass* t = new TokenClass("if",0);
-   NFA * digits = NFA::get_string("if");
-   digits->get_accepting_state()->set_token_class(t);
-
-   TokenClass* t2 = new TokenClass("letters",10);
-   NFA * letters = NFA::get_letters();
-   letters->get_accepting_state()->set_token_class(t2);
-
-
-   TokenClass* t3 = new TokenClass("while",5);
-   NFA * whi = NFA::get_string("while");
-   whi->get_accepting_state()->set_token_class(t3);
+    //digit = 0-9
+    TokenClass * tDigit = new TokenClass("digit", 1);
+    NFA*digit = NFA::get_digit();
+    digit->get_accepting_state()->set_token_class(tDigit);
 
 
-   TokenClass* t4 = new TokenClass("ident",8);
-   NFA * ident = NFA::get_letters()->concatenation(
-        (NFA::get_letter()->oring(NFA::get_digit()))->kleene_closure()
-   );
-   ident->get_accepting_state()->set_token_class(t4);
+    //digits = digit+
+    TokenClass * tDigits = new TokenClass("digits", 3);
+    NFA*digits = NFA::get_digits();
+    digits->get_accepting_state()->set_token_class(tDigits);
+
+    //{boolean int float}
+    TokenClass * tBoolean = new TokenClass("boolean", 4);
+    NFA*boolean = NFA::get_string("boolean");
+    boolean->get_accepting_state()->set_token_class(tBoolean);
+
+    //{boolean int float}
+    TokenClass * tInt = new TokenClass("int", 5);
+    NFA*integer = NFA::get_string("int");
+    integer->get_accepting_state()->set_token_class(tInt);
+
+    TokenClass * tFloat = new TokenClass("float", 6);
+    NFA*floatt = NFA::get_string("float");
+    floatt->get_accepting_state()->set_token_class(tFloat);
 
 
+    //id: letter (letter|digit)*
+    TokenClass * tId = new TokenClass("id", 1000);
+    NFA*id = letter->clone()->concatenation(
+        letter->clone()->oring(digit->clone())->kleene_closure()
+    );
+    id->get_accepting_state()->set_token_class(tId);
+
+
+/**
+
+
+    num: digit+ | digit+ . digits ( \L | E digits)
+    relop: \=\= | !\= | > | >\= | < | <\=
+    assign: =
+    { if else while }
+    [; , \( \) { }]
+    addop: \+ | -
+    mulop: \* | /
+*/
    vector<NFA*>*v = new vector<NFA*>();
+   v->push_back(id);
    v->push_back(digits);
-   v->push_back(letters);
-   v->push_back(whi);
-   v->push_back(ident);
+   v->push_back(integer);
+   v->push_back(floatt);
+   v->push_back(boolean);
 
    NFA*nfa = NFA::join_NFAs(v);
-
-
 
 
    DFA* dfa = new DFA(nfa);
@@ -87,6 +120,7 @@ void DFA_test() {
             cout<<"anser is : "<<ss->get_accepting()<<" class : "<<ss->get_tokenClass()->name<<endl;
         //cout<<"the anser is : "<<nfa->acceptes(str)<<endl;
    }
+
    cout<<"DFA test done !"<<endl;
 }
 
@@ -100,25 +134,27 @@ void RegExParser_test() {
     cout<<"testing RegExParser"<<endl;
 
     //hegazy test
+
     RegExParser *parser=new RegExParser("regex.txt");
     NFA *a=parser->constructNFA();
-    a->NFA_print();
+
+
     DFA *hussein=new DFA(a);
     cout<<"dfa states count : "<<hussein->get_states()->size()<<endl;
-    cout<<"dfa mini states count : "<<hussein->get_mini_states()->size()<<endl;
     cout<<"nfa states count : "<<a->get_states()->size()<<endl;
+    cout<<"\n\n\n\n\n\n\nenter data\n";
 
-       while(true) {
+    while(true) {
         string str;
         cin>>str;
-        DFAState * ss = hussein->get_mini_start_state()->move_mini(str);
+        DFAState * ss = hussein->get_start_state()->move(str);
         if(ss == NULL) {
              cout<<"anser is : NULL"<<endl;
         }
         else
             cout<<"anser is : "<<ss->get_accepting()<<" class : "<<ss->get_tokenClass()->name<<endl;
         //cout<<"the anser is : "<<nfa->acceptes(str)<<endl;
-   }
+    }
 
     string t="a";
     char s=41;
@@ -132,6 +168,7 @@ void RegExParser_test() {
     NFA * letter=small->oring(capital);
     NFA * letterORDigit=letter->oring(digits);
     NFA * closure=letterORDigit->kleene_closure();
+
 //    NFA *id =letter->concatenation(closure);
     //cout<<a->get_accepting_state()->get_token_class()->name;
     while(true)
