@@ -305,56 +305,40 @@ bool DFA::equivalent(vector<SubGroup *>* a,vector<SubGroup *>* b)
     {
         return false;
     }
-    bool *match=new bool[a->size()];
     for(int i=0; i<a->size(); i++)
     {
         SubGroup *aa=a->at(i);
+        bool match=false;
         for(int j=0; j<b->size(); j++)
         {
             SubGroup *bb=b->at(j);
             if(aa->group->size()==bb->group->size() && sameStates(aa,bb))
             {
-                match[i]=true;
-
+                match=true;
             }
         }
+        if(!match)
+        return false;
     }
-    for(int i=0; i<a->size(); i++)
-    {
-        if(match[i]==false)
-        {
-            delete []match;
-            return false;
-        }
-
-    }
-    delete []match;
     return true;
 }
 bool DFA::sameStates(SubGroup *aa,SubGroup *bb)
 {
-    bool *match=new bool[aa->group->size()];
     for(int i=0; i<aa->group->size(); i++)
     {
         DFAState * staa=aa->group->at(i);
+        bool match =false;
         for(int j=0; j<bb->group->size(); j++)
         {
             DFAState *stbb=bb->group->at(j);
             if(staa==stbb)
             {
-                match[i]=true;
+                match=true;
             }
         }
+        if(!match)
+        return false;
     }
-    for(int i=0; i<aa->group->size(); i++)
-    {
-        if(match[i]==false)
-        {
-            delete []match;
-            return false;
-        }
-    }
-    delete []match;
     return true;
 }
 bool DFA::map_compare (map<char,int> lhs, map<char,int> rhs)

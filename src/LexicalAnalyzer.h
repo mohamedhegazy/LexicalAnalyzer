@@ -5,6 +5,14 @@
 #include <iostream>
 #include <stdio.h>
 #include <fstream>
+#include <cstring>
+
+const int MAX_CHARS_PER_LINE = 512;
+const int MAX_TOKENS_PER_LINE = 20;
+const char* const DELIMITER = " ";
+
+
+
 // given the minimized dfa and the source code file
         // read the input file and provid tokens through
         // the next token method applying the max munch rule
@@ -30,10 +38,12 @@ class LexicalAnalyzer
         virtual ~LexicalAnalyzer();
     protected:
     private:
+        int currentIndex;
+        vector<string> tokens;
         LexicalAnalyzer();
         string file_name;
         DFA* dfa;
-        ifstream source_file;
+        std::ifstream source_file;
 
 };
 

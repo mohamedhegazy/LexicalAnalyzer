@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1426611462 source:d:\csed\codeblocksworkspace\lexicalanalyzergenerator(phase_1)\main.cpp
+1426692232 source:d:\csed\codeblocksworkspace\lexicalanalyzergenerator(phase_1)\main.cpp
 	<iostream>
 	<map>
 	"src/NFA.h"
@@ -7,7 +7,7 @@
 	"src/RegExParser.h"
 	"src/Phase1.h"
 
-1426611602 source:d:\csed\codeblocksworkspace\lexicalanalyzergenerator(phase_1)\src\dfa.cpp
+1426692572 source:d:\csed\codeblocksworkspace\lexicalanalyzergenerator(phase_1)\src\dfa.cpp
 	<fstream>
 	"DFA.h"
 	"SubGroup.h"
@@ -46,15 +46,16 @@
 1426441570 source:d:\csed\codeblocksworkspace\lexicalanalyzergenerator(phase_1)\src\edge.cpp
 	"Edge.h"
 
-1426534476 source:d:\csed\codeblocksworkspace\lexicalanalyzergenerator(phase_1)\src\lexicalanalyzer.cpp
+1426622241 source:d:\csed\codeblocksworkspace\lexicalanalyzergenerator(phase_1)\src\lexicalanalyzer.cpp
 	"LexicalAnalyzer.h"
 
-1426534433 d:\csed\codeblocksworkspace\lexicalanalyzergenerator(phase_1)\src\lexicalanalyzer.h
+1426620222 d:\csed\codeblocksworkspace\lexicalanalyzergenerator(phase_1)\src\lexicalanalyzer.h
 	"Token.h"
 	"DFA.h"
 	<iostream>
 	<stdio.h>
 	<fstream>
+	<cstring>
 
 1426534433 d:\csed\codeblocksworkspace\lexicalanalyzergenerator(phase_1)\src\token.h
 	<string>
