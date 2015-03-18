@@ -6,6 +6,9 @@
 #include <stdio.h>
 #include <fstream>
 #include <cstring>
+#include <string>
+#include <sstream>
+#include <iostream>
 
 const int MAX_CHARS_PER_LINE = 512;
 const int MAX_TOKENS_PER_LINE = 20;
@@ -39,7 +42,9 @@ class LexicalAnalyzer
     protected:
     private:
         int currentIndex;
-        vector<string> tokens;
+        vector<DFAState*>* DFAVector;
+        string currentString;
+        std::vector<string> tokens;
         LexicalAnalyzer();
         string file_name;
         DFA* dfa;

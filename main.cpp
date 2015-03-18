@@ -17,9 +17,9 @@ int main(int argc, char* argv[])
 
 
 
-    RegExParser_test();
+    //RegExParser_test();
     //DFA_test();
-    //phase1_test();
+    phase1_test();
 
 
 

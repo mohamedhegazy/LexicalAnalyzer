@@ -48,6 +48,7 @@ Phase1::Phase1()
 
             Token* t = analyzer->getTokenNextToken();
             while(t != NULL) {
+                cout <<t->tokenClass->name.c_str()<<t->attribute_value<<endl;
                 fprintf(pFile,"%s\n",t->tokenClass->name.c_str());
                 t = analyzer->getTokenNextToken();
             }
