@@ -274,6 +274,7 @@ void RegExParser::parse()
                 output->push_back(exp);
             }
             //debug purpose
+            /*
             for(int i=0; i<output->size(); i++)
             {
                 Expression * exp=output->at(i);
@@ -289,6 +290,7 @@ void RegExParser::parse()
                 }
             }
             cout<<"--------------------------------------------"<<endl;
+            */
             evaluateExpression(temp_lhs_name,output,reg_def==0?1:0);
         }
 
@@ -399,7 +401,7 @@ string* RegExParser::prepareIfConcatenation(string line,bool exp_def)
             new_line=new string((*new_line).substr(0,i+1)+string(1,CONCAT_OP)+(*new_line).substr(i+1));
         }
     }
-    cout<<(*new_line)<<endl;
+    //cout<<(*new_line)<<endl;
     return new_line;
 }
 //if(0 it is in regular definition 1 in regex)

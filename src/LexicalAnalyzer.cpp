@@ -25,9 +25,6 @@ Token* LexicalAnalyzer::getTokenNextToken()
     }
     int stringIndex=0;
     string tempString="";
-    //if(DFAVector->size()==0)
-    //if(currentString.size() == 0)
-    //{
     DFAVector=new vector<DFAState*>();
     DFAState* start=dfa->get_mini_start_state();
     DFAVector->push_back(start);
@@ -37,19 +34,20 @@ Token* LexicalAnalyzer::getTokenNextToken()
         currentIndex++;
     }
    // cout<<"Current string tested : " <<currentString <<endl;
+   //~~~~~~~~~Check if this is a clear valid input ~~~~~~~~~~~~
     DFAState* tempState=dfa->get_mini_start_state()->move(currentString);
     if(tempState != NULL){
          Token* toke=new Token();
          toke->tokenClass=tempState->get_tokenClass();
          toke->attribute_value=currentString;
          currentString="";
+         if(toke->tokenClass->name == "epsilon"){
+            toke->tokenClass->name ="Error : Invalid input";
+         }
 //         currentIndex++;
         //  cout<<"clear input !"<<endl;
          return toke;
     }
-
-
-
 
     int i=0;
     DFAState* currentState=start->move_mini(currentString[i]);
@@ -63,6 +61,13 @@ Token* LexicalAnalyzer::getTokenNextToken()
         i++;
     }
     stringIndex=i-1;
+    if(stringIndex==0){ // if an invalid input occured , print an error message in the file
+        Token* error_= new Token();
+        error_->tokenClass=new TokenClass("error : invalid input",-1000);
+        error_->attribute_value=currentString;
+        return error_;
+    }
+
     if(stringIndex<currentString.size()) //there exists undefined input
     {
         tempString=currentString.substr(stringIndex);

@@ -1,0 +1,24 @@
+int
+id
+,
+id
+,
+id
+,
+id
+;
+Error : Invalid input
+while
+(
+id
+relop
+num
+)
+{
+id
+assign
+id
+addop
+num
+;
+}
