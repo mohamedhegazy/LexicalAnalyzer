@@ -19,7 +19,7 @@ LexicalAnalyzer::~LexicalAnalyzer()
 }
 Token* LexicalAnalyzer::getTokenNextToken()
 {
-    if(currentIndex >= tokens.size())
+    if((currentIndex >= tokens.size() ) && (currentString.size()==0))
     {
         return NULL;
     }
@@ -33,6 +33,7 @@ Token* LexicalAnalyzer::getTokenNextToken()
         currentString=tokens[currentIndex];
         currentIndex++;
     }
+
    // cout<<"Current string tested : " <<currentString <<endl;
    //~~~~~~~~~Check if this is a clear valid input ~~~~~~~~~~~~
     DFAState* tempState=dfa->get_mini_start_state()->move(currentString);
@@ -51,16 +52,23 @@ Token* LexicalAnalyzer::getTokenNextToken()
 
     int i=0;
     DFAState* currentState=start->move_mini(currentString[i]);
+    DFAVector->push_back(currentState);
     i++;
     while(i<currentString.size() && ( currentState != NULL ) )
     {
-        DFAVector->push_back(currentState);
+//        DFAVector->push_back(currentState);
         DFAState* tempState=currentState->move_mini(currentString[i]);
         currentState=tempState;
+        if(currentState != NULL){
+            DFAVector->push_back(currentState);
+        }
         //currentState=currentState->move_mini(currentString[i]);
         i++;
     }
     stringIndex=i-1;
+    if(stringIndex < 0 ){
+        cout<<"here"<<endl;
+    }
     if(stringIndex==0){ // if an invalid input occured , print an error message in the file
         Token* error_= new Token();
         error_->tokenClass=new TokenClass("error : invalid input",-1000);
@@ -74,9 +82,6 @@ Token* LexicalAnalyzer::getTokenNextToken()
 
     }
     currentString=currentString.substr(0,i);
-    // }
-
-
 
     DFAState* candidate=new DFAState();
     vector<DFAState*>* tempVector=new vector<DFAState*>();
@@ -85,13 +90,6 @@ Token* LexicalAnalyzer::getTokenNextToken()
         if(DFAVector->at(i)->get_accepting())
         {
             candidate=DFAVector->at(i);
-
-
-            /*for(int j=i+1; j<DFAVector->size(); j++)
-            {
-                tempVector->push_back(DFAVector->at(j));
-            }
-            */
             break;
         }
     }
