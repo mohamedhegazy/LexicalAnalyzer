@@ -4,12 +4,14 @@
 #include "src/DFA.h"
 #include "src/RegExParser.h"
 #include "src/Phase1.h"
+#include "src/Phase2.h"
 
 using namespace std;
 
 void DFA_test();
 void RegExParser_test();
 void phase1_test();
+void phase2_test();
 
 int main(int argc, char* argv[])
 {
@@ -20,6 +22,7 @@ int main(int argc, char* argv[])
     //RegExParser_test();
     //DFA_test();
     phase1_test();
+    //phase2_test();
 
 
 
@@ -37,7 +40,12 @@ void phase1_test() {
     Phase1::start_phase1();
     cout<<"Phase1 test done !"<<endl;
 }
+void phase2_test(){
+    cout<<"Phase2 test"<<endl;
+    Phase2::start_phase2();
+    cout<<"Phase2 test done !"<<endl;
 
+}
 
 
 void DFA_test() {

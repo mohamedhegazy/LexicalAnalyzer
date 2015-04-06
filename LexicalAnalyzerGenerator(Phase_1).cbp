@@ -7,8 +7,8 @@
 		<Option compiler="gcc" />
 		<Build>
 			<Target title="Debug">
-				<Option output="bin/Debug/LexicalAnalyzerGenerator(Phase_1)" prefix_auto="1" extension_auto="1" />
-				<Option object_output="obj/Debug/" />
+				<Option output="bin\Debug\LexicalAnalyzerGenerator(Phase_1)" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj\Debug\" />
 				<Option type="1" />
 				<Option compiler="gcc" />
 				<Compiler>
@@ -16,8 +16,8 @@
 				</Compiler>
 			</Target>
 			<Target title="Release">
-				<Option output="bin/Release/LexicalAnalyzerGenerator(Phase_1)" prefix_auto="1" extension_auto="1" />
-				<Option object_output="obj/Release/" />
+				<Option output="bin\Release\LexicalAnalyzerGenerator(Phase_1)" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj\Release\" />
 				<Option type="1" />
 				<Option compiler="gcc" />
 				<Compiler>
@@ -36,39 +36,53 @@
 			<Add directory="include" />
 		</Linker>
 		<Unit filename="main.cpp" />
-		<Unit filename="src/Constants.h" />
-		<Unit filename="src/DFA.cpp" />
-		<Unit filename="src/DFA.h" />
-		<Unit filename="src/DFAEdge.cpp" />
-		<Unit filename="src/DFAEdge.h" />
-		<Unit filename="src/DFAState.cpp" />
-		<Unit filename="src/DFAState.h" />
-		<Unit filename="src/Edge.cpp" />
-		<Unit filename="src/Edge.h" />
-		<Unit filename="src/Expression.cpp" />
-		<Unit filename="src/Expression.h" />
-		<Unit filename="src/LexicalAnalyzer.cpp" />
-		<Unit filename="src/LexicalAnalyzer.h" />
-		<Unit filename="src/LexicalAnalyzerGenerator.cpp" />
-		<Unit filename="src/LexicalAnalyzerGenerator.h" />
-		<Unit filename="src/NFA.cpp" />
-		<Unit filename="src/NFA.h" />
-		<Unit filename="src/Phase1.cpp" />
-		<Unit filename="src/Phase1.h" />
-		<Unit filename="src/RegDef.cpp" />
-		<Unit filename="src/RegDef.h" />
-		<Unit filename="src/RegEx.cpp" />
-		<Unit filename="src/RegEx.h" />
-		<Unit filename="src/RegExParser.cpp" />
-		<Unit filename="src/RegExParser.h" />
-		<Unit filename="src/State.cpp" />
-		<Unit filename="src/State.h" />
-		<Unit filename="src/SubGroup.cpp" />
-		<Unit filename="src/SubGroup.h" />
-		<Unit filename="src/Token.cpp" />
-		<Unit filename="src/Token.h" />
-		<Unit filename="src/TokenClass.cpp" />
-		<Unit filename="src/TokenClass.h" />
+		<Unit filename="src\Constants.h" />
+		<Unit filename="src\DFA.cpp" />
+		<Unit filename="src\DFA.h" />
+		<Unit filename="src\DFAEdge.cpp" />
+		<Unit filename="src\DFAEdge.h" />
+		<Unit filename="src\DFAState.cpp" />
+		<Unit filename="src\DFAState.h" />
+		<Unit filename="src\Edge.cpp" />
+		<Unit filename="src\Edge.h" />
+		<Unit filename="src\Expression.cpp" />
+		<Unit filename="src\Expression.h" />
+		<Unit filename="src\LL1.cpp" />
+		<Unit filename="src\LL1.h" />
+		<Unit filename="src\LexicalAnalyzer.cpp" />
+		<Unit filename="src\LexicalAnalyzer.h" />
+		<Unit filename="src\LexicalAnalyzerGenerator.cpp" />
+		<Unit filename="src\LexicalAnalyzerGenerator.h" />
+		<Unit filename="src\NFA.cpp" />
+		<Unit filename="src\NFA.h" />
+		<Unit filename="src\ParsingTable.cpp" />
+		<Unit filename="src\ParsingTable.h" />
+		<Unit filename="src\Phase1.cpp" />
+		<Unit filename="src\Phase1.h" />
+		<Unit filename="src\Phase2.cpp" />
+		<Unit filename="src\Phase2.h" />
+		<Unit filename="src\Production.cpp" />
+		<Unit filename="src\Production.h" />
+		<Unit filename="src\RegDef.cpp" />
+		<Unit filename="src\RegDef.h" />
+		<Unit filename="src\RegEx.cpp" />
+		<Unit filename="src\RegEx.h" />
+		<Unit filename="src\RegExParser.cpp" />
+		<Unit filename="src\RegExParser.h" />
+		<Unit filename="src\State.cpp" />
+		<Unit filename="src\State.h" />
+		<Unit filename="src\SubGroup.cpp" />
+		<Unit filename="src\SubGroup.h" />
+		<Unit filename="src\Symbol.cpp" />
+		<Unit filename="src\Symbol.h" />
+		<Unit filename="src\SyntaxAnalyzer.cpp" />
+		<Unit filename="src\SyntaxAnalyzer.h" />
+		<Unit filename="src\SyntaxAnalyzerGenerator.cpp" />
+		<Unit filename="src\SyntaxAnalyzerGenerator.h" />
+		<Unit filename="src\Token.cpp" />
+		<Unit filename="src\Token.h" />
+		<Unit filename="src\TokenClass.cpp" />
+		<Unit filename="src\TokenClass.h" />
 		<Extensions>
 			<code_completion />
 			<debugger />
