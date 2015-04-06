@@ -19,6 +19,7 @@ Phase1::Phase1()
             string regxFile;
             cout<<"enter regular expresions file : ";
             cin>>regxFile;
+            //regxFile="regex.txt";
 
             //create  LexicalAnalyzer which will anaulize a source file according to the
             //given rules in regxFile.
@@ -29,11 +30,12 @@ Phase1::Phase1()
             string source_file;
             cout<<"enter source code  file : ";
             cin>>source_file;
+            //source_file="test.java";
 
             string out_file;
             cout<<"enter output file : ";
             cin>>out_file;
-
+            //out_file="expected_output.txt";
             analyzer->setSourceCodeFile(source_file);
 
             cout<<"regular expresions file : "<<regxFile<<endl;
@@ -45,12 +47,23 @@ Phase1::Phase1()
              FILE * pFile = fopen (out_file.c_str(),"w+");
 
 
-
+            vector<string> identifiers;
+            string ident="id";
             Token* t = analyzer->getTokenNextToken();
             while(t != NULL) {
                 fprintf(pFile,"%s\n",t->tokenClass->name.c_str());
+                if((ident.compare(t->tokenClass->name) == 0)  &&
+                   (std::find(identifiers.begin(),identifiers.end(),t->attribute_value)==identifiers.end())) {
+                    identifiers.push_back(t->attribute_value);
+                }
                 t = analyzer->getTokenNextToken();
             }
+
+            FILE * symbolTable=fopen("SymboleTable.txt","w+");
+            for(int i=0;i<identifiers.size();i++){
+                fprintf(symbolTable,"%s\n",identifiers.at(i).c_str());
+            }
+
 
             cout<<"done !"<<endl;
 

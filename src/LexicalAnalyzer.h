@@ -37,7 +37,10 @@ class LexicalAnalyzer
             //for example test.java
             void setSourceCodeFile(string file_name);
 
-
+            Token * getNextToken();
+            char temp_char[20000];
+            int index=0;
+            int size=0;
         virtual ~LexicalAnalyzer();
     protected:
     private:

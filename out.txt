@@ -1,23 +1,241 @@
 int
 id
-,
-id
-,
-id
-,
-id
+assign
+num
 ;
-while
+id
+id
+error : invalid input
+error : invalid input
+error : invalid input
+error : invalid input
+assign
+id
+id
+error : invalid input
+id
+error : invalid input
+error : invalid input
+id
+error : invalid input
+;
+id
+id
+error : invalid input
+error : invalid input
+error : invalid input
+error : invalid input
+assign
+id
+id
+error : invalid input
+id
+error : invalid input
+error : invalid input
+id
+error : invalid input
+;
+id
+id
+error : invalid input
+error : invalid input
+error : invalid input
+error : invalid input
+assign
+id
+id
+error : invalid input
+id
+error : invalid input
+error : invalid input
+id
+error : invalid input
+;
+id
+assign
+id
 (
 id
-relop
-num
 )
-{
+;
+id
+assign
+id
+(
+id
+)
+;
+int
+id
+assign
+num
+;
+id
+id
+assign
+id
+error : invalid input
+id
+(
+)
+;
+id
+(
+int
+id
+assign
+num
+;
+id
+relop
+id
+;
+id
+assign
+id
+addop
+id
+)
+id
+(
+int
+id
+assign
+num
+;
+id
+relop
+id
+;
+id
+assign
+id
+addop
+id
+)
+id
+(
+int
+id
+assign
+num
+;
+id
+relop
+id
+;
 id
 assign
 id
 addop
 num
+)
+id
+(
+int
+id
+assign
+id
+;
+id
+relop
+id
+error : invalid input
+id
+(
+id
+addop
+id
+,
+id
+)
+;
+id
+assign
+id
+addop
+num
+)
+{
+id
+id
+assign
+num
+;
+id
+(
+int
+id
+assign
+id
+;
+id
+relop
+id
+error : invalid input
+id
+(
+id
+addop
+id
+,
+id
+)
+;
+id
+assign
+id
+addop
+num
+)
+id
+assign
+id
+addop
+id
+error : invalid input
+id
+error : invalid input
+error : invalid input
+id
+error : invalid input
+mulop
+id
+error : invalid input
+id
+error : invalid input
+error : invalid input
+id
+error : invalid input
+;
+id
+error : invalid input
+id
+error : invalid input
+error : invalid input
+id
+error : invalid input
+assign
+id
+error : invalid input
+id
+error : invalid input
+error : invalid input
+id
+error : invalid input
+addop
+id
 ;
 }
+;
+id
+id
+assign
+id
+error : invalid input
+id
+(
+)
+addop
+id
+;

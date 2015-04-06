@@ -1,6 +1,6 @@
 #ifndef PHASE1_H
 #define PHASE1_H
-
+#include <algorithm>
 
 class Phase1
 {

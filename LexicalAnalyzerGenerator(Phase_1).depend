@@ -423,3 +423,329 @@
 
 1426523096 /home/hero/lexicalAnalyzer/LexicalAnalyzer/src/Phase1.h
 
+1426786372 source:c:\users\wassy\desktop\lexicalanalyzer_4_6_12_56\lexicalanalyzergenerator\main.cpp
+	<iostream>
+	<map>
+	"src/NFA.h"
+	"src/DFA.h"
+	"src/RegExParser.h"
+	"src/Phase1.h"
+
+1426786372 c:\users\wassy\desktop\lexicalanalyzer_4_6_12_56\lexicalanalyzergenerator\src\nfa.h
+	"State.h"
+	<stdio.h>
+	<iostream>
+	<vector>
+	<set>
+	<queue>
+	<string.h>
+	<map>
+
+1426786372 c:\users\wassy\desktop\lexicalanalyzer_4_6_12_56\lexicalanalyzergenerator\src\state.h
+	<vector>
+	"Edge.h"
+	"TokenClass.h"
+	<set>
+	<queue>
+	<iostream>
+
+1426786372 c:\users\wassy\desktop\lexicalanalyzer_4_6_12_56\lexicalanalyzergenerator\src\edge.h
+	"State.h"
+	"TokenClass.h"
+
+1426786372 c:\users\wassy\desktop\lexicalanalyzer_4_6_12_56\lexicalanalyzergenerator\src\tokenclass.h
+	<string>
+	<iostream>
+
+1426786372 c:\users\wassy\desktop\lexicalanalyzer_4_6_12_56\lexicalanalyzergenerator\src\dfa.h
+	"State.h"
+	"NFA.h"
+	"DFAState.h"
+	"State.h"
+	<vector>
+	<map>
+	<queue>
+	<string>
+	"SubGroup.h"
+
+1426786372 c:\users\wassy\desktop\lexicalanalyzer_4_6_12_56\lexicalanalyzergenerator\src\dfastate.h
+	"TokenClass.h"
+	<iostream>
+	<string>
+	<string.h>
+	<map>
+
+1426786372 c:\users\wassy\desktop\lexicalanalyzer_4_6_12_56\lexicalanalyzergenerator\src\subgroup.h
+	<vector>
+	"DFAState.h"
+
+1426786372 c:\users\wassy\desktop\lexicalanalyzer_4_6_12_56\lexicalanalyzergenerator\src\regexparser.h
+	<iostream>
+	<cstring>
+	<fstream>
+	<vector>
+	"RegDef.h"
+	"RegEx.h"
+	<string>
+	"Expression.h"
+
+1426786372 c:\users\wassy\desktop\lexicalanalyzer_4_6_12_56\lexicalanalyzergenerator\src\regdef.h
+	<string>
+	"NFA.h"
+
+1426786372 c:\users\wassy\desktop\lexicalanalyzer_4_6_12_56\lexicalanalyzergenerator\src\regex.h
+	<string>
+	"NFA.h"
+
+1426786372 c:\users\wassy\desktop\lexicalanalyzer_4_6_12_56\lexicalanalyzergenerator\src\expression.h
+	<string>
+
+1426862363 c:\users\wassy\desktop\lexicalanalyzer_4_6_12_56\lexicalanalyzergenerator\src\phase1.h
+	<algorithm>
+
+1426786372 source:c:\users\wassy\desktop\lexicalanalyzer_4_6_12_56\lexicalanalyzergenerator\src\dfa.cpp
+	<fstream>
+	"DFA.h"
+	"SubGroup.h"
+	<algorithm>
+	<sstream>
+	<math.h>
+	<time.h>
+
+1426786372 source:c:\users\wassy\desktop\lexicalanalyzer_4_6_12_56\lexicalanalyzergenerator\src\dfaedge.cpp
+	"DFAEdge.h"
+
+1426786372 c:\users\wassy\desktop\lexicalanalyzer_4_6_12_56\lexicalanalyzergenerator\src\dfaedge.h
+	"DFAState.h"
+
+1426786372 source:c:\users\wassy\desktop\lexicalanalyzer_4_6_12_56\lexicalanalyzergenerator\src\dfastate.cpp
+	"DFAState.h"
+
+1426786372 source:c:\users\wassy\desktop\lexicalanalyzer_4_6_12_56\lexicalanalyzergenerator\src\edge.cpp
+	"Edge.h"
+
+1426786372 source:c:\users\wassy\desktop\lexicalanalyzer_4_6_12_56\lexicalanalyzergenerator\src\expression.cpp
+	"Expression.h"
+
+1426887934 source:c:\users\wassy\desktop\lexicalanalyzer_4_6_12_56\lexicalanalyzergenerator\src\lexicalanalyzer.cpp
+	"LexicalAnalyzer.h"
+
+1426786372 c:\users\wassy\desktop\lexicalanalyzer_4_6_12_56\lexicalanalyzergenerator\src\lexicalanalyzer.h
+	"Token.h"
+	"DFA.h"
+	<iostream>
+	<stdio.h>
+	<fstream>
+	<cstring>
+	<string>
+	<sstream>
+	<iostream>
+
+1426786372 c:\users\wassy\desktop\lexicalanalyzer_4_6_12_56\lexicalanalyzergenerator\src\token.h
+	<string>
+	"TokenClass.h"
+
+1426786372 source:c:\users\wassy\desktop\lexicalanalyzer_4_6_12_56\lexicalanalyzergenerator\src\lexicalanalyzergenerator.cpp
+	"LexicalAnalyzerGenerator.h"
+
+1426786372 c:\users\wassy\desktop\lexicalanalyzer_4_6_12_56\lexicalanalyzergenerator\src\lexicalanalyzergenerator.h
+	"LexicalAnalyzer.h"
+	"RegExParser.h"
+	<string>
+
+1426786372 source:c:\users\wassy\desktop\lexicalanalyzer_4_6_12_56\lexicalanalyzergenerator\src\nfa.cpp
+	"NFA.h"
+
+1426886034 source:c:\users\wassy\desktop\lexicalanalyzer_4_6_12_56\lexicalanalyzergenerator\src\phase1.cpp
+	"Phase1.h"
+	"LexicalAnalyzerGenerator.h"
+	<iostream>
+	<stdio.h>
+
+1426786372 source:c:\users\wassy\desktop\lexicalanalyzer_4_6_12_56\lexicalanalyzergenerator\src\regdef.cpp
+	"RegDef.h"
+
+1426786372 source:c:\users\wassy\desktop\lexicalanalyzer_4_6_12_56\lexicalanalyzergenerator\src\regex.cpp
+	"RegEx.h"
+
+1426786372 source:c:\users\wassy\desktop\lexicalanalyzer_4_6_12_56\lexicalanalyzergenerator\src\regexparser.cpp
+	"RegExParser.h"
+	<stack>
+	<algorithm>
+	<sstream>
+
+1426786372 source:c:\users\wassy\desktop\lexicalanalyzer_4_6_12_56\lexicalanalyzergenerator\src\state.cpp
+	"State.h"
+
+1426786372 source:c:\users\wassy\desktop\lexicalanalyzer_4_6_12_56\lexicalanalyzergenerator\src\subgroup.cpp
+	"SubGroup.h"
+
+1426786372 source:c:\users\wassy\desktop\lexicalanalyzer_4_6_12_56\lexicalanalyzergenerator\src\token.cpp
+	"Token.h"
+
+1426786372 source:c:\users\wassy\desktop\lexicalanalyzer_4_6_12_56\lexicalanalyzergenerator\src\tokenclass.cpp
+	"TokenClass.h"
+
+1426786372 source:c:\users\heg\downloads\lexicalanalyzer_4_6_12_56\lexicalanalyzergenerator\main.cpp
+	<iostream>
+	<map>
+	"src/NFA.h"
+	"src/DFA.h"
+	"src/RegExParser.h"
+	"src/Phase1.h"
+
+1426786372 c:\users\heg\downloads\lexicalanalyzer_4_6_12_56\lexicalanalyzergenerator\src\nfa.h
+	"State.h"
+	<stdio.h>
+	<iostream>
+	<vector>
+	<set>
+	<queue>
+	<string.h>
+	<map>
+
+1426786372 c:\users\heg\downloads\lexicalanalyzer_4_6_12_56\lexicalanalyzergenerator\src\state.h
+	<vector>
+	"Edge.h"
+	"TokenClass.h"
+	<set>
+	<queue>
+	<iostream>
+
+1426786372 c:\users\heg\downloads\lexicalanalyzer_4_6_12_56\lexicalanalyzergenerator\src\edge.h
+	"State.h"
+	"TokenClass.h"
+
+1426786372 c:\users\heg\downloads\lexicalanalyzer_4_6_12_56\lexicalanalyzergenerator\src\tokenclass.h
+	<string>
+	<iostream>
+
+1426786372 c:\users\heg\downloads\lexicalanalyzer_4_6_12_56\lexicalanalyzergenerator\src\dfa.h
+	"State.h"
+	"NFA.h"
+	"DFAState.h"
+	"State.h"
+	<vector>
+	<map>
+	<queue>
+	<string>
+	"SubGroup.h"
+
+1426786372 c:\users\heg\downloads\lexicalanalyzer_4_6_12_56\lexicalanalyzergenerator\src\dfastate.h
+	"TokenClass.h"
+	<iostream>
+	<string>
+	<string.h>
+	<map>
+
+1426786372 c:\users\heg\downloads\lexicalanalyzer_4_6_12_56\lexicalanalyzergenerator\src\subgroup.h
+	<vector>
+	"DFAState.h"
+
+1426786372 c:\users\heg\downloads\lexicalanalyzer_4_6_12_56\lexicalanalyzergenerator\src\regexparser.h
+	<iostream>
+	<cstring>
+	<fstream>
+	<vector>
+	"RegDef.h"
+	"RegEx.h"
+	<string>
+	"Expression.h"
+
+1426786372 c:\users\heg\downloads\lexicalanalyzer_4_6_12_56\lexicalanalyzergenerator\src\regdef.h
+	<string>
+	"NFA.h"
+
+1426786372 c:\users\heg\downloads\lexicalanalyzer_4_6_12_56\lexicalanalyzergenerator\src\regex.h
+	<string>
+	"NFA.h"
+
+1426786372 c:\users\heg\downloads\lexicalanalyzer_4_6_12_56\lexicalanalyzergenerator\src\expression.h
+	<string>
+
+1426862363 c:\users\heg\downloads\lexicalanalyzer_4_6_12_56\lexicalanalyzergenerator\src\phase1.h
+	<algorithm>
+
+1426786372 source:c:\users\heg\downloads\lexicalanalyzer_4_6_12_56\lexicalanalyzergenerator\src\dfa.cpp
+	<fstream>
+	"DFA.h"
+	"SubGroup.h"
+	<algorithm>
+	<sstream>
+	<math.h>
+	<time.h>
+
+1426786372 source:c:\users\heg\downloads\lexicalanalyzer_4_6_12_56\lexicalanalyzergenerator\src\dfaedge.cpp
+	"DFAEdge.h"
+
+1426786372 c:\users\heg\downloads\lexicalanalyzer_4_6_12_56\lexicalanalyzergenerator\src\dfaedge.h
+	"DFAState.h"
+
+1426786372 source:c:\users\heg\downloads\lexicalanalyzer_4_6_12_56\lexicalanalyzergenerator\src\dfastate.cpp
+	"DFAState.h"
+
+1426786372 source:c:\users\heg\downloads\lexicalanalyzer_4_6_12_56\lexicalanalyzergenerator\src\edge.cpp
+	"Edge.h"
+
+1426786372 source:c:\users\heg\downloads\lexicalanalyzer_4_6_12_56\lexicalanalyzergenerator\src\expression.cpp
+	"Expression.h"
+
+1428342940 source:c:\users\heg\downloads\lexicalanalyzer_4_6_12_56\lexicalanalyzergenerator\src\lexicalanalyzer.cpp
+	"LexicalAnalyzer.h"
+
+1426893504 c:\users\heg\downloads\lexicalanalyzer_4_6_12_56\lexicalanalyzergenerator\src\lexicalanalyzer.h
+	"Token.h"
+	"DFA.h"
+	<iostream>
+	<stdio.h>
+	<fstream>
+	<cstring>
+	<string>
+	<sstream>
+	<iostream>
+
+1426786372 c:\users\heg\downloads\lexicalanalyzer_4_6_12_56\lexicalanalyzergenerator\src\token.h
+	<string>
+	"TokenClass.h"
+
+1426786372 source:c:\users\heg\downloads\lexicalanalyzer_4_6_12_56\lexicalanalyzergenerator\src\lexicalanalyzergenerator.cpp
+	"LexicalAnalyzerGenerator.h"
+
+1426786372 c:\users\heg\downloads\lexicalanalyzer_4_6_12_56\lexicalanalyzergenerator\src\lexicalanalyzergenerator.h
+	"LexicalAnalyzer.h"
+	"RegExParser.h"
+	<string>
+
+1426786372 source:c:\users\heg\downloads\lexicalanalyzer_4_6_12_56\lexicalanalyzergenerator\src\nfa.cpp
+	"NFA.h"
+
+1428342950 source:c:\users\heg\downloads\lexicalanalyzer_4_6_12_56\lexicalanalyzergenerator\src\phase1.cpp
+	"Phase1.h"
+	"LexicalAnalyzerGenerator.h"
+	<iostream>
+	<stdio.h>
+
+1426786372 source:c:\users\heg\downloads\lexicalanalyzer_4_6_12_56\lexicalanalyzergenerator\src\regdef.cpp
+	"RegDef.h"
+
+1426786372 source:c:\users\heg\downloads\lexicalanalyzer_4_6_12_56\lexicalanalyzergenerator\src\regex.cpp
+	"RegEx.h"
+
+1426786372 source:c:\users\heg\downloads\lexicalanalyzer_4_6_12_56\lexicalanalyzergenerator\src\regexparser.cpp
+	"RegExParser.h"
+	<stack>
+	<algorithm>
+	<sstream>
+
+1426786372 source:c:\users\heg\downloads\lexicalanalyzer_4_6_12_56\lexicalanalyzergenerator\src\state.cpp
+	"State.h"
+
+1426786372 source:c:\users\heg\downloads\lexicalanalyzer_4_6_12_56\lexicalanalyzergenerator\src\subgroup.cpp
+	"SubGroup.h"
+
+1426786372 source:c:\users\heg\downloads\lexicalanalyzer_4_6_12_56\lexicalanalyzergenerator\src\token.cpp
+	"Token.h"
+
+1426786372 source:c:\users\heg\downloads\lexicalanalyzer_4_6_12_56\lexicalanalyzergenerator\src\tokenclass.cpp
+	"TokenClass.h"
+

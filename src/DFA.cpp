@@ -247,6 +247,8 @@ void DFA::minimizeDFA()
         }
     }
     start_state_minimized=map[start_state];
+    if(std::find(states_minimized->begin(), states_minimized->end(), start_state_minimized)==states_minimized->end())
+        states_minimized->push_back(start_state_minimized);
     //constructing minimized graph
     for(int i=0; i<groups->size(); i++)
     {
@@ -320,7 +322,7 @@ bool DFA::equivalent(vector<SubGroup *>* a,vector<SubGroup *>* b)
             }
         }
         if(!match)
-        return false;
+            return false;
     }
     return true;
 }
@@ -339,7 +341,7 @@ bool DFA::sameStates(SubGroup *aa,SubGroup *bb)
             }
         }
         if(!match)
-        return false;
+            return false;
     }
     return true;
 }
@@ -427,7 +429,7 @@ void DFA::print()
             }
             else
             {
-                int index=std::find(states->begin(), states->end(), trans)-states->begin();
+                int index=std::find(states_minimized->begin(), states_minimized->end(), trans)-states_minimized->begin();
                 string Result;
                 ostringstream convert;
                 convert << index;
@@ -449,13 +451,14 @@ void DFA::print()
             ostringstream convert;
             convert << st->get_tokenClass()->priority;
             Result = convert.str();
-
             line=line+st->get_tokenClass()->name+","+Result;
         }
         else
         {
             line=line+"NULL";
         }
+        if(st==start_state_minimized)
+            line=line+" ---->START";
         writeToFile(line);
         writeToFile(delim);
     }
