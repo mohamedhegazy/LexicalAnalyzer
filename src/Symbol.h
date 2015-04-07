@@ -9,6 +9,7 @@ class Symbol
 {
     public:
         Symbol();
+        Symbol(bool terminal,string name);
         bool is_nullable;
         bool is_terminal;
         string name;

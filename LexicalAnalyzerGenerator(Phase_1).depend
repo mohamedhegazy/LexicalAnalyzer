@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1428361055 source:d:\csed\codeblocksworkspace\lexicalanalyzergenerator(phase_1)\main.cpp
+1428362306 source:d:\csed\codeblocksworkspace\lexicalanalyzergenerator(phase_1)\main.cpp
 	<iostream>
 	<map>
 	"src/NFA.h"
@@ -756,12 +756,13 @@
 1428362231 source:d:\csed\codeblocksworkspace\lexicalanalyzergenerator(phase_1)\src\ll1.cpp
 	"LL1.h"
 
-1428362081 d:\csed\codeblocksworkspace\lexicalanalyzergenerator(phase_1)\src\ll1.h
+1428445868 d:\csed\codeblocksworkspace\lexicalanalyzergenerator(phase_1)\src\ll1.h
+	<fstream>
 	<string>
 	"Symbol.h"
 	<vector>
 
-1428361958 d:\csed\codeblocksworkspace\lexicalanalyzergenerator(phase_1)\src\symbol.h
+1428443292 d:\csed\codeblocksworkspace\lexicalanalyzergenerator(phase_1)\src\symbol.h
 	<string>
 	<vector>
 	"Production.h"
@@ -804,7 +805,7 @@
 1428358672 source:d:\csed\codeblocksworkspace\lexicalanalyzergenerator(phase_1)\src\production.cpp
 	"Production.h"
 
-1428358659 source:d:\csed\codeblocksworkspace\lexicalanalyzergenerator(phase_1)\src\symbol.cpp
+1428443322 source:d:\csed\codeblocksworkspace\lexicalanalyzergenerator(phase_1)\src\symbol.cpp
 	"Symbol.h"
 
 1428362281 source:d:\csed\codeblocksworkspace\lexicalanalyzergenerator(phase_1)\src\syntaxanalyzer.cpp
