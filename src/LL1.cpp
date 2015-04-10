@@ -225,6 +225,8 @@ void LL1::performLeftFactoring()
                 }
                 Production * common=getCommon(symbols->at(i),min_cnt,prod);
                 Symbol * s=new Symbol(false,symbols->at(i)->name+"'");
+                common->RHS->push_back(s);
+                symbols->at(i)->productions->insert(symbols->at(i)->productions->begin()+j,common);
                 symbols->insert(symbols->begin()+i,s);
             }
         }
@@ -307,7 +309,7 @@ void LL1:: removeImmediateLeftRecursion(int pos)
             {
                 symbols->at(i)->productions->at(t)->RHS->push_back(s);
             }
-            symbols->insert(symbols->begin()+i+1,s);
+            symbols->insert(symbols->begin()+i,s);
         }
     }
 }
