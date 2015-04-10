@@ -31,6 +31,10 @@ class LL1
         Symbol* start_symbol;
         void performLeftFactoring();
         void performLeftRecursionElimination();
+        void concatenateProductions(Symbol * s,vector<Production *>* productions,Production *p2);
+        void removeImmediateLeftRecursion(int pos);
+        int match(Production *p1,Production *p2);
+        Production* getCommon(Symbol *s ,int min_cnt,vector<Production *>*rod);
         virtual ~LL1();
     protected:
     private:
