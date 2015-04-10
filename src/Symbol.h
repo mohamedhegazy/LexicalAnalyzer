@@ -12,6 +12,7 @@ class Symbol
         Symbol(bool terminal,string name);
         bool is_nullable;
         bool is_terminal;
+        bool just_added;
         string name;
         vector<Production *>* productions;
         vector<Symbol *>* first;

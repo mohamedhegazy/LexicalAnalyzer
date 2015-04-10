@@ -1,0 +1,6 @@
+#Q = Q E D | 'q'
+#E = 'e'
+#D = N F A | 'd'
+#N = D F A | 'n'
+#F = 'f'
+#A = 'a'

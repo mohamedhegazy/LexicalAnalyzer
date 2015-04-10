@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <CodeBlocks_layout_file>
 	<ActiveTarget name="Debug" />
-	<File name="main.cpp" open="0" top="0" tabpos="3">
-		<Cursor position="406" topLine="15" />
+	<File name="main.cpp" open="1" top="0" tabpos="1">
+		<Cursor position="1969" topLine="84" />
 	</File>
 	<File name="src\DFA.cpp" open="0" top="0" tabpos="5">
 		<Cursor position="4462" topLine="194" />
@@ -22,14 +22,14 @@
 	<File name="src\Expression.h" open="0" top="0" tabpos="3">
 		<Cursor position="0" topLine="0" />
 	</File>
-	<File name="src\LL1.cpp" open="1" top="1" tabpos="4">
-		<Cursor position="4470" topLine="0" />
+	<File name="src\LL1.cpp" open="1" top="1" tabpos="2">
+		<Cursor position="12384" topLine="390" />
 	</File>
-	<File name="src\LL1.h" open="1" top="0" tabpos="3">
-		<Cursor position="1152" topLine="7" />
+	<File name="src\LL1.h" open="0" top="0" tabpos="3">
+		<Cursor position="1485" topLine="16" />
 	</File>
 	<File name="src\LexicalAnalyzer.cpp" open="0" top="0" tabpos="2">
-		<Cursor position="3828" topLine="122" />
+		<Cursor position="144" topLine="0" />
 	</File>
 	<File name="src\LexicalAnalyzer.h" open="0" top="0" tabpos="3">
 		<Cursor position="1328" topLine="23" />
@@ -50,19 +50,22 @@
 		<Cursor position="148" topLine="0" />
 	</File>
 	<File name="src\Phase1.cpp" open="0" top="0" tabpos="1">
-		<Cursor position="119" topLine="0" />
+		<Cursor position="2328" topLine="43" />
 	</File>
 	<File name="src\Phase1.h" open="0" top="0" tabpos="7">
 		<Cursor position="119" topLine="0" />
 	</File>
 	<File name="src\Phase2.cpp" open="0" top="0" tabpos="6">
-		<Cursor position="0" topLine="0" />
+		<Cursor position="1423" topLine="37" />
 	</File>
 	<File name="src\Phase2.h" open="0" top="0" tabpos="0">
 		<Cursor position="68" topLine="0" />
 	</File>
-	<File name="src\Production.h" open="1" top="0" tabpos="2">
-		<Cursor position="301" topLine="0" />
+	<File name="src\Production.cpp" open="1" top="0" tabpos="5">
+		<Cursor position="82" topLine="0" />
+	</File>
+	<File name="src\Production.h" open="1" top="0" tabpos="6">
+		<Cursor position="295" topLine="0" />
 	</File>
 	<File name="src\RegDef.cpp" open="0" top="0" tabpos="5">
 		<Cursor position="0" topLine="0" />
@@ -73,10 +76,10 @@
 	<File name="src\RegEx.h" open="0" top="0" tabpos="2">
 		<Cursor position="0" topLine="0" />
 	</File>
-	<File name="src\RegExParser.cpp" open="1" top="0" tabpos="5">
-		<Cursor position="14124" topLine="437" />
+	<File name="src\RegExParser.cpp" open="0" top="0" tabpos="5">
+		<Cursor position="24" topLine="0" />
 	</File>
-	<File name="src\RegExParser.h" open="1" top="0" tabpos="6">
+	<File name="src\RegExParser.h" open="0" top="0" tabpos="6">
 		<Cursor position="83" topLine="0" />
 	</File>
 	<File name="src\State.cpp" open="0" top="0" tabpos="7">
@@ -88,11 +91,11 @@
 	<File name="src\SubGroup.cpp" open="0" top="0" tabpos="6">
 		<Cursor position="0" topLine="0" />
 	</File>
-	<File name="src\Symbol.cpp" open="1" top="0" tabpos="7">
-		<Cursor position="170" topLine="0" />
+	<File name="src\Symbol.cpp" open="1" top="0" tabpos="3">
+		<Cursor position="249" topLine="0" />
 	</File>
-	<File name="src\Symbol.h" open="1" top="0" tabpos="1">
-		<Cursor position="257" topLine="0" />
+	<File name="src\Symbol.h" open="1" top="0" tabpos="4">
+		<Cursor position="337" topLine="0" />
 	</File>
 	<File name="src\SyntaxAnalyzer.cpp" open="0" top="0" tabpos="1">
 		<Cursor position="169" topLine="0" />

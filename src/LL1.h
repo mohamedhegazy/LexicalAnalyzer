@@ -35,6 +35,7 @@ class LL1
         void removeImmediateLeftRecursion(int pos);
         int match(Production *p1,Production *p2);
         Production* getCommon(Symbol *s ,int min_cnt,vector<Production *>*rod);
+        void  printSymbols();
         virtual ~LL1();
     protected:
     private:

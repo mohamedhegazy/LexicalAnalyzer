@@ -2,6 +2,8 @@
 #include <map>
 #include "src/NFA.h"
 #include "src/DFA.h"
+#include "src/LL1.h"
+
 #include "src/RegExParser.h"
 #include "src/Phase1.h"
 #include "src/Phase2.h"
@@ -12,7 +14,7 @@ void DFA_test();
 void RegExParser_test();
 void phase1_test();
 void phase2_test();
-
+void     LL1_test();
 int main(int argc, char* argv[])
 {
     cout << "Hello Parser!" << endl;
@@ -21,9 +23,9 @@ int main(int argc, char* argv[])
 
     //RegExParser_test();
     //DFA_test();
-    phase1_test();
+    //phase1_test();
     //phase2_test();
-
+    LL1_test();
 
 
 
@@ -33,7 +35,10 @@ int main(int argc, char* argv[])
     return 0;
 }
 
+void LL1_test(){
+LL1* ll1=new LL1("GRAMMAR_RULES.txt");
 
+}
 
 void phase1_test() {
     cout<<"Phase1 test"<<endl;

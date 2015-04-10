@@ -38,29 +38,35 @@ LL1::LL1(string input)
             vector<string> * components=split(prods->at(j),' ');
             for(int k=0; k<components->size(); k++)
             {
-                if(strcmp(components->at(i).c_str(),"\L")==0)
+                if(strcmp(components->at(k).c_str(),"\L")==0)
                 {
                     non_terminal->is_nullable=true;
                     continue;
                 }
-                if(contains(components->at(i)))
+                if(contains(components->at(k)))
                 {
-                    Symbol * sym=getSymbol(components->at(i));
+                    Symbol * sym=getSymbol(components->at(k));
                     pr->RHS->push_back(sym);
                 }
                 else
                 {
-                    string s=getTerminal(components->at(i));
+                    string s=getTerminal(components->at(k));
                     if(s.size()==0)
                     {
-                        Symbol *non=new Symbol(false,components->at(i));
+                        Symbol *non=new Symbol(false,components->at(k));
                         symbols->push_back(non);
                         pr->RHS->push_back(non);
                     }
                     else
                     {
-                        Symbol *term=new Symbol(true,s);
-                        symbols->push_back(term);
+                        Symbol *term;
+                        if(contains(s))
+                            term=getSymbol(s);
+                        else
+                        {
+                            term=new Symbol(true,s);
+                            symbols->push_back(term);
+                        }
                         pr->RHS->push_back(term);
                     }
                 }
@@ -70,8 +76,24 @@ LL1::LL1(string input)
     }
     if(symbols->size()>0)
         start_symbol=symbols->at(0);
+    for(int i=0; i<productions->size(); i++)
+    {
+        string prod=productions->at(i);
+        int index=prod.find("=");
+        string LHS=trim(prod.substr(1,index-1));
+        for(int j=0; j<symbols->size(); j++)
+        {
+            if(strcmp(symbols->at(j)->name.c_str(),LHS.c_str())==0)
+            {
+                Symbol * temp=symbols->at(j);
+                symbols->erase(symbols->begin()+j);
+                symbols->insert(symbols->begin()+i,temp);
+            }
+        }
+    }
     performLeftRecursionElimination();
     performLeftFactoring();
+    printSymbols();
 }
 
 LL1::~LL1()
@@ -100,7 +122,8 @@ vector<string>* LL1::readFile(string lines)
     string *line  = new string();
     while(getNextLine(line))
     {
-        file->push_back((*line));
+        if((*line).size()>0)
+            file->push_back((*line));
     }
     return file;
 }
@@ -163,6 +186,8 @@ vector<string> * LL1::split(string str,char delim)
             temp=temp+str.at(i);
         }
     }
+    if(temp.size()>0)
+        res->push_back(trim(temp));
     return res;
 }
 bool LL1::contains(string symbol)
@@ -189,55 +214,90 @@ Symbol * LL1::getSymbol(string name)
 }
 string LL1::getTerminal(string str)
 {
-    if(str.size()>2 && str.at(0)=='‘' && str.at(str.size()-1)=='’')
+    if(str.size()>2 && str.at(0)=='\'' && str.at(str.size()-1)=='\'')
         return str.substr(1,str.size()-2);
     else
         return "";
 }
 void LL1::performLeftFactoring()
 {
-    for(int i=0; i<symbols->size(); i++)
+    while(true)
     {
-        for(int j=0; j<symbols->at(i)->productions->size(); j++)
+        bool change=false;
+        for(int i=0; i<symbols->size(); i++)
         {
-            int min_cnt=100000;
-            vector<int > *temp=new vector<int >;
-            for(int k=0; k<symbols->at(i)->productions->size(); k++)
+            if(symbols->at(i)->is_terminal)
+                continue;
+            int s=1;
+            for(int j=0; j<symbols->at(i)->productions->size(); j++)
             {
-                if(j!=k)
+                int min_cnt=100000;
+                vector<Production* > *temp=new vector<Production*>;
+                for(int k=0; k<symbols->at(i)->productions->size(); k++)
                 {
-                    int cnt=match(symbols->at(i)->productions->at(j),symbols->at(i)->productions->at(k));
-                    if(cnt>0)
+                    if(j!=k)
                     {
-                        temp->push_back(k);
-                        if(cnt<min_cnt)
-                            min_cnt=cnt;
+                        int cnt=match(symbols->at(i)->productions->at(j),symbols->at(i)->productions->at(k));
+                        if(cnt>0)
+                        {
+                            temp->push_back(symbols->at(i)->productions->at(k));
+                            if(cnt<min_cnt)
+                                min_cnt=cnt;
+                        }
                     }
                 }
-            }
-            if(temp->size()>0)
-            {
-                vector<Production* > *prod=new vector<Production*>;
-                for(int h=0; h<temp->size(); h++)
+
+                if(temp->size()>0)
                 {
-                    prod->push_back(symbols->at(i)->productions->at(temp->at(h)));
-                    symbols->at(i)->productions->erase(symbols->at(i)->productions->begin()+temp->at(h));
+                    temp->push_back(symbols->at(i)->productions->at(j));
+                    for(int h=0; h<temp->size(); h++)
+                    {
+                        for(int d=0; d<symbols->at(i)->productions->size(); d++)
+                        {
+                            if(symbols->at(i)->productions->at(d)==temp->at(h))
+                            {
+                                symbols->at(i)->productions->erase(symbols->at(i)->productions->begin()+d);
+                                d--;
+                            }
+                        }
+                    }
+                    Production * common=getCommon(symbols->at(i),min_cnt,temp);
+                    string dash="";
+                    int c=s;
+                    while(c-->0)
+                        dash=dash+"'";
+
+                    s++;
+                    Symbol * s=new Symbol(false,symbols->at(i)->name+dash);
+                    for(int m=0; m<temp->size(); m++)
+                    {
+                        Production * l=new Production();
+                        l->LHS=s;
+                        if(temp->at(m)->RHS->size()==0)
+                            s->is_nullable=true;
+                        for(int z=0; z<temp->at(m)->RHS->size(); z++)
+                        {
+                            l->RHS->push_back(temp->at(m)->RHS->at(z));
+                        }
+                        s->productions->push_back(l);
+                    }
+                    common->RHS->push_back(s);
+                    symbols->at(i)->productions->push_back(common);
+                    symbols->push_back(s);
+                    change=true;
                 }
-                Production * common=getCommon(symbols->at(i),min_cnt,prod);
-                Symbol * s=new Symbol(false,symbols->at(i)->name+"'");
-                common->RHS->push_back(s);
-                symbols->at(i)->productions->insert(symbols->at(i)->productions->begin()+j,common);
-                symbols->insert(symbols->begin()+i,s);
             }
         }
-
+        if(!change)
+            break;
     }
+
 }
 void LL1::performLeftRecursionElimination()
 {
     for(int i=0; i<symbols->size(); i++)
     {
-        if(symbols->at(i)->is_terminal)
+        if(symbols->at(i)->is_terminal || symbols->at(i)->just_added)
             continue;
         Symbol * s=symbols->at(i);
         for(int j=0; j<i; j++)
@@ -249,11 +309,12 @@ void LL1::performLeftRecursionElimination()
                 //where Aj->a1|a2|...
             {
                 Production* p=s->productions->at(k);
-                if(p->RHS->at(0)==symbols->at(j))
+                if(p->RHS->size()>0 && p->RHS->at(0)==symbols->at(j))
                 {
                     p->RHS->erase(p->RHS->begin());
                     s->productions->erase(s->productions->begin()+k);
                     concatenateProductions(s,symbols->at(j)->productions,p);
+                    k--;
                 }
             }
         }
@@ -280,7 +341,7 @@ void LL1:: concatenateProductions(Symbol * s,vector<Production *>* productions,P
 //remove immediate left recursion among Apos productions
 void LL1:: removeImmediateLeftRecursion(int pos)
 {
-    for(int i=0; i<pos; i++)
+    for(int i=0; i<=pos; i++)
     {
         if(symbols->at(i)->is_terminal)
             continue;
@@ -294,11 +355,14 @@ void LL1:: removeImmediateLeftRecursion(int pos)
                 p->RHS->erase(p->RHS->begin());
                 pro->push_back(p);
                 symbols->at(i)->productions->erase(symbols->at(i)->productions->begin()+j);
+                j--;
             }
         }
         if(pro->size()>0)
         {
-            Symbol *s=new Symbol(true,symbols->at(i)->name+"'");
+            Symbol *s=new Symbol(false,symbols->at(i)->name+"'");
+            s->is_nullable=true;
+            s->just_added=true;
             for(int k=0; k<pro->size(); k++)
             {
                 pro->at(k)->LHS=s;
@@ -309,20 +373,18 @@ void LL1:: removeImmediateLeftRecursion(int pos)
             {
                 symbols->at(i)->productions->at(t)->RHS->push_back(s);
             }
-            symbols->insert(symbols->begin()+i,s);
+            symbols->insert(symbols->begin()+i+1,s);
         }
     }
 }
 int LL1:: match(Production *p1,Production *p2)
 {
-    int cnt,i,j;
-    while(i<p1->RHS->size() && j < p2->RHS->size() && p1->RHS->at(i) == p2->RHS->at(j))
+    int i=0;
+    while(i<p1->RHS->size() && i < p2->RHS->size() && p1->RHS->at(i) == p2->RHS->at(i))
     {
         i++;
-        j++;
-        cnt++;
     }
-    return cnt;
+    return i;
 }
 
 Production* LL1::getCommon(Symbol *s ,int min_cnt,vector<Production *>*prod)
@@ -335,10 +397,41 @@ Production* LL1::getCommon(Symbol *s ,int min_cnt,vector<Production *>*prod)
         for(int j=0; j<prod->size(); j++)
         {
             if(j==0)
-                new_pr->RHS->push_back(prod->at(j)->RHS->at(i));
-            prod->at(j)->RHS->erase(prod->at(j)->RHS->begin()+i);
+                new_pr->RHS->push_back(prod->at(j)->RHS->at(0));
+            prod->at(j)->RHS->erase(prod->at(j)->RHS->begin());
         }
         i++;
     }
     return new_pr;
+}
+void LL1:: printSymbols()
+{
+    FILE * test=fopen("GrammarTest.txt","w+");
+    for(int i=0; i<symbols->size(); i++)
+    {
+        if(symbols->at(i)->is_terminal)
+            continue;
+        string temp=symbols->at(i)->name+" -> ";
+        for(int j=0; j<symbols->at(i)->productions->size(); j++)
+        {
+
+            for(int k=0; k<symbols->at(i)->productions->at(j)->RHS->size(); k++)
+            {
+                temp=temp+symbols->at(i)->productions->at(j)->RHS->at(k)->name+" ";
+            }
+            if(j+1<symbols->at(i)->productions->size())
+                temp=temp+" |";
+        }
+        if(symbols->at(i)->is_nullable)
+        {
+            temp=temp+" | epsilon";
+        }
+        fprintf(test,"%s\n",temp.c_str());
+    }
+    for(int i=0; i<symbols->size(); i++)
+    {
+        if(symbols->at(i)->is_terminal)
+            fprintf(test,"Non terminal : %s \n",symbols->at(i)->name.c_str());
+    }
+    fclose(test);
 }
