@@ -6,7 +6,7 @@
 
 LL1::LL1()
 {
-    //ctor
+   symbols=new vector<Symbol *>;
 }
 LL1::LL1(string input)
 {

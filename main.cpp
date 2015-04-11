@@ -3,10 +3,12 @@
 #include "src/NFA.h"
 #include "src/DFA.h"
 #include "src/LL1.h"
+#include "src/ParsingTable.h"
 
 #include "src/RegExParser.h"
 #include "src/Phase1.h"
 #include "src/Phase2.h"
+
 
 using namespace std;
 
@@ -15,6 +17,8 @@ void RegExParser_test();
 void phase1_test();
 void phase2_test();
 void     LL1_test();
+void parsing_table_test();
+
 int main(int argc, char* argv[])
 {
     cout << "Hello Parser!" << endl;
@@ -25,7 +29,8 @@ int main(int argc, char* argv[])
     //DFA_test();
     //phase1_test();
     //phase2_test();
-    LL1_test();
+    //LL1_test();
+    parsing_table_test();
 
 
 
@@ -39,6 +44,99 @@ void LL1_test(){
 LL1* ll1=new LL1("GRAMMAR_RULES.txt");
 
 }
+
+void parsing_table_test() {
+
+    cout<<"hello tables\n";
+
+    Symbol* S = new Symbol(false, "S");
+    Symbol* A = new Symbol(false, "A");
+    Symbol* a = new Symbol(true, "a");
+    Symbol* b = new Symbol(true, "b");
+    Symbol* c = new Symbol(true, "c");
+    Symbol* d = new Symbol(true, "d");
+    Symbol* e = new Symbol(true, "e");
+
+    S->is_nullable = true;
+
+
+
+
+    Production * s1 = new Production();
+    s1->LHS = S;
+    s1->RHS->push_back(A);
+    s1->RHS->push_back(b);
+    s1->RHS->push_back(S);
+
+    Production * s2 = new Production();
+    s2->LHS = S;
+    s2->RHS->push_back(e);
+
+    S->productions->push_back(s1);
+    S->productions->push_back(s2);
+
+
+    Production * a1 = new Production();
+    a1->LHS = A;
+    a1->RHS->push_back(a);
+
+
+
+    Production * a2 = new Production();
+    a2->LHS = A;
+    a2->RHS->push_back(c);
+    a2->RHS->push_back(A);
+    a2->RHS->push_back(d);
+
+
+    A->productions->push_back(a1);
+    A->productions->push_back(a2);
+
+
+
+
+    LL1 * ll1 = new LL1();
+
+    ll1->start_symbol  = S;
+
+    ll1->symbols->push_back(A);
+    ll1->symbols->push_back(S);
+    ll1->symbols->push_back(a);
+    ll1->symbols->push_back(b);
+    ll1->symbols->push_back(c);
+    ll1->symbols->push_back(d);
+    ll1->symbols->push_back(e);
+
+    ParsingTable * table = new ParsingTable(ll1);
+
+    vector<Symbol*> *ss = ll1->symbols;
+    for(int i = 0; i < (int)ss->size(); i++) {
+        Symbol*s = ss->at(i);
+        cout<<s->name<<endl;
+        cout<<"first : ";
+        for(set<Symbol*>::iterator it = s->first->begin(); it != s->first->end(); it++) {
+            cout<<(*it)->name<<" ";
+        }
+        cout<<endl;
+
+        cout<<"follow : ";
+        for(set<Symbol*>::iterator it = s->follow->begin(); it != s->follow->end(); it++) {
+            cout<<(*it)->name<<" ";
+        }
+        cout<<endl;
+
+    }
+
+    cout<<"printing is done"<<endl;
+    cout<<table->toString();
+
+
+}
+
+
+
+
+
 
 void phase1_test() {
     cout<<"Phase1 test"<<endl;

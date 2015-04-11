@@ -819,3 +819,243 @@
 1428362199 source:d:\csed\codeblocksworkspace\lexicalanalyzergenerator(phase_1)\src\syntaxanalyzergenerator.cpp
 	"SyntaxAnalyzerGenerator.h"
 
+1428742890 source:/home/hero/compiler/LexicalAnalyzer/src/DFA.cpp
+	<fstream>
+	"DFA.h"
+	"SubGroup.h"
+	<algorithm>
+	<sstream>
+	<math.h>
+	<time.h>
+
+1428742890 /home/hero/compiler/LexicalAnalyzer/src/DFA.h
+	"State.h"
+	"NFA.h"
+	"DFAState.h"
+	"State.h"
+	<vector>
+	<map>
+	<queue>
+	<string>
+	"SubGroup.h"
+
+1428742890 /home/hero/compiler/LexicalAnalyzer/src/State.h
+	<vector>
+	"Edge.h"
+	"TokenClass.h"
+	<set>
+	<queue>
+	<iostream>
+
+1428742890 /home/hero/compiler/LexicalAnalyzer/src/Edge.h
+	"State.h"
+	"TokenClass.h"
+
+1428742890 /home/hero/compiler/LexicalAnalyzer/src/TokenClass.h
+	<string>
+	<iostream>
+
+1428742890 /home/hero/compiler/LexicalAnalyzer/src/NFA.h
+	"State.h"
+	<stdio.h>
+	<iostream>
+	<vector>
+	<set>
+	<queue>
+	<string.h>
+	<map>
+
+1428742890 /home/hero/compiler/LexicalAnalyzer/src/DFAState.h
+	"TokenClass.h"
+	<iostream>
+	<string>
+	<string.h>
+	<map>
+
+1428742890 /home/hero/compiler/LexicalAnalyzer/src/SubGroup.h
+	<vector>
+	"DFAState.h"
+
+1428742890 source:/home/hero/compiler/LexicalAnalyzer/src/DFAEdge.cpp
+	"DFAEdge.h"
+
+1428742890 /home/hero/compiler/LexicalAnalyzer/src/DFAEdge.h
+	"DFAState.h"
+
+1428742890 source:/home/hero/compiler/LexicalAnalyzer/src/DFAState.cpp
+	"DFAState.h"
+
+1428742890 source:/home/hero/compiler/LexicalAnalyzer/src/Edge.cpp
+	"Edge.h"
+
+1428742890 source:/home/hero/compiler/LexicalAnalyzer/src/Expression.cpp
+	"Expression.h"
+
+1428742890 /home/hero/compiler/LexicalAnalyzer/src/Expression.h
+	<string>
+
+1428742890 source:/home/hero/compiler/LexicalAnalyzer/src/LexicalAnalyzer.cpp
+	"LexicalAnalyzer.h"
+
+1428742890 /home/hero/compiler/LexicalAnalyzer/src/LexicalAnalyzer.h
+	"Token.h"
+	"DFA.h"
+	<iostream>
+	<stdio.h>
+	<fstream>
+	<cstring>
+	<string>
+	<sstream>
+	<iostream>
+
+1428754478 /home/hero/compiler/LexicalAnalyzer/src/Token.h
+	<string>
+	"TokenClass.h"
+
+1428742890 source:/home/hero/compiler/LexicalAnalyzer/src/LexicalAnalyzerGenerator.cpp
+	"LexicalAnalyzerGenerator.h"
+
+1428742890 /home/hero/compiler/LexicalAnalyzer/src/LexicalAnalyzerGenerator.h
+	"LexicalAnalyzer.h"
+	"RegExParser.h"
+	<string>
+
+1428742890 /home/hero/compiler/LexicalAnalyzer/src/RegExParser.h
+	<iostream>
+	<cstring>
+	<fstream>
+	<vector>
+	"RegDef.h"
+	"RegEx.h"
+	<string>
+	"Expression.h"
+
+1428742890 /home/hero/compiler/LexicalAnalyzer/src/RegDef.h
+	<string>
+	"NFA.h"
+
+1428742890 /home/hero/compiler/LexicalAnalyzer/src/RegEx.h
+	<string>
+	"NFA.h"
+
+1428746078 source:/home/hero/compiler/LexicalAnalyzer/src/LL1.cpp
+	"LL1.h"
+	<string.h>
+	<stdio.h>
+	<iostream>
+	<cstring>
+
+1428742890 /home/hero/compiler/LexicalAnalyzer/src/LL1.h
+	<fstream>
+	<string>
+	"Symbol.h"
+	<vector>
+
+1428766363 /home/hero/compiler/LexicalAnalyzer/src/Symbol.h
+	<string>
+	<vector>
+	"Production.h"
+	"TokenClass.h"
+	<set>
+
+1428766377 /home/hero/compiler/LexicalAnalyzer/src/Production.h
+	"Symbol.h"
+	<vector>
+	<set>
+	<iostream>
+
+1428742890 source:/home/hero/compiler/LexicalAnalyzer/src/NFA.cpp
+	"NFA.h"
+
+1428766275 source:/home/hero/compiler/LexicalAnalyzer/src/ParsingTable.cpp
+	"ParsingTable.h"
+
+1428764272 /home/hero/compiler/LexicalAnalyzer/src/ParsingTable.h
+	"Token.h"
+	"Symbol.h"
+	"LL1.h"
+	"Production.h"
+	<map>
+	<sstream>
+	<iomanip>
+	"TokenClass.h"
+
+1428742890 source:/home/hero/compiler/LexicalAnalyzer/src/Phase1.cpp
+	"Phase1.h"
+	"LexicalAnalyzerGenerator.h"
+	<iostream>
+	<stdio.h>
+
+1428742890 /home/hero/compiler/LexicalAnalyzer/src/Phase1.h
+	<algorithm>
+
+1428742890 source:/home/hero/compiler/LexicalAnalyzer/src/Phase2.cpp
+	"Phase2.h"
+	"SyntaxAnalyzerGenerator.h"
+	"LexicalAnalyzerGenerator.h"
+	<iostream>
+	<stdio.h>
+
+1428742890 /home/hero/compiler/LexicalAnalyzer/src/Phase2.h
+
+1428742890 /home/hero/compiler/LexicalAnalyzer/src/SyntaxAnalyzerGenerator.h
+	<string>
+	"SyntaxAnalyzer.h"
+	"LexicalAnalyzer.h"
+	<vector>
+	<string>
+	"LL1.h"
+	"ParsingTable.h"
+
+1428742890 /home/hero/compiler/LexicalAnalyzer/src/SyntaxAnalyzer.h
+	"ParsingTable.h"
+	"LexicalAnalyzer.h"
+	<string>
+
+1428766521 source:/home/hero/compiler/LexicalAnalyzer/src/Production.cpp
+	"Production.h"
+
+1428742890 source:/home/hero/compiler/LexicalAnalyzer/src/RegDef.cpp
+	"RegDef.h"
+
+1428742890 source:/home/hero/compiler/LexicalAnalyzer/src/RegEx.cpp
+	"RegEx.h"
+
+1428742890 source:/home/hero/compiler/LexicalAnalyzer/src/RegExParser.cpp
+	"RegExParser.h"
+	<stack>
+	<algorithm>
+	<sstream>
+
+1428742890 source:/home/hero/compiler/LexicalAnalyzer/src/State.cpp
+	"State.h"
+
+1428742890 source:/home/hero/compiler/LexicalAnalyzer/src/SubGroup.cpp
+	"SubGroup.h"
+
+1428766371 source:/home/hero/compiler/LexicalAnalyzer/src/Symbol.cpp
+	"Symbol.h"
+
+1428742890 source:/home/hero/compiler/LexicalAnalyzer/src/SyntaxAnalyzer.cpp
+	"SyntaxAnalyzer.h"
+
+1428742890 source:/home/hero/compiler/LexicalAnalyzer/src/SyntaxAnalyzerGenerator.cpp
+	"SyntaxAnalyzerGenerator.h"
+
+1428754475 source:/home/hero/compiler/LexicalAnalyzer/src/Token.cpp
+	"Token.h"
+
+1428742890 source:/home/hero/compiler/LexicalAnalyzer/src/TokenClass.cpp
+	"TokenClass.h"
+
+1428764107 source:/home/hero/compiler/LexicalAnalyzer/main.cpp
+	<iostream>
+	<map>
+	"src/NFA.h"
+	"src/DFA.h"
+	"src/LL1.h"
+	"src/ParsingTable.h"
+	"src/RegExParser.h"
+	"src/Phase1.h"
+	"src/Phase2.h"
+
