@@ -1,6 +1,35 @@
-A -> b  |a A' 
-A' -> b c  |d  | epsilon
-Non terminal : a 
-Non terminal : d 
-Non terminal : b 
-Non terminal : c 
+METHOD_BODY -> STATEMENT_LIST 
+STATEMENT_LIST -> STATEMENT STATEMENT_LIST' 
+STATEMENT_LIST' -> STATEMENT STATEMENT_LIST'  | epsilon
+STATEMENT -> DECLARATION  |IF  |WHILE  |ASSIGNMENT 
+DECLARATION -> PRIMITIVE_TYPE id ; 
+PRIMITIVE_TYPE -> int  |float 
+IF -> if ( EXPRESSION ) { STATEMENT } else { STATEMENT } 
+WHILE -> while ( EXPRESSION ) { STATEMENT } 
+ASSIGNMENT -> id = EXPRESSION ; 
+EXPRESSION -> SIMPLE_EXPRESSION EXPRESSION' 
+SIMPLE_EXPRESSION -> TERM SIMPLE_EXPRESSION'  |SIGN TERM SIMPLE_EXPRESSION' 
+SIMPLE_EXPRESSION' -> addop TERM SIMPLE_EXPRESSION'  | epsilon
+TERM -> FACTOR TERM' 
+TERM' -> mulop FACTOR TERM'  | epsilon
+FACTOR -> id  |num  |( EXPRESSION ) 
+SIGN -> +  |- 
+EXPRESSION' -> relop SIMPLE_EXPRESSION  | epsilon
+Non terminal : id 
+Non terminal : ; 
+Non terminal : int 
+Non terminal : float 
+Non terminal : if 
+Non terminal : ( 
+Non terminal : ) 
+Non terminal : { 
+Non terminal : } 
+Non terminal : else 
+Non terminal : while 
+Non terminal : = 
+Non terminal : relop 
+Non terminal : addop 
+Non terminal : mulop 
+Non terminal : num 
+Non terminal : + 
+Non terminal : - 

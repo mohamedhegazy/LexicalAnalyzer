@@ -41,7 +41,7 @@ int main(int argc, char* argv[])
 }
 
 void LL1_test(){
-LL1* ll1=new LL1("grammar2.txt");
+LL1* ll1=new LL1("GRAMMAR_RULES.txt");
 
 }
 
