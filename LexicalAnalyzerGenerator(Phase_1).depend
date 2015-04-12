@@ -1,10 +1,11 @@
 # depslib dependency file v1.0
-1428691325 source:d:\csed\codeblocksworkspace\lexicalanalyzergenerator(phase_1)\main.cpp
+1428863703 source:d:\csed\codeblocksworkspace\lexicalanalyzergenerator(phase_1)\main.cpp
 	<iostream>
 	<map>
 	"src/NFA.h"
 	"src/DFA.h"
 	"src/LL1.h"
+	"src/ParsingTable.h"
 	"src/RegExParser.h"
 	"src/Phase1.h"
 	"src/Phase2.h"
@@ -754,7 +755,7 @@
 
 1428359753 d:\csed\codeblocksworkspace\lexicalanalyzergenerator(phase_1)\src\phase2.h
 
-1428691280 source:d:\csed\codeblocksworkspace\lexicalanalyzergenerator(phase_1)\src\ll1.cpp
+1428867013 source:d:\csed\codeblocksworkspace\lexicalanalyzergenerator(phase_1)\src\ll1.cpp
 	"LL1.h"
 	<string.h>
 	<stdio.h>
@@ -767,24 +768,31 @@
 	"Symbol.h"
 	<vector>
 
-1428687641 d:\csed\codeblocksworkspace\lexicalanalyzergenerator(phase_1)\src\symbol.h
+1428779028 d:\csed\codeblocksworkspace\lexicalanalyzergenerator(phase_1)\src\symbol.h
 	<string>
 	<vector>
 	"Production.h"
+	"TokenClass.h"
+	<set>
 
-1428361197 d:\csed\codeblocksworkspace\lexicalanalyzergenerator(phase_1)\src\production.h
+1428779028 d:\csed\codeblocksworkspace\lexicalanalyzergenerator(phase_1)\src\production.h
 	"Symbol.h"
 	<vector>
+	<set>
+	<iostream>
 
-1428362246 source:d:\csed\codeblocksworkspace\lexicalanalyzergenerator(phase_1)\src\parsingtable.cpp
+1428864004 source:d:\csed\codeblocksworkspace\lexicalanalyzergenerator(phase_1)\src\parsingtable.cpp
 	"ParsingTable.h"
 
-1428361473 d:\csed\codeblocksworkspace\lexicalanalyzergenerator(phase_1)\src\parsingtable.h
+1428779028 d:\csed\codeblocksworkspace\lexicalanalyzergenerator(phase_1)\src\parsingtable.h
 	"Token.h"
 	"Symbol.h"
 	"LL1.h"
 	"Production.h"
 	<map>
+	<sstream>
+	<iomanip>
+	"TokenClass.h"
 
 1428361769 source:d:\csed\codeblocksworkspace\lexicalanalyzergenerator(phase_1)\src\phase2.cpp
 	"Phase2.h"
@@ -807,10 +815,10 @@
 	"LexicalAnalyzer.h"
 	<string>
 
-1428658370 source:d:\csed\codeblocksworkspace\lexicalanalyzergenerator(phase_1)\src\production.cpp
+1428779028 source:d:\csed\codeblocksworkspace\lexicalanalyzergenerator(phase_1)\src\production.cpp
 	"Production.h"
 
-1428687651 source:d:\csed\codeblocksworkspace\lexicalanalyzergenerator(phase_1)\src\symbol.cpp
+1428779028 source:d:\csed\codeblocksworkspace\lexicalanalyzergenerator(phase_1)\src\symbol.cpp
 	"Symbol.h"
 
 1428362281 source:d:\csed\codeblocksworkspace\lexicalanalyzergenerator(phase_1)\src\syntaxanalyzer.cpp
