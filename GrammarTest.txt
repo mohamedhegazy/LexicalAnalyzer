@@ -14,7 +14,7 @@ TERM -> FACTOR TERM'
 TERM' -> mulop FACTOR TERM'  | epsilon
 FACTOR -> id  |num  |( EXPRESSION ) 
 SIGN -> +  |- 
-EXPRESSION' -> relop SIMPLE_EXPRESSION  | | epsilon
+EXPRESSION' -> relop SIMPLE_EXPRESSION  | epsilon
 Non terminal : id 
 Non terminal : ; 
 Non terminal : int 

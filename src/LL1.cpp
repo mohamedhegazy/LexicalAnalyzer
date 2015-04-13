@@ -273,8 +273,13 @@ void LL1::performLeftFactoring()
                     {
                         Production * l=new Production();
                         l->LHS=s;
-                        if(temp->at(m)->RHS->size()==0)
+                        if(temp->at(m)->RHS->size()==0){
                             s->is_nullable=true;
+                            temp->erase(temp->begin()+m);
+                            m--;
+                            continue;
+                        }
+
                         for(int z=0; z<temp->at(m)->RHS->size(); z++)
                         {
                             l->RHS->push_back(temp->at(m)->RHS->at(z));

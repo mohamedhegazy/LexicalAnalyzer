@@ -53,7 +53,7 @@ void parsing_table_test() {
 
     cout<<"hello tables\n";
 
-
+   // cout<<"here"<<endl;
     ParsingTable* table = parsing_table_test1();
     //ParsingTable* table = parsing_table_test2();
     //ParsingTable* table = parsing_table_test3();
@@ -63,6 +63,7 @@ void parsing_table_test() {
     vector<Symbol*> *ss = table->get_symbols();
     for(int i = 0; i < (int)ss->size(); i++) {
         Symbol*s = ss->at(i);
+
         cout<<s->toString()<<endl;
     }
 

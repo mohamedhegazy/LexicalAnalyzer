@@ -117,7 +117,6 @@ string ParsingTable::toString() {
         ans<<endl;
     }
 
-
     return ans.str();
 
  }
