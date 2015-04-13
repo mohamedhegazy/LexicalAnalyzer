@@ -18,19 +18,26 @@ class ParsingTable
         ParsingTable(LL1* ll1);
         Symbol* start_symbol;
         Production* get_next_production(Symbol* current, Token * token);//return table[current][token]
-        ParsingTable();
         virtual ~ParsingTable();
         string toString();
         string toString(int width);
+        bool is_successful();
+        vector<Symbol*> *get_symbols();
+
     protected:
     private:
+        ParsingTable();
         void generate_first_follow();
         void update_productions();
         void build_table();
+        void set_table_entry(Symbol* s1, Symbol* s2, Production*p);
+        bool table_entry_is_set(Symbol* s1, Symbol* s2);
         vector<Symbol*>*symbols;
         map<Symbol*, int> *terminals;
         map<Symbol*, int> *nonterminals;
+        map<string, int> *tokens;
         Production * table[50][300];
+        bool successful;
         LL1 * ll1;
 };
 

@@ -27,6 +27,7 @@ class Symbol
         set<Symbol *>* follow;
         virtual ~Symbol();
         void set_nullabel();
+        string toString();
     protected:
     private:
 };

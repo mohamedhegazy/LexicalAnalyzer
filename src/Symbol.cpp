@@ -34,3 +34,31 @@ Symbol::~Symbol()
 {
     //dtor
 }
+
+
+
+
+ string Symbol::toString() {
+
+    string ans = name+" .. ";
+    ans += "first :( ";
+    for(set<Symbol*>::iterator it = first->begin(); it != first->end(); it++) {
+        ans += (*it)->name + " ";
+    }
+
+    ans += ") ... ";
+    ans += "follow :( ";
+    for(set<Symbol*>::iterator it = follow->begin(); it != follow->end(); it++) {
+        ans += (*it)->name + " ";
+    }
+    ans += ")";
+
+    return ans;
+ }
+
+
+
+
+
+
+

@@ -45,9 +45,38 @@ LL1* ll1=new LL1("GRAMMAR_RULES.txt");
 
 }
 
+ParsingTable* parsing_table_test1();
+ParsingTable* parsing_table_test2();
+ParsingTable* parsing_table_test3();
+
 void parsing_table_test() {
 
     cout<<"hello tables\n";
+
+
+    ParsingTable* table = parsing_table_test1();
+    //ParsingTable* table = parsing_table_test2();
+    //ParsingTable* table = parsing_table_test3();
+
+
+
+    vector<Symbol*> *ss = table->get_symbols();
+    for(int i = 0; i < (int)ss->size(); i++) {
+        Symbol*s = ss->at(i);
+        cout<<s->toString()<<endl;
+    }
+
+    cout<<"successfull : "<<table->is_successful()<<endl;
+    cout<<table->toString();
+
+}
+
+
+ParsingTable* parsing_table_test1() {
+    /*
+        S -> AbS | e | epsilon
+        A -> a | cAd
+    */
 
     Symbol* S = new Symbol(false, "S");
     Symbol* A = new Symbol(false, "A");
@@ -109,27 +138,235 @@ void parsing_table_test() {
 
     ParsingTable * table = new ParsingTable(ll1);
 
-    vector<Symbol*> *ss = ll1->symbols;
-    for(int i = 0; i < (int)ss->size(); i++) {
-        Symbol*s = ss->at(i);
-        cout<<s->name<<endl;
-        cout<<"first : ";
-        for(set<Symbol*>::iterator it = s->first->begin(); it != s->first->end(); it++) {
-            cout<<(*it)->name<<" ";
-        }
-        cout<<endl;
+    TokenClass * aa = new TokenClass("a",0);
+    TokenClass * bb = new TokenClass("b",0);
+    TokenClass * cc = new TokenClass("c",0);
+    TokenClass * dd = new TokenClass("d",0);
+    TokenClass * ee = new TokenClass("e",0);
 
-        cout<<"follow : ";
-        for(set<Symbol*>::iterator it = s->follow->begin(); it != s->follow->end(); it++) {
-            cout<<(*it)->name<<" ";
-        }
-        cout<<endl;
+    Token * ta = new Token();
+    ta->attribute_value = "a";
+    ta->tokenClass = aa;
 
+    Token * tb = new Token();
+    tb->attribute_value = "b";
+    tb->tokenClass = bb;
+
+    Token * tc = new Token();
+    tc->attribute_value = "c";
+    tc->tokenClass = cc;
+
+    Token * td = new Token();
+    td->attribute_value = "d";
+    td->tokenClass = dd;
+
+    Token * te = new Token();
+    te->attribute_value = "e";
+    te->tokenClass = ee;
+
+    vector<Token*>*tokens = new vector<Token*>();
+    tokens->push_back(ta);
+    tokens->push_back(tb);
+    tokens->push_back(tc);
+    tokens->push_back(td);
+    tokens->push_back(te);
+
+    for(int i = 0; i < (int)tokens->size() ;i++) {
+        Production*p = table->get_next_production(S,tokens->at(i));
+        cout<<S->name+" "<<tokens->at(i)->attribute_value<<" ,,,,, ";
+        if(p == NULL)
+            cout<<"NULL";
+        else
+            cout<<p->toString();
+
+        cout<<endl;
     }
 
-    cout<<"printing is done"<<endl;
-    cout<<table->toString();
+    for(int i = 0; i < (int)tokens->size() ;i++) {
+        Production*p = table->get_next_production(A,tokens->at(i));
+        cout<<A->name+" "<<tokens->at(i)->attribute_value<<" ,,,,, ";
+        if(p == NULL)
+            cout<<"NULL";
+        else
+            cout<<p->toString();
 
+        cout<<endl;
+    }
+
+    cout<<endl<<endl;
+    return table;
+
+}
+
+
+ParsingTable* parsing_table_test2() {
+    /*
+        E  -> TE’
+        E’ -> +TE’ | espsilon
+        T  -> FT’
+        T’ -> *FT’ | epsilon
+        F  -> (E) | id
+    */
+
+    Symbol* E = new Symbol(false, "E");
+    Symbol* E2 = new Symbol(false, "E`");
+    Symbol* T = new Symbol(false, "T");
+    Symbol* T2 = new Symbol(false, "T`");
+    Symbol* F = new Symbol(false, "F");
+
+    Symbol* addition = new Symbol(true, "+");
+    Symbol* multiplication = new Symbol(true, "*");
+    Symbol* open = new Symbol(true, "(");
+    Symbol* close = new Symbol(true, ")");
+    Symbol* id = new Symbol(true, "id");
+
+    E2->is_nullable = true;
+    T2->is_nullable = true;
+
+
+
+
+    Production * e1 = new Production();
+    e1->LHS = E;
+    e1->RHS->push_back(T);
+    e1->RHS->push_back(E2);
+    E->productions->push_back(e1);
+
+    Production * e21 = new Production();
+    e21->LHS = E2;
+    e21->RHS->push_back(addition);
+    e21->RHS->push_back(T);
+    e21->RHS->push_back(E2);
+    E2->productions->push_back(e21);
+
+
+
+
+
+    Production * t1 = new Production();
+    t1->LHS = T;
+    t1->RHS->push_back(F);
+    t1->RHS->push_back(T2);
+    T->productions->push_back(t1);
+
+
+
+    Production * t21 = new Production();
+    t21->LHS = T2;
+    t21->RHS->push_back(multiplication);
+    t21->RHS->push_back(F);
+    t21->RHS->push_back(T2);
+    T2->productions->push_back(t21);
+
+
+
+
+    Production * f1 = new Production();
+    f1->LHS = F;
+    f1->RHS->push_back(open);
+    f1->RHS->push_back(E);
+    f1->RHS->push_back(close);
+    F->productions->push_back(f1);
+
+
+    Production * f2 = new Production();
+    f2->LHS = F;
+    f2->RHS->push_back(id);
+    F->productions->push_back(f2);
+
+
+
+    LL1 * ll1 = new LL1();
+
+    ll1->start_symbol  = E;
+
+    ll1->symbols->push_back(E);
+    ll1->symbols->push_back(E2);
+    ll1->symbols->push_back(T);
+    ll1->symbols->push_back(T2);
+    ll1->symbols->push_back(F);
+    ll1->symbols->push_back(open);
+    ll1->symbols->push_back(close);
+    ll1->symbols->push_back(id);
+    ll1->symbols->push_back(addition);
+    ll1->symbols->push_back(multiplication);
+
+    ParsingTable * table = new ParsingTable(ll1);
+    return table;
+
+}
+
+
+ParsingTable* parsing_table_test3() {
+    /*
+        S -> i C t S E | a
+        E -> e S | epsilon
+        C -> b
+    */
+
+    Symbol* S = new Symbol(false, "S");
+    Symbol* E = new Symbol(false, "E");
+    Symbol* C = new Symbol(false, "C");
+
+    Symbol* i = new Symbol(true, "i");
+    Symbol* t = new Symbol(true, "t");
+    Symbol* a = new Symbol(true, "a");
+    Symbol* e = new Symbol(true, "e");
+    Symbol* b = new Symbol(true, "b");
+
+    E->is_nullable = true;
+
+
+
+
+    Production * s1 = new Production();
+    s1->LHS = S;
+    s1->RHS->push_back(i);
+    s1->RHS->push_back(C);
+    s1->RHS->push_back(t);
+    s1->RHS->push_back(S);
+    s1->RHS->push_back(E);
+    S->productions->push_back(s1);
+
+
+    Production * s2 = new Production();
+    s2->LHS = S;
+    s2->RHS->push_back(a);
+    S->productions->push_back(s2);
+
+    Production * e1 = new Production();
+    e1->LHS = E;
+    e1->RHS->push_back(e);
+    e1->RHS->push_back(S);
+    E->productions->push_back(e1);
+
+
+
+
+
+    Production * c1 = new Production();
+    c1->LHS = C;
+    c1->RHS->push_back(b);
+    C->productions->push_back(c1);
+
+
+
+    LL1 * ll1 = new LL1();
+
+    ll1->start_symbol  = S;
+
+    ll1->symbols->push_back(S);
+    ll1->symbols->push_back(E);
+    ll1->symbols->push_back(C);
+    ll1->symbols->push_back(i);
+    ll1->symbols->push_back(t);
+    ll1->symbols->push_back(a);
+    ll1->symbols->push_back(e);
+    ll1->symbols->push_back(b);
+
+
+    ParsingTable * table = new ParsingTable(ll1);
+    return table;
 
 }
 

@@ -7,17 +7,22 @@ ParsingTable::ParsingTable()
 }
 ParsingTable::ParsingTable(LL1 * ll1)
 {
+
+
     this->ll1 = ll1;
     this->start_symbol= ll1->start_symbol;
 
     terminals = new  map<Symbol*, int>();
     nonterminals = new  map<Symbol*, int>();
+    tokens = new map<string, int>();
+    successful = true;
 
     int j = 0;
     int k = 0;
     for(int i = 0; i < (int)ll1->symbols->size(); i++) {
         if(ll1->symbols->at(i)->is_terminal) {
-            (*terminals)[ll1->symbols->at(i)] = j++;
+            (*terminals)[ll1->symbols->at(i)] = j;
+            (*tokens)[ll1->symbols->at(i)->name] = j++;
         }
         else {
             (*nonterminals)[ll1->symbols->at(i)] = k++;
@@ -46,20 +51,17 @@ void ParsingTable::build_table() {
         if(s->is_terminal)
             continue;
 
-        int i = nonterminals->at(s);
 
         for(int jj = 0 ;jj < (int)s->productions->size(); jj++) {
             Production* p = s->productions->at(jj);
 
             for(set<Symbol*>::iterator it = p->first->begin(); it != p->first->end(); it++) {
-                int j = terminals->at(*it);
-                table[i][j] = p;
+                set_table_entry(s, *it, p);
             }
 
-            if(p->is_nullable) {// handel errors here please
+            if(p->is_nullable) {
                 for(set<Symbol*>::iterator it = s->follow->begin(); it != s->follow->end(); it++) {
-                    int j = terminals->at(*it);
-                    table[i][j] = p;
+                    set_table_entry(s, *it, p);
                 }
             }
 
@@ -70,15 +72,13 @@ void ParsingTable::build_table() {
 
         if(s->is_originaly_nullable && !s->is_terminal) {
             for(set<Symbol*>::iterator it = s->follow->begin(); it != s->follow->end(); it++) {
-                int j = terminals->at(*it);
-                table[i][j] = s->null_production;
+                set_table_entry(s, *it, s->null_production);
             }
         }
 
         for(set<Symbol*>::iterator it = s->follow->begin(); it != s->follow->end(); it++) {
-            int j = terminals->at(*it);
-            if(table[i][j] == NULL)
-                table[i][j] = Production::sync;
+            if(!table_entry_is_set(s,*it))
+                set_table_entry(s, *it, Production::sync);
         }
 
     }// end of ii
@@ -127,6 +127,9 @@ void ParsingTable::update_productions() {
             Symbol*s = symbols->at(ii);
             for(int jj = 0 ;jj < (int)s->productions->size(); jj++) {
                 Production* p = s->productions->at(jj);
+
+                p->is_nullable = false;
+
                 int i = 0;
                 Symbol* ss = p->RHS->at(i);
                 p->first->insert(ss->first->begin(), ss->first->end());
@@ -203,7 +206,7 @@ void ParsingTable::generate_first_follow() {
 
                 for(int i = 0; i < k; i++) {
 
-                  bool all_nullable = true;
+                    bool all_nullable = true;
                     for(int t = 0; t < i && all_nullable; t++) {
                         all_nullable = p->RHS->at(t)->is_nullable ;
                     }
@@ -212,10 +215,26 @@ void ParsingTable::generate_first_follow() {
                     if(all_nullable) {
                         int pre = symbol->first->size();
                         Symbol* ss = p->RHS->at(i);
-                        for(set<Symbol*>::iterator t = ss->first->begin(); t != ss->first->end(); t++) {
-                                symbol->first->insert(*t);
-                        }
+                        symbol->first->insert(ss->first->begin(), ss->first->end());
                         if(pre != (int)symbol->first->size()) {
+                            updated = true;
+                        }
+                    }
+
+                    //if(p->LHS->name == "E")
+                      //      cout<<p->toString()<<" "<<p->LHS->follow->size()<<" "<<i<<" "<<p->RHS->size()<<endl;
+
+
+                    all_nullable = true;
+                    for(int t = i + 1; t < k && all_nullable; t++) {
+                        all_nullable = p->RHS->at(t)->is_nullable ;
+                    }
+
+                    if(all_nullable) {
+                        Symbol* ss = p->RHS->at(i);
+                        int pre = ss->follow->size();
+                        ss->follow->insert(symbol->follow->begin(), symbol->follow->end());
+                        if(pre != (int)ss->follow->size()) {
                             updated = true;
                         }
                     }
@@ -223,21 +242,8 @@ void ParsingTable::generate_first_follow() {
 
                     for(int j = i + 1; j < k; j++) {
 
-                        all_nullable = true;
-                         for(int t = i + 1; t < k && all_nullable; t++) {
-                            all_nullable = p->RHS->at(t)->is_nullable ;
-                        }
 
-                        if(all_nullable) {
-                            Symbol* ss = p->RHS->at(i);
-                            int pre = ss->follow->size();
-                            for(set<Symbol*>::iterator t = symbol->follow->begin(); t != symbol->follow->end(); t++) {
-                                    ss->follow->insert(*t);
-                            }
-                            if(pre != (int)ss->follow->size()) {
-                                updated = true;
-                            }
-                        }
+
 
 
 
@@ -250,9 +256,7 @@ void ParsingTable::generate_first_follow() {
                             Symbol* ss = p->RHS->at(i);
                             Symbol* ss2 = p->RHS->at(j);
                             int pre = ss->follow->size();
-                            for(set<Symbol*>::iterator t = ss2->first->begin(); t != ss2->first->end(); t++) {
-                                    ss->follow->insert(*t);
-                            }
+                            ss->follow->insert(ss2->first->begin(), ss2->first->end());
                             if(pre != (int)ss->follow->size()) {
                                 updated = true;
                             }
@@ -271,18 +275,52 @@ void ParsingTable::generate_first_follow() {
 
 }
 
+bool ParsingTable::is_successful() {
+    return successful;
+}
+
+void ParsingTable::set_table_entry(Symbol* s1, Symbol* s2, Production*p) {
+
+    int i = nonterminals->at(s1);
+    int j = terminals->at(s2);
+
+
+    if(table[i][j] != NULL) {
+        successful = false;
+    }
+    else {
+        table[i][j] = p;
+    }
+}
+
+ bool ParsingTable::table_entry_is_set(Symbol* s1, Symbol* s2) {
+
+        int i = nonterminals->at(s1);
+        int j = terminals->at(s2);
+
+        return table[i][j] != NULL;
+ }
 
 
 
+ vector<Symbol*>* ParsingTable::get_symbols() {
+        return symbols;
+ }
 
 
+Production* ParsingTable::get_next_production(Symbol* current, Token * token) {
 
+    if(nonterminals->find(current) == nonterminals->end() ||
+        tokens->find(token->tokenClass->name) == tokens->end()) {
+            return NULL;
+    }
 
+    int i = nonterminals->at(current);
+    int j = tokens->at(token->tokenClass->name);
 
+    return table[i][j];
 
-
-
-
+}
 
 
 
