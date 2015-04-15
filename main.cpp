@@ -38,9 +38,9 @@ int main(int argc, char* argv[])
     //phase2_test();
     //LL1_test();
     //parsing_table_test();
-    SyntaxAnalyzer_test();
+    //SyntaxAnalyzer_test();
 
-
+    Phase2::start_phase2();
 
     cout<<"done !"<<endl;
 

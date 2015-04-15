@@ -1,0 +1,19 @@
+                                                                                                                                                                                                                                                                    
+
+===============================================
+parse regular expressions, done !
+construct NFA, done !
+convert NFA to DFA and minimize it, done !
+create lexical analyzer, done !
+parse grammar rules and perform left factoring and left recursion eliminationdone !
+construct Parsing Table! done !
+regular expresions file : regex.txt
+source file : test.java
+grammar file : GRAMMAR_RULES.txt
+output file : result.txt
+start syntax analysis, 
+what !
+to string
+                    $                   ;                   id                  while               int                 float        if                  (                   )                   {                   }                   else                =                   relop               addop               mulop               num                 -                   +                   
+
+done !

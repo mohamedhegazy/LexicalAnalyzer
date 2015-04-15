@@ -53,7 +53,7 @@ void SyntaxAnalyzer:: start_parsing() {
 
                 }
                 else if(p == NULL) {
-                    string sss = "dicarted token : "+token->tokenClass->name+"  current symbol : "+curretn_symbol->name;
+                    string sss = "--- dicarted token : "+token->tokenClass->name+"  current symbol : "+curretn_symbol->name;
                     parsing_result_string->push_back(sss);
                     s->push(curretn_symbol);
                     token = get_next_token();
@@ -69,12 +69,12 @@ void SyntaxAnalyzer:: start_parsing() {
         else {
                if(curretn_symbol->name != token->tokenClass->name) {
                     // we need to handel error here
-                   string sss = "expectign : "+curretn_symbol->name+" , got : "+token->tokenClass->name;
+                   string sss = "*** expecting : "+curretn_symbol->name+"  got : "+token->tokenClass->name;
                    parsing_result_string->push_back(sss);
                    successful_parsing = false;
                }
                else {
-                    string sss = "acceted : "+curretn_symbol->name;
+                    string sss = "+++ acceted : "+curretn_symbol->name+" "+token->attribute_value;
                     parsing_result_string->push_back(sss);
                     token = get_next_token();
                }
@@ -93,13 +93,16 @@ void SyntaxAnalyzer:: start_parsing() {
 
 
 Token* SyntaxAnalyzer::get_next_token() {
-   //return lexicalAnalyzer->getNextToken();
 
+    return lexicalAnalyzer->getNextToken();
+
+    /*
     if(testing_index == (int)testing_tokens->size()) {
         return NULL;
     }
 
     return testing_tokens->at(testing_index++);
+    */
 }
 
 

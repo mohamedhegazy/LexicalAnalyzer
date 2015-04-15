@@ -21,10 +21,11 @@ class SyntaxAnalyzer
         vector<Token*>* testing_tokens;
         int testing_index;
 
+        ParsingTable* table;
     protected:
     private:
         SyntaxAnalyzer();
-        ParsingTable* table;
+
         LexicalAnalyzer * lexicalAnalyzer;
         Token* get_next_token();
         vector<Production*>* parsing_result_productions;

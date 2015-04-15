@@ -15,13 +15,18 @@ Production::Production()
 
 string Production::toString() {
 
+
+
+    string ans = "";
     if(this == sync) {
-        return "sync";
+        ans = "sync";
     }
 
-    string ans = LHS->name+" -> ";
-    for(int i = 0; i < (int)RHS->size(); i++) {
-        ans += RHS->at(i)->name+" ";
+    else {
+        ans = LHS->name+" -> ";
+        for(int i = 0; i < (int)RHS->size(); i++) {
+            ans += RHS->at(i)->name+" ";
+        }
     }
 
     return ans;

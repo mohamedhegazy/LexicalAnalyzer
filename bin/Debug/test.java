@@ -1,4 +1,4 @@
-int sum , count , pass , mnt;
+int sum ;
 while (pass != 10)
 {
 pass = pass + 1 ;

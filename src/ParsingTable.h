@@ -24,6 +24,7 @@ class ParsingTable
         bool is_successful();
         vector<Symbol*> *get_symbols();
         Symbol* get_start_symbol();
+        void print_to_file(string file_name);
 
     protected:
     private:

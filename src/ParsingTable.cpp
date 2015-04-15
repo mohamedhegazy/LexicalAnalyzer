@@ -1,4 +1,5 @@
 #include "ParsingTable.h"
+#include <string.h>
 
 
 ParsingTable::ParsingTable()
@@ -9,6 +10,8 @@ ParsingTable::ParsingTable(LL1 * ll1)
 {
 
 
+
+
     this->ll1 = ll1;
     this->start_symbol= ll1->start_symbol;
 
@@ -16,10 +19,12 @@ ParsingTable::ParsingTable(LL1 * ll1)
     nonterminals = new  map<Symbol*, int>();
     tokens = new map<string, int>();
     successful = true;
+    this->symbols = ll1->symbols;
 
     int j = 0;
     int k = 0;
     for(int i = 0; i < (int)ll1->symbols->size(); i++) {
+
         if(ll1->symbols->at(i)->is_terminal) {
             (*terminals)[ll1->symbols->at(i)] = j;
             (*tokens)[ll1->symbols->at(i)->name] = j++;
@@ -28,10 +33,12 @@ ParsingTable::ParsingTable(LL1 * ll1)
             (*nonterminals)[ll1->symbols->at(i)] = k++;
         }
     }
+
+
     (*terminals)[Symbol::$] = j;
     (*tokens)["$"] = j;
 
-    this->symbols = ll1->symbols;
+
     generate_first_follow();
     update_productions();
     build_table();
@@ -47,6 +54,11 @@ ParsingTable::~ParsingTable()
 
 void ParsingTable::build_table() {
 
+    memset(table,0,sizeof table);
+
+
+
+
     for(int ii = 0 ;ii < (int)symbols->size(); ii++) {
         Symbol*s = symbols->at(ii);
         if(s->is_terminal)
@@ -55,6 +67,7 @@ void ParsingTable::build_table() {
 
         for(int jj = 0 ;jj < (int)s->productions->size(); jj++) {
             Production* p = s->productions->at(jj);
+
 
             for(set<Symbol*>::iterator it = p->first->begin(); it != p->first->end(); it++) {
                 set_table_entry(s, *it, p);
@@ -87,14 +100,17 @@ void ParsingTable::build_table() {
 }
 
 string ParsingTable::toString() {
-    return toString(20);
+
+    return this->toString(20);
 }
 
  string ParsingTable::toString(int width) {
 
+
     std::ostringstream ans;
 
     ans.width(width);
+
     ans<<left<<" ";
     for(map<Symbol*,int>::iterator it = terminals->begin(); it !=  terminals->end(); it++) {
         ans.width(width);
@@ -102,23 +118,53 @@ string ParsingTable::toString() {
     }
     ans<<endl;
 
+
     for(map<Symbol*,int>::iterator it = nonterminals->begin(); it !=  nonterminals->end(); it++) {
+
         int i = it->second;
         ans.width(width);
         ans<<left<<it->first->name;
+
         for(map<Symbol*,int>::iterator it2 = terminals->begin(); it2 !=  terminals->end(); it2++) {
             int j = it2->second;
 
             ans.width(width);
-            if(table[i][j] == NULL)
+
+            if(table[i][j] == NULL) {
                 ans<<left<<" ";
-            else
+            }
+
+            else {
+
+
                 ans<<left<<table[i][j]->toString();
+                /*
+                if(table[i][j]->LHS == NULL || table[i][j]->RHS == NULL) {
+                cout<<it->first->name<<" kkk "<<it2->first->name<<" ll "
+                    <<(table[i][j]->LHS == NULL) << (table[i][j]->RHS == NULL)<<table[i][j]->RHS->size()<<endl;
+                }
+
+                if(table[i][j]->RHS != NULL &&  table[i][j]->LHS == NULL ){
+                    for(int u = 0; u <  table[i][j]->RHS->size(); u++) {
+                        cout<<table[i][j]->RHS->at(u)->name<<" , ";
+                    }
+                    cout<<endl;
+                }
+*/
+
+                /*
+                ans<<left<<" ";
+                cout<<it->first->name<<" kkk "<<it2->first->name<<" ll "<<(table[i][j] == NULL)<<endl;
+                */
+            }
         }
+
         ans<<endl;
+
     }
 
     return ans.str();
+
 
  }
 
@@ -243,10 +289,6 @@ void ParsingTable::generate_first_follow() {
                     for(int j = i + 1; j < k; j++) {
 
 
-
-
-
-
                         all_nullable = true;
                          for(int t = i + 1; t < j && all_nullable; t++) {
                             all_nullable = p->RHS->at(t)->is_nullable ;
@@ -330,6 +372,32 @@ Production* ParsingTable::get_next_production(Symbol* current, Token * token) {
 
  Symbol* ParsingTable::get_start_symbol() {
     return start_symbol;
+ }
+
+
+
+ void ParsingTable::print_to_file(string file_name) {
+
+
+  FILE * file = fopen(&file_name[0], "w");
+
+  fprintf(file, &toString(80)[0]);
+
+    /*
+    //freopen("console.txt","w",stdout);
+    for(int i = 0; i < nonterminals->size(); i++) {
+        for(int j = 0; j < terminals->size(); j++) {
+                cout<<i<<" "<<j<<endl;
+                if(table[i][j] == NULL) {
+                    cout<<"NULL"<<endl;
+                }
+                else {
+                    cout<<table[i][j]->toString()<<endl;;
+                }
+        }
+    }
+    */
+
  }
 
 

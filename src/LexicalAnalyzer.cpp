@@ -126,7 +126,7 @@ void LexicalAnalyzer::setSourceCodeFile(string file)
     std::string input;
 
     int i=0;
-    /*
+
     while(source_file.peek()!=EOF)
     {
         char c;
@@ -135,12 +135,14 @@ void LexicalAnalyzer::setSourceCodeFile(string file)
             temp_char[i++]=c;
     }
     size=i;
+    /*
     for(int i=0; i<size; i++)
     {
         cout<<string(1,temp_char[i])<<endl;
     }
     */
 
+    /*
     source_file >> input;
     tokens.push_back(input);
     while(!source_file.eof())
@@ -159,6 +161,7 @@ void LexicalAnalyzer::setSourceCodeFile(string file)
         cout<<tokens.size()<<endl;
     //tokens.push_back(input);
        // cout<<"ll : "<<tokens.size()<<endl;
+       */
 }
 
 Token* LexicalAnalyzer::getNextToken()
@@ -200,4 +203,24 @@ Token* LexicalAnalyzer::getNextToken()
     return tok;
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

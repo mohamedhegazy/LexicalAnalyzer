@@ -902,7 +902,7 @@
 1428742890 /home/hero/compiler/LexicalAnalyzer/src/Expression.h
 	<string>
 
-1428742890 source:/home/hero/compiler/LexicalAnalyzer/src/LexicalAnalyzer.cpp
+1429122799 source:/home/hero/compiler/LexicalAnalyzer/src/LexicalAnalyzer.cpp
 	"LexicalAnalyzer.h"
 
 1428742890 /home/hero/compiler/LexicalAnalyzer/src/LexicalAnalyzer.h
@@ -975,10 +975,11 @@
 1428742890 source:/home/hero/compiler/LexicalAnalyzer/src/NFA.cpp
 	"NFA.h"
 
-1429115619 source:/home/hero/compiler/LexicalAnalyzer/src/ParsingTable.cpp
+1429127973 source:/home/hero/compiler/LexicalAnalyzer/src/ParsingTable.cpp
 	"ParsingTable.h"
+	<string.h>
 
-1429005931 /home/hero/compiler/LexicalAnalyzer/src/ParsingTable.h
+1429122723 /home/hero/compiler/LexicalAnalyzer/src/ParsingTable.h
 	"Token.h"
 	"Symbol.h"
 	"LL1.h"
@@ -997,7 +998,7 @@
 1428742890 /home/hero/compiler/LexicalAnalyzer/src/Phase1.h
 	<algorithm>
 
-1429117679 source:/home/hero/compiler/LexicalAnalyzer/src/Phase2.cpp
+1429128652 source:/home/hero/compiler/LexicalAnalyzer/src/Phase2.cpp
 	"Phase2.h"
 	"SyntaxAnalyzerGenerator.h"
 	"LexicalAnalyzerGenerator.h"
@@ -1015,13 +1016,13 @@
 	"LL1.h"
 	"ParsingTable.h"
 
-1429117873 /home/hero/compiler/LexicalAnalyzer/src/SyntaxAnalyzer.h
+1429121851 /home/hero/compiler/LexicalAnalyzer/src/SyntaxAnalyzer.h
 	"ParsingTable.h"
 	"LexicalAnalyzer.h"
 	<string>
 	<stack>
 
-1428955126 source:/home/hero/compiler/LexicalAnalyzer/src/Production.cpp
+1429128031 source:/home/hero/compiler/LexicalAnalyzer/src/Production.cpp
 	"Production.h"
 
 1428742890 source:/home/hero/compiler/LexicalAnalyzer/src/RegDef.cpp
@@ -1045,7 +1046,7 @@
 1428776586 source:/home/hero/compiler/LexicalAnalyzer/src/Symbol.cpp
 	"Symbol.h"
 
-1429118086 source:/home/hero/compiler/LexicalAnalyzer/src/SyntaxAnalyzer.cpp
+1429120495 source:/home/hero/compiler/LexicalAnalyzer/src/SyntaxAnalyzer.cpp
 	"SyntaxAnalyzer.h"
 
 1428742890 source:/home/hero/compiler/LexicalAnalyzer/src/SyntaxAnalyzerGenerator.cpp
@@ -1057,7 +1058,7 @@
 1428742890 source:/home/hero/compiler/LexicalAnalyzer/src/TokenClass.cpp
 	"TokenClass.h"
 
-1429118011 source:/home/hero/compiler/LexicalAnalyzer/main.cpp
+1429121409 source:/home/hero/compiler/LexicalAnalyzer/main.cpp
 	<iostream>
 	<map>
 	"src/NFA.h"
