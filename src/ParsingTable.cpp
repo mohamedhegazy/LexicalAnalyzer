@@ -29,6 +29,7 @@ ParsingTable::ParsingTable(LL1 * ll1)
         }
     }
     (*terminals)[Symbol::$] = j;
+    (*tokens)["$"] = j;
 
     this->symbols = ll1->symbols;
     generate_first_follow();
@@ -309,17 +310,27 @@ void ParsingTable::set_table_entry(Symbol* s1, Symbol* s2, Production*p) {
 
 Production* ParsingTable::get_next_production(Symbol* current, Token * token) {
 
-    if(nonterminals->find(current) == nonterminals->end() ||
-        tokens->find(token->tokenClass->name) == tokens->end()) {
-            return NULL;
+    Production* ans = NULL;
+    if(nonterminals->find(current) != nonterminals->end() &&
+        tokens->find(token->tokenClass->name) != tokens->end()) {
+
+        int i = nonterminals->at(current);
+        int j = tokens->at(token->tokenClass->name);
+        ans = table[i][j];
     }
 
-    int i = nonterminals->at(current);
-    int j = tokens->at(token->tokenClass->name);
 
-    return table[i][j];
+    //cout<<current->name<<" kkk "<<token->tokenClass->name<<" "<<(ans == NULL)<<endl;
+
+
+    return ans;
 
 }
+
+
+ Symbol* ParsingTable::get_start_symbol() {
+    return start_symbol;
+ }
 
 
 

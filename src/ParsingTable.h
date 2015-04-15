@@ -16,13 +16,14 @@ class ParsingTable
     //takes LL1 grammar and gets the first and follow sets of each production
 
         ParsingTable(LL1* ll1);
-        Symbol* start_symbol;
+
         Production* get_next_production(Symbol* current, Token * token);//return table[current][token]
         virtual ~ParsingTable();
         string toString();
         string toString(int width);
         bool is_successful();
         vector<Symbol*> *get_symbols();
+        Symbol* get_start_symbol();
 
     protected:
     private:
@@ -38,6 +39,7 @@ class ParsingTable
         map<string, int> *tokens;
         Production * table[50][300];
         bool successful;
+        Symbol* start_symbol;
         LL1 * ll1;
 };
 

@@ -916,7 +916,7 @@
 	<sstream>
 	<iostream>
 
-1428754478 /home/hero/compiler/LexicalAnalyzer/src/Token.h
+1429113655 /home/hero/compiler/LexicalAnalyzer/src/Token.h
 	<string>
 	"TokenClass.h"
 
@@ -975,10 +975,10 @@
 1428742890 source:/home/hero/compiler/LexicalAnalyzer/src/NFA.cpp
 	"NFA.h"
 
-1428949853 source:/home/hero/compiler/LexicalAnalyzer/src/ParsingTable.cpp
+1429115619 source:/home/hero/compiler/LexicalAnalyzer/src/ParsingTable.cpp
 	"ParsingTable.h"
 
-1428778040 /home/hero/compiler/LexicalAnalyzer/src/ParsingTable.h
+1429005931 /home/hero/compiler/LexicalAnalyzer/src/ParsingTable.h
 	"Token.h"
 	"Symbol.h"
 	"LL1.h"
@@ -997,7 +997,7 @@
 1428742890 /home/hero/compiler/LexicalAnalyzer/src/Phase1.h
 	<algorithm>
 
-1428742890 source:/home/hero/compiler/LexicalAnalyzer/src/Phase2.cpp
+1429117679 source:/home/hero/compiler/LexicalAnalyzer/src/Phase2.cpp
 	"Phase2.h"
 	"SyntaxAnalyzerGenerator.h"
 	"LexicalAnalyzerGenerator.h"
@@ -1015,12 +1015,13 @@
 	"LL1.h"
 	"ParsingTable.h"
 
-1428742890 /home/hero/compiler/LexicalAnalyzer/src/SyntaxAnalyzer.h
+1429117873 /home/hero/compiler/LexicalAnalyzer/src/SyntaxAnalyzer.h
 	"ParsingTable.h"
 	"LexicalAnalyzer.h"
 	<string>
+	<stack>
 
-1428766521 source:/home/hero/compiler/LexicalAnalyzer/src/Production.cpp
+1428955126 source:/home/hero/compiler/LexicalAnalyzer/src/Production.cpp
 	"Production.h"
 
 1428742890 source:/home/hero/compiler/LexicalAnalyzer/src/RegDef.cpp
@@ -1044,7 +1045,7 @@
 1428776586 source:/home/hero/compiler/LexicalAnalyzer/src/Symbol.cpp
 	"Symbol.h"
 
-1428742890 source:/home/hero/compiler/LexicalAnalyzer/src/SyntaxAnalyzer.cpp
+1429118086 source:/home/hero/compiler/LexicalAnalyzer/src/SyntaxAnalyzer.cpp
 	"SyntaxAnalyzer.h"
 
 1428742890 source:/home/hero/compiler/LexicalAnalyzer/src/SyntaxAnalyzerGenerator.cpp
@@ -1056,7 +1057,7 @@
 1428742890 source:/home/hero/compiler/LexicalAnalyzer/src/TokenClass.cpp
 	"TokenClass.h"
 
-1428777093 source:/home/hero/compiler/LexicalAnalyzer/main.cpp
+1429118011 source:/home/hero/compiler/LexicalAnalyzer/main.cpp
 	<iostream>
 	<map>
 	"src/NFA.h"
@@ -1066,4 +1067,5 @@
 	"src/RegExParser.h"
 	"src/Phase1.h"
 	"src/Phase2.h"
+	"src/SyntaxAnalyzer.h"
 

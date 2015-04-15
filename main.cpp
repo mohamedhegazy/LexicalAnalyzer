@@ -8,6 +8,7 @@
 #include "src/RegExParser.h"
 #include "src/Phase1.h"
 #include "src/Phase2.h"
+#include "src/SyntaxAnalyzer.h"
 
 
 using namespace std;
@@ -17,12 +18,18 @@ void RegExParser_test();
 void phase1_test();
 void phase2_test();
 void     LL1_test();
+
 void parsing_table_test();
+ParsingTable* parsing_table_test1();
+ParsingTable* parsing_table_test2();
+ParsingTable* parsing_table_test3();
+
+void SyntaxAnalyzer_test();
+
 
 int main(int argc, char* argv[])
 {
     cout << "Hello Parser!" << endl;
-
 
 
     //RegExParser_test();
@@ -30,8 +37,8 @@ int main(int argc, char* argv[])
     //phase1_test();
     //phase2_test();
     //LL1_test();
-    parsing_table_test();
-
+    //parsing_table_test();
+    SyntaxAnalyzer_test();
 
 
 
@@ -45,21 +52,117 @@ LL1* ll1=new LL1("GRAMMAR_RULES.txt");
 
 }
 
-ParsingTable* parsing_table_test1();
-ParsingTable* parsing_table_test2();
-ParsingTable* parsing_table_test3();
+
+void SyntaxAnalyzer_test() {
+
+
+    ParsingTable * table = parsing_table_test1();
+    LexicalAnalyzer* lexcal = NULL;
+    SyntaxAnalyzer* analyze = new SyntaxAnalyzer(table, lexcal);
+
+    analyze->testing_index = 0;
+    analyze->testing_tokens = new vector<Token*>();
+
+    TokenClass* a = new TokenClass("a",0);
+    TokenClass* b = new TokenClass("b",0);
+    TokenClass* c = new TokenClass("c",0);
+    TokenClass* d = new TokenClass("d",0);
+    TokenClass* e = new TokenClass("e",0);
+    TokenClass* $ = new TokenClass("$",0);
+
+    /*
+    Token* t1 = new Token();
+    t1->tokenClass = a;
+    t1->attribute_value = "a";
+
+    Token* t2 = new Token();
+    t2->tokenClass = a;
+    t2->attribute_value = "a";
+
+
+    Token* t3 = new Token();
+    t3->tokenClass = b;
+    t3->attribute_value = "b";
+
+    Token* t4 = new Token();
+    t4->tokenClass = $;
+    t4->attribute_value = "$";
+
+
+    analyze->testing_tokens->push_back(t1);
+    analyze->testing_tokens->push_back(t2);
+    analyze->testing_tokens->push_back(t3);
+    analyze->testing_tokens->push_back(t4);
+    */
+
+    Token* t1 = new Token();
+    t1->tokenClass = c;
+    t1->attribute_value = "c";
+
+    Token* t2 = new Token();
+    t2->tokenClass = e;
+    t2->attribute_value = "e";
+
+
+    Token* t3 = new Token();
+    t3->tokenClass = a;
+    t3->attribute_value = "a";
+
+    Token* t4 = new Token();
+    t4->tokenClass = d;
+    t4->attribute_value = "d";
+
+    Token* t5 = new Token();
+    t5->tokenClass = b;
+    t5->attribute_value = "b";
+
+    Token* t6 = new Token();
+    t6->tokenClass = $;
+    t6->attribute_value = "$";
+
+
+    analyze->testing_tokens->push_back(t1);
+    analyze->testing_tokens->push_back(t2);
+    analyze->testing_tokens->push_back(t3);
+    analyze->testing_tokens->push_back(t4);
+    analyze->testing_tokens->push_back(t5);
+    analyze->testing_tokens->push_back(t6);
+
+    cout<<table->toString()<<endl;
+
+
+
+    analyze->start_parsing();
+
+
+    vector<string> * ans = analyze->get_parsing_result_string();
+    cout<<"parsing : "<<analyze->get_successful_parsing()<<endl;
+    for(int i = 0; i < ans->size(); i++) {
+        cout<<ans->at(i)<<endl;
+    }
+    /*
+    for(int i = 0; i < p->size(); i++) {
+        cout<<p->at(i)->toString()<<endl;
+    }
+    */
+
+
+}
+
+
+
 
 void parsing_table_test() {
 
     cout<<"hello tables\n";
 
    // cout<<"here"<<endl;
-    ParsingTable* table = parsing_table_test1();
-    //ParsingTable* table = parsing_table_test2();
+    //ParsingTable* table = parsing_table_test1();
+    ParsingTable* table = parsing_table_test2();
     //ParsingTable* table = parsing_table_test3();
 
 
-
+    /*
     vector<Symbol*> *ss = table->get_symbols();
     for(int i = 0; i < (int)ss->size(); i++) {
         Symbol*s = ss->at(i);
@@ -68,7 +171,8 @@ void parsing_table_test() {
     }
 
     cout<<"successfull : "<<table->is_successful()<<endl;
-    cout<<table->toString();
+    */
+    cout<<table->toString(15);
 
 }
 
@@ -172,29 +276,7 @@ ParsingTable* parsing_table_test1() {
     tokens->push_back(td);
     tokens->push_back(te);
 
-    for(int i = 0; i < (int)tokens->size() ;i++) {
-        Production*p = table->get_next_production(S,tokens->at(i));
-        cout<<S->name+" "<<tokens->at(i)->attribute_value<<" ,,,,, ";
-        if(p == NULL)
-            cout<<"NULL";
-        else
-            cout<<p->toString();
 
-        cout<<endl;
-    }
-
-    for(int i = 0; i < (int)tokens->size() ;i++) {
-        Production*p = table->get_next_production(A,tokens->at(i));
-        cout<<A->name+" "<<tokens->at(i)->attribute_value<<" ,,,,, ";
-        if(p == NULL)
-            cout<<"NULL";
-        else
-            cout<<p->toString();
-
-        cout<<endl;
-    }
-
-    cout<<endl<<endl;
     return table;
 
 }

@@ -53,9 +53,7 @@ void Phase2::start_phase2() {
             cout<<"output file : "<<out_file<<endl;
             cout<<"start syntax analysis, ";
             //return sequence of productions as strings
-            vector<string> * result = syntax_analyzer->start_parsing(source_file);
-            //print the productions in the file
-            syntax_generator->print_file(out_file, result);
+
 
  }
 Phase2::~Phase2()

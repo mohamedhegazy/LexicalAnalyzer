@@ -1,20 +1,44 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <CodeBlocks_layout_file>
 	<ActiveTarget name="Debug" />
-<<<<<<< HEAD
-	<File name="src/Symbol.h" open="1" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="src/DFA.h" open="0" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="561" topLine="11" />
+			<Cursor1 position="0" topLine="0" />
 		</Cursor>
 	</File>
-	<File name="src/LL1.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="src/ParsingTable.h" open="0" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="1166" topLine="31" />
+			<Cursor1 position="638" topLine="12" />
 		</Cursor>
 	</File>
-	<File name="src/SyntaxAnalyzer.cpp" open="0" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="src/SyntaxAnalyzerGenerator.h" open="0" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="294" topLine="0" />
+			<Cursor1 position="0" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="src/State.cpp" open="0" top="0" tabpos="7" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="0" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="src/RegExParser.cpp" open="0" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="0" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="src/Expression.h" open="0" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="0" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="src/LexicalAnalyzer.cpp" open="0" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="0" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="src/Phase1.cpp" open="0" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="0" topLine="0" />
 		</Cursor>
 	</File>
 	<File name="src/RegDef.cpp" open="0" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
@@ -22,12 +46,7 @@
 			<Cursor1 position="0" topLine="0" />
 		</Cursor>
 	</File>
-	<File name="src/LexicalAnalyzer.h" open="0" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="0" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="src/SyntaxAnalyzer.h" open="0" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="src/RegEx.h" open="0" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
 			<Cursor1 position="0" topLine="0" />
 		</Cursor>
@@ -37,9 +56,19 @@
 			<Cursor1 position="0" topLine="0" />
 		</Cursor>
 	</File>
-	<File name="src/RegExParser.cpp" open="0" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="src/RegDef.h" open="0" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
 			<Cursor1 position="0" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="src/LL1.h" open="0" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1516" topLine="18" />
+		</Cursor>
+	</File>
+	<File name="main.cpp" open="1" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="659" topLine="40" />
 		</Cursor>
 	</File>
 	<File name="src/RegExParser.h" open="0" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
@@ -52,22 +81,37 @@
 			<Cursor1 position="0" topLine="0" />
 		</Cursor>
 	</File>
-	<File name="src/LL1.h" open="1" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="src/Symbol.cpp" open="0" top="0" tabpos="7" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="1516" topLine="18" />
+			<Cursor1 position="62" topLine="0" />
 		</Cursor>
 	</File>
-	<File name="src/Phase2.cpp" open="0" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="439" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="src/TokenClass.h" open="1" top="0" tabpos="9" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="src/DFAState.cpp" open="0" top="0" tabpos="8" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
 			<Cursor1 position="0" topLine="0" />
 		</Cursor>
 	</File>
-	<File name="src/LexicalAnalyzer.cpp" open="0" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="src/Production.cpp" open="0" top="0" tabpos="8" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="417" topLine="9" />
+		</Cursor>
+	</File>
+	<File name="src/Expression.cpp" open="0" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="0" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="src/SyntaxAnalyzer.cpp" open="1" top="1" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="273" topLine="12" />
+		</Cursor>
+	</File>
+	<File name="src/LL1.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1166" topLine="31" />
+		</Cursor>
+	</File>
+	<File name="src/SyntaxAnalyzerGenerator.cpp" open="0" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
 			<Cursor1 position="0" topLine="0" />
 		</Cursor>
@@ -77,49 +121,19 @@
 			<Cursor1 position="0" topLine="0" />
 		</Cursor>
 	</File>
-	<File name="src/Symbol.cpp" open="1" top="0" tabpos="7" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="1030" topLine="19" />
-		</Cursor>
-	</File>
-	<File name="src/Production.cpp" open="1" top="0" tabpos="8" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="265" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="src/State.h" open="0" top="0" tabpos="11" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="src/DFAState.h" open="0" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
 			<Cursor1 position="0" topLine="0" />
 		</Cursor>
 	</File>
-	<File name="main.cpp" open="1" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="3512" topLine="173" />
-		</Cursor>
-	</File>
-	<File name="src/DFAState.cpp" open="0" top="0" tabpos="8" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="src/LexicalAnalyzer.h" open="0" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
 			<Cursor1 position="0" topLine="0" />
 		</Cursor>
 	</File>
-	<File name="src/DFA.h" open="0" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="src/Phase2.cpp" open="0" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="0" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="src/Token.h" open="1" top="0" tabpos="10" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="120" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="src/Phase1.cpp" open="0" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="0" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="src/Token.cpp" open="0" top="0" tabpos="9" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="81" topLine="0" />
+			<Cursor1 position="439" topLine="0" />
 		</Cursor>
 	</File>
 	<File name="src/Phase1.h" open="0" top="0" tabpos="7" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
@@ -127,47 +141,37 @@
 			<Cursor1 position="0" topLine="0" />
 		</Cursor>
 	</File>
-	<File name="src/RegDef.h" open="0" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="src/State.h" open="0" top="0" tabpos="11" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
 			<Cursor1 position="0" topLine="0" />
 		</Cursor>
 	</File>
-	<File name="src/Production.h" open="1" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="src/ParsingTable.cpp" open="0" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="216" topLine="0" />
+			<Cursor1 position="4531" topLine="172" />
 		</Cursor>
 	</File>
-	<File name="src/Expression.cpp" open="0" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="src/SyntaxAnalyzer.h" open="1" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="139" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="src/NFA.cpp" open="0" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
 			<Cursor1 position="0" topLine="0" />
 		</Cursor>
 	</File>
-	<File name="src/DFAState.h" open="0" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="src/Token.h" open="0" top="0" tabpos="10" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="0" topLine="0" />
+			<Cursor1 position="120" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="src/Symbol.h" open="0" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="561" topLine="0" />
 		</Cursor>
 	</File>
 	<File name="src/SubGroup.cpp" open="0" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="0" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="src/ParsingTable.h" open="1" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="667" topLine="6" />
-		</Cursor>
-	</File>
-	<File name="src/RegEx.h" open="0" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="0" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="src/State.cpp" open="0" top="0" tabpos="7" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="0" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="src/Expression.h" open="0" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
 			<Cursor1 position="0" topLine="0" />
 		</Cursor>
@@ -177,136 +181,19 @@
 			<Cursor1 position="0" topLine="0" />
 		</Cursor>
 	</File>
-	<File name="src/SyntaxAnalyzerGenerator.cpp" open="0" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="src/TokenClass.h" open="0" top="0" tabpos="9" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
 			<Cursor1 position="0" topLine="0" />
 		</Cursor>
 	</File>
-	<File name="src/NFA.cpp" open="0" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="src/Production.h" open="0" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="0" topLine="0" />
+			<Cursor1 position="216" topLine="0" />
 		</Cursor>
 	</File>
-	<File name="src/ParsingTable.cpp" open="1" top="1" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="src/Token.cpp" open="0" top="0" tabpos="9" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="111" topLine="0" />
+			<Cursor1 position="81" topLine="0" />
 		</Cursor>
-	</File>
-	<File name="src/SyntaxAnalyzerGenerator.h" open="0" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="0" topLine="0" />
-		</Cursor>
-=======
-	<File name="main.cpp" open="1" top="0" tabpos="5">
-		<Cursor position="576" topLine="27" />
-	</File>
-	<File name="src\DFA.cpp" open="0" top="0" tabpos="5">
-		<Cursor position="0" topLine="0" />
-	</File>
-	<File name="src\DFA.h" open="0" top="0" tabpos="5">
-		<Cursor position="0" topLine="0" />
-	</File>
-	<File name="src\DFAState.cpp" open="0" top="0" tabpos="8">
-		<Cursor position="0" topLine="0" />
-	</File>
-	<File name="src\DFAState.h" open="0" top="0" tabpos="2">
-		<Cursor position="0" topLine="0" />
-	</File>
-	<File name="src\Expression.cpp" open="0" top="0" tabpos="6">
-		<Cursor position="0" topLine="0" />
-	</File>
-	<File name="src\Expression.h" open="0" top="0" tabpos="3">
-		<Cursor position="0" topLine="0" />
-	</File>
-	<File name="src\LL1.cpp" open="1" top="1" tabpos="7">
-		<Cursor position="7942" topLine="263" />
-	</File>
-	<File name="src\LL1.h" open="1" top="0" tabpos="6">
-		<Cursor position="0" topLine="0" />
-	</File>
-	<File name="src\LexicalAnalyzer.cpp" open="0" top="0" tabpos="2">
-		<Cursor position="0" topLine="0" />
-	</File>
-	<File name="src\LexicalAnalyzer.h" open="0" top="0" tabpos="3">
-		<Cursor position="0" topLine="0" />
-	</File>
-	<File name="src\LexicalAnalyzerGenerator.cpp" open="0" top="0" tabpos="5">
-		<Cursor position="0" topLine="0" />
-	</File>
-	<File name="src\NFA.cpp" open="0" top="0" tabpos="4">
-		<Cursor position="0" topLine="0" />
-	</File>
-	<File name="src\NFA.h" open="0" top="0" tabpos="6">
-		<Cursor position="0" topLine="0" />
-	</File>
-	<File name="src\ParsingTable.cpp" open="1" top="0" tabpos="1">
-		<Cursor position="344" topLine="0" />
-	</File>
-	<File name="src\ParsingTable.h" open="1" top="0" tabpos="3">
-		<Cursor position="579" topLine="8" />
-	</File>
-	<File name="src\Phase1.cpp" open="0" top="0" tabpos="1">
-		<Cursor position="0" topLine="0" />
-	</File>
-	<File name="src\Phase1.h" open="0" top="0" tabpos="7">
-		<Cursor position="0" topLine="0" />
-	</File>
-	<File name="src\Phase2.cpp" open="0" top="0" tabpos="6">
-		<Cursor position="0" topLine="0" />
-	</File>
-	<File name="src\Production.h" open="1" top="0" tabpos="4">
-		<Cursor position="0" topLine="0" />
-	</File>
-	<File name="src\RegDef.cpp" open="0" top="0" tabpos="5">
-		<Cursor position="0" topLine="0" />
-	</File>
-	<File name="src\RegDef.h" open="0" top="0" tabpos="4">
-		<Cursor position="0" topLine="0" />
-	</File>
-	<File name="src\RegEx.h" open="0" top="0" tabpos="2">
-		<Cursor position="0" topLine="0" />
-	</File>
-	<File name="src\RegExParser.cpp" open="0" top="0" tabpos="4">
-		<Cursor position="0" topLine="0" />
-	</File>
-	<File name="src\RegExParser.h" open="0" top="0" tabpos="2">
-		<Cursor position="0" topLine="0" />
-	</File>
-	<File name="src\State.cpp" open="0" top="0" tabpos="7">
-		<Cursor position="0" topLine="0" />
-	</File>
-	<File name="src\State.h" open="0" top="0" tabpos="11">
-		<Cursor position="0" topLine="0" />
-	</File>
-	<File name="src\SubGroup.cpp" open="0" top="0" tabpos="6">
-		<Cursor position="0" topLine="0" />
-	</File>
-	<File name="src\Symbol.h" open="1" top="0" tabpos="2">
-		<Cursor position="0" topLine="0" />
-	</File>
-	<File name="src\SyntaxAnalyzer.cpp" open="0" top="0" tabpos="1">
-		<Cursor position="0" topLine="0" />
-	</File>
-	<File name="src\SyntaxAnalyzer.h" open="0" top="0" tabpos="2">
-		<Cursor position="0" topLine="0" />
-	</File>
-	<File name="src\SyntaxAnalyzerGenerator.cpp" open="0" top="0" tabpos="5">
-		<Cursor position="0" topLine="0" />
-	</File>
-	<File name="src\SyntaxAnalyzerGenerator.h" open="0" top="0" tabpos="4">
-		<Cursor position="0" topLine="0" />
-	</File>
-	<File name="src\Token.cpp" open="0" top="0" tabpos="9">
-		<Cursor position="0" topLine="0" />
-	</File>
-	<File name="src\Token.h" open="0" top="0" tabpos="6">
-		<Cursor position="0" topLine="0" />
-	</File>
-	<File name="src\TokenClass.cpp" open="0" top="0" tabpos="10">
-		<Cursor position="0" topLine="0" />
-	</File>
-	<File name="src\TokenClass.h" open="0" top="0" tabpos="9">
-		<Cursor position="0" topLine="0" />
->>>>>>> ce306070b9f956c050500c4fae5eb8fdbbafece5
 	</File>
 </CodeBlocks_layout_file>
