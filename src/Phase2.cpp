@@ -64,7 +64,7 @@ void Phase2::start_phase2() {
 
 
             syntax_analyzer->start_parsing();
-
+            syntax_analyzer->table->print_symbols_to_file("symbols_first_follow.txt");
             vector<string> * ans = syntax_analyzer->get_parsing_result_string();
             cout<<"\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
             cout<<"parsing status : "<<syntax_analyzer->get_successful_parsing()<<endl;

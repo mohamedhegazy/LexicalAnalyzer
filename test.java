@@ -3,10 +3,16 @@ while (pass != 10)
 {
 pass = pass + 1 ;
 }
-if(x>5){
+if(x==false){
 int m;
 }
+else{
 complex x;
-x= 1+#5;
+}
 complex y;
-y= x*(1+#6);
+y= x*(1+i6);
+int i;
+for(i=1;i<1;i=i+1)
+{
+int y;
+}

@@ -1641,12 +1641,14 @@
 	"Symbol.h"
 	<vector>
 
-1428950776 d:\csed\codeblocksworkspace\lexicalanalyzergenerator\src\symbol.h
+1429213076 d:\csed\codeblocksworkspace\lexicalanalyzergenerator\src\symbol.h
 	<string>
 	<vector>
 	"Production.h"
 	"TokenClass.h"
 	<set>
+	<sstream>
+	<iomanip>
 
 1429122619 d:\csed\codeblocksworkspace\lexicalanalyzergenerator\src\production.h
 	"Symbol.h"
@@ -1654,7 +1656,7 @@
 	<set>
 	<iostream>
 
-1429129445 d:\csed\codeblocksworkspace\lexicalanalyzergenerator\src\parsingtable.h
+1429212930 d:\csed\codeblocksworkspace\lexicalanalyzergenerator\src\parsingtable.h
 	"Token.h"
 	"Symbol.h"
 	"LL1.h"
@@ -1711,7 +1713,7 @@
 	<sstream>
 	<iostream>
 
-1428343264 source:d:\csed\codeblocksworkspace\lexicalanalyzergenerator\src\dfa.cpp
+1429217727 source:d:\csed\codeblocksworkspace\lexicalanalyzergenerator\src\dfa.cpp
 	<fstream>
 	"DFA.h"
 	"SubGroup.h"
@@ -1735,14 +1737,14 @@
 1426786372 source:d:\csed\codeblocksworkspace\lexicalanalyzergenerator\src\expression.cpp
 	"Expression.h"
 
-1429148264 source:d:\csed\codeblocksworkspace\lexicalanalyzergenerator\src\ll1.cpp
+1429148594 source:d:\csed\codeblocksworkspace\lexicalanalyzergenerator\src\ll1.cpp
 	"LL1.h"
 	<string.h>
 	<stdio.h>
 	<iostream>
 	<cstring>
 
-1429143811 source:d:\csed\codeblocksworkspace\lexicalanalyzergenerator\src\lexicalanalyzer.cpp
+1429217995 source:d:\csed\codeblocksworkspace\lexicalanalyzergenerator\src\lexicalanalyzer.cpp
 	"LexicalAnalyzer.h"
 
 1426786372 source:d:\csed\codeblocksworkspace\lexicalanalyzergenerator\src\lexicalanalyzergenerator.cpp
@@ -1756,7 +1758,7 @@
 1426786372 source:d:\csed\codeblocksworkspace\lexicalanalyzergenerator\src\nfa.cpp
 	"NFA.h"
 
-1429132872 source:d:\csed\codeblocksworkspace\lexicalanalyzergenerator\src\parsingtable.cpp
+1429212889 source:d:\csed\codeblocksworkspace\lexicalanalyzergenerator\src\parsingtable.cpp
 	"ParsingTable.h"
 	<string.h>
 
@@ -1766,7 +1768,7 @@
 	<iostream>
 	<stdio.h>
 
-1429137738 source:d:\csed\codeblocksworkspace\lexicalanalyzergenerator\src\phase2.cpp
+1429213129 source:d:\csed\codeblocksworkspace\lexicalanalyzergenerator\src\phase2.cpp
 	"Phase2.h"
 	"SyntaxAnalyzerGenerator.h"
 	"LexicalAnalyzerGenerator.h"
@@ -1791,7 +1793,7 @@
 1426786372 source:d:\csed\codeblocksworkspace\lexicalanalyzergenerator\src\regex.cpp
 	"RegEx.h"
 
-1426786372 source:d:\csed\codeblocksworkspace\lexicalanalyzergenerator\src\regexparser.cpp
+1429217818 source:d:\csed\codeblocksworkspace\lexicalanalyzergenerator\src\regexparser.cpp
 	"RegExParser.h"
 	<stack>
 	<algorithm>
@@ -1803,10 +1805,10 @@
 1426786372 source:d:\csed\codeblocksworkspace\lexicalanalyzergenerator\src\subgroup.cpp
 	"SubGroup.h"
 
-1429133270 source:d:\csed\codeblocksworkspace\lexicalanalyzergenerator\src\symbol.cpp
+1429212907 source:d:\csed\codeblocksworkspace\lexicalanalyzergenerator\src\symbol.cpp
 	"Symbol.h"
 
-1429143801 source:d:\csed\codeblocksworkspace\lexicalanalyzergenerator\src\syntaxanalyzer.cpp
+1429215840 source:d:\csed\codeblocksworkspace\lexicalanalyzergenerator\src\syntaxanalyzer.cpp
 	"SyntaxAnalyzer.h"
 
 1429137795 source:d:\csed\codeblocksworkspace\lexicalanalyzergenerator\src\syntaxanalyzergenerator.cpp

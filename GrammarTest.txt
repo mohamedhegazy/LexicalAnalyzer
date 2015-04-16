@@ -1,15 +1,12 @@
 METHOD_BODY -> STATEMENT_LIST 
 STATEMENT_LIST -> STATEMENT STATEMENT_LIST' 
 STATEMENT_LIST' -> STATEMENT STATEMENT_LIST'  | epsilon
-STATEMENT -> DECLARATION  |IF_STMT  |WHILE  |ASSIGNMENT 
-OTHER_STATEMENT -> DECLARATION  |WHILE  |ASSIGNMENT 
+STATEMENT -> DECLARATION  |IF  |WHILE  |ASSIGNMENT  |FOR_LOOP 
 DECLARATION -> PRIMITIVE_TYPE id ; 
 PRIMITIVE_TYPE -> int  |float  |boolean  |complex 
-IF_STMT -> if ( BOOLEAN_EXPRESSION ) { MATCHED } OPTIONAL_TAIL  |WHILE  |ASSIGNMENT  |int id ;  |float id ;  |boolean id ;  |complex id ; 
-MATCHED -> if ( BOOLEAN_EXPRESSION ) { MATCHED } else { MATCHED }  |WHILE  |ASSIGNMENT  |int id ;  |float id ;  |boolean id ;  |complex id ; 
-OPTIONAL_TAIL -> else { TAIL }  | epsilon
-TAIL -> if ( BOOLEAN_EXPRESSION ) { MATCHED } TAIL  |WHILE  |ASSIGNMENT  |int id ;  |float id ;  |boolean id ;  |complex id ; 
+IF -> if ( BOOLEAN_EXPRESSION ) { STATEMENT } else { STATEMENT } 
 WHILE -> while ( BOOLEAN_EXPRESSION ) { STATEMENT } 
+FOR_LOOP -> for ( ASSIGNMENT BOOLEAN_EXPRESSION ; id assign EXPRESSION ) { STATEMENT } 
 ASSIGNMENT -> id assign EXPRESSION ; 
 BOOLEAN_EXPRESSION -> BOOL_TERM BOOLEAN_EXPRESSION' 
 BOOLEAN_EXPRESSION' -> logicor BOOL_TERM BOOLEAN_EXPRESSION'  | epsilon
@@ -21,13 +18,12 @@ BOOL_TERM_2 -> BOOL_TERM_3 BOOL_TERM_2'
 BOOL_TERM_2' -> bitand BOOL_TERM_3 BOOL_TERM_2'  | epsilon
 BOOL_TERM_3 -> BOOL_FACTOR BOOL_TERM_3' 
 BOOL_TERM_3' -> relop EXPRESSION BOOL_TERM_3'  | epsilon
-BOOL_FACTOR -> notop BOOL_FACTOR  |id  |true  |false  |( BOOLEAN_EXPRESSION ) 
-EXPRESSION -> TERM EXPRESSION'  |addop EXPRESSION EXPRESSION' 
+BOOL_FACTOR -> notop BOOL_FACTOR  |id  |BooleanLiteral  |( BOOLEAN_EXPRESSION ) 
+EXPRESSION -> TERM EXPRESSION' 
 EXPRESSION' -> addop TERM EXPRESSION'  | epsilon
 TERM -> FACTOR TERM' 
 TERM' -> mulop FACTOR TERM'  | epsilon
-FACTOR -> id  |( EXPRESSION )  |num FACTOR' 
-FACTOR' -> addop complex_id num  | epsilon
+FACTOR -> id  |RealLiteral  |( EXPRESSION ) 
 Non terminal : id 
 Non terminal : ; 
 Non terminal : int 
@@ -41,6 +37,7 @@ Non terminal : {
 Non terminal : } 
 Non terminal : else 
 Non terminal : while 
+Non terminal : for 
 Non terminal : assign 
 Non terminal : logicor 
 Non terminal : bitor 
@@ -48,9 +45,7 @@ Non terminal : logicand
 Non terminal : bitand 
 Non terminal : relop 
 Non terminal : notop 
-Non terminal : true 
-Non terminal : false 
+Non terminal : BooleanLiteral 
 Non terminal : addop 
 Non terminal : mulop 
-Non terminal : num 
-Non terminal : complex_id 
+Non terminal : RealLiteral 

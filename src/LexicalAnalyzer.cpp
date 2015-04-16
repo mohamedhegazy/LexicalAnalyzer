@@ -170,16 +170,22 @@ Token* LexicalAnalyzer::getNextToken()
         return NULL;
     DFAState * st=dfa->get_mini_start_state();
     vector <DFAState*> * temp=new vector<DFAState *>();
+    string attr_val="";
     while(st!=NULL)
     {
         st=st->move_mini(temp_char[index++]);
         if(temp_char[index-1]!=' '&&temp_char[index-1]!='\n')//ignore blanks,newline
+        {
             temp->push_back(st);
+            attr_val=attr_val+string(1,temp_char[index-1]);
+        }
+
     }
     if(temp->size()==1 && temp->at(0)==NULL)
         temp->clear();
     DFAState * latest_accepted=NULL;
-    for(int i=temp->size()-1; i>=0 && index>0; i--,index--)
+    int i;
+    for(i=temp->size()-1; i>=0 && index>0; i--,index--)
     {
         DFAState *cur=temp->at(i);
         if(cur !=NULL && cur->get_accepting())
@@ -188,6 +194,7 @@ Token* LexicalAnalyzer::getNextToken()
             break;
         }
     }
+    attr_val=attr_val.substr(0,i+1);
     Token * tok=new Token();
     TokenClass * cl=new TokenClass();
     tok->tokenClass=cl;
@@ -199,6 +206,7 @@ Token* LexicalAnalyzer::getNextToken()
     else
     {
         tok->tokenClass=latest_accepted->get_tokenClass();
+        tok->attribute_value=attr_val;
     }
     return tok;
 

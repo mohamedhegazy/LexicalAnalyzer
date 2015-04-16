@@ -74,7 +74,7 @@ void SyntaxAnalyzer:: start_parsing() {
                    successful_parsing = false;
                }
                else {
-                    string sss = "+++ acceted : "+curretn_symbol->name+" "+token->attribute_value;
+                    string sss = "+++ acceted : "+curretn_symbol->name+" ("+token->attribute_value+" )";
                     parsing_result_string->push_back(sss);
                     token = get_next_token();
                }

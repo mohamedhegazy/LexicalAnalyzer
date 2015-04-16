@@ -321,6 +321,7 @@ bool ParsingTable::is_successful() {
     return successful;
 }
 
+
 void ParsingTable::set_table_entry(Symbol* s1, Symbol* s2, Production*p) {
 
     int i = nonterminals->at(s1);
@@ -329,11 +330,18 @@ void ParsingTable::set_table_entry(Symbol* s1, Symbol* s2, Production*p) {
 
     if(table[i][j] != NULL) {
         successful = false;
+        cout<<"LL! problem at : ("<<s1->name<<","<<s2->name<<") already has : "<<table[i][j]->toString()<<
+            " | want to insert : "<<p->toString()<<endl;
     }
     else {
         table[i][j] = p;
     }
 }
+
+
+
+
+
 
  bool ParsingTable::table_entry_is_set(Symbol* s1, Symbol* s2) {
 
@@ -397,6 +405,28 @@ Production* ParsingTable::get_next_production(Symbol* current, Token * token) {
         }
     }
     */
+
+ }
+
+
+
+
+
+
+
+
+
+ void ParsingTable:: print_symbols_to_file(string file_name) {
+
+
+    FILE * file = fopen(&file_name[0], "w+");
+
+    for(int i = 0; i < symbols->size(); i++) {
+        fprintf(file, &(symbols->at(i)->toString(80)+"\n")[0]);
+    }
+
+
+
 
  }
 

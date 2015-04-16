@@ -62,3 +62,55 @@ Symbol::~Symbol()
 
 
 
+string Symbol::toString(int width) {
+
+
+    std::ostringstream ans;
+
+    ans.width(width);
+
+    ans<<left<<name;
+    string tt = "first :( ";
+    for(set<Symbol*>::iterator it = first->begin(); it != first->end(); it++) {
+        tt += (*it)->name + " ";
+    }
+    tt += ")";
+
+    ans.width(width);
+    ans<<left<<tt;
+
+
+    tt = "follow :( ";
+    for(set<Symbol*>::iterator it = follow->begin(); it != follow->end(); it++) {
+        tt += (*it)->name + " ";
+    }
+    tt += ")";
+
+    ans.width(width);
+    ans<<left<<tt;
+
+    ans << " nullable : ";
+    ans << (is_nullable ? "true": "false");
+    ans << " terminal : ";
+    ans << (is_terminal? "true": "false");
+
+
+
+
+
+
+    return ans.str();
+}
+
+
+
+
+
+
+
+
+
+
+
+
+

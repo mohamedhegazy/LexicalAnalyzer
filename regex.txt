@@ -1,10 +1,11 @@
 letter = a-z | A-Z
 digit = 0 - 9
-complex_id : #
 id: letter (letter|digit)*
 digits = digit+
-{complex boolean int float true false  if else while}
-num: digit+ | digit+ . digits ( \L | E digits)
+{complex boolean int float for if else while}
+num = digit+ | digit+ . digits ( \L | E digits)
+RealLiteral : num \+ i num | num \- i num | num
+BooleanLiteral : true | false
 [; , \( \) { }]
 notop: !
 mulop: \* | /

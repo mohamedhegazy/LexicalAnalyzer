@@ -515,7 +515,11 @@ NFA * RegExParser::constructNFA()
         RegEx * reg=regular_expressions->at(i);
         nfas->push_back(reg->transitions);
     }
-    return NFA::join_NFAs(nfas);
+    NFA * temp = NFA::join_NFAs(nfas);
+    vector<State*>*sss = temp->move("10");
+    for(int i = 0; i < sss->size(); i++)
+        cout<<sss->at(i)->get_token_class()->name<<" kkkkkkkkkk \n";
+    return temp;
 
 }
 

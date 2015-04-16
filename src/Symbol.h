@@ -5,6 +5,8 @@
 #include "Production.h"
 #include "TokenClass.h"
 #include <set>
+#include <sstream>
+#include <iomanip>
 
 using namespace std;
 class Production;
@@ -13,7 +15,7 @@ class Symbol
     public:
         static Symbol*$;
         static Symbol*espilon;
-
+        string toString(int width);
         Symbol();
         Symbol(bool terminal,string name);
         bool is_nullable;
