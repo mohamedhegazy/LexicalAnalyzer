@@ -38,7 +38,7 @@ LL1::LL1(string input)
             vector<string> * components=split(prods->at(j),' ');
             for(int k=0; k<components->size(); k++)
             {
-                if(strcmp(components->at(k).c_str(),"\L")==0)
+                if(strcmp(components->at(k).c_str(),"NULL")==0)
                 {
                     non_terminal->is_nullable=true;
                     continue;
@@ -71,6 +71,7 @@ LL1::LL1(string input)
                     }
                 }
             }
+            if(pr->RHS->size()>0)
             non_terminal->productions->push_back(pr);
         }
     }

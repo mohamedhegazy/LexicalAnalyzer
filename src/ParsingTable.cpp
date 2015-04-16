@@ -381,7 +381,7 @@ Production* ParsingTable::get_next_production(Symbol* current, Token * token) {
 
   FILE * file = fopen(&file_name[0], "w");
 
-  fprintf(file, &toString(80)[0]);
+  fprintf(file, &toString(55)[0]);
 
     /*
     //freopen("console.txt","w",stdout);

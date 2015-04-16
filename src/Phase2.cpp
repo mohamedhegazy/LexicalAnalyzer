@@ -49,7 +49,6 @@ void Phase2::start_phase2() {
 
             SyntaxAnalyzerGenerator * syntax_generator=new SyntaxAnalyzerGenerator();
             SyntaxAnalyzer * syntax_analyzer=syntax_generator->createSyntaxAnalyzer(analyzer,CFG_rules);
-
             cout<<"regular expresions file : "<<regxFile<<endl;
             cout<<"source file : "<<source_file<<endl;
             cout<<"grammar file : "<<CFG_rules<<endl;

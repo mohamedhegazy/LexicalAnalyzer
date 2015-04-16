@@ -1,24 +1,39 @@
 METHOD_BODY -> STATEMENT_LIST 
 STATEMENT_LIST -> STATEMENT STATEMENT_LIST' 
 STATEMENT_LIST' -> STATEMENT STATEMENT_LIST'  | epsilon
-STATEMENT -> DECLARATION  |IF  |WHILE  |ASSIGNMENT 
+STATEMENT -> DECLARATION  |IF_STMT  |WHILE  |ASSIGNMENT 
+OTHER_STATEMENT -> DECLARATION  |WHILE  |ASSIGNMENT 
 DECLARATION -> PRIMITIVE_TYPE id ; 
-PRIMITIVE_TYPE -> int  |float 
-IF -> if ( EXPRESSION ) { STATEMENT } else { STATEMENT } 
-WHILE -> while ( EXPRESSION ) { STATEMENT } 
-ASSIGNMENT -> id = EXPRESSION ; 
-EXPRESSION -> SIMPLE_EXPRESSION EXPRESSION' 
-SIMPLE_EXPRESSION -> TERM SIMPLE_EXPRESSION'  |SIGN TERM SIMPLE_EXPRESSION' 
-SIMPLE_EXPRESSION' -> addop TERM SIMPLE_EXPRESSION'  | epsilon
+PRIMITIVE_TYPE -> int  |float  |boolean  |complex 
+IF_STMT -> if ( BOOLEAN_EXPRESSION ) { MATCHED } OPTIONAL_TAIL  |WHILE  |ASSIGNMENT  |int id ;  |float id ;  |boolean id ;  |complex id ; 
+MATCHED -> if ( BOOLEAN_EXPRESSION ) { MATCHED } else { MATCHED }  |WHILE  |ASSIGNMENT  |int id ;  |float id ;  |boolean id ;  |complex id ; 
+OPTIONAL_TAIL -> else { TAIL }  | epsilon
+TAIL -> if ( BOOLEAN_EXPRESSION ) { MATCHED } TAIL  |WHILE  |ASSIGNMENT  |int id ;  |float id ;  |boolean id ;  |complex id ; 
+WHILE -> while ( BOOLEAN_EXPRESSION ) { STATEMENT } 
+ASSIGNMENT -> id assign EXPRESSION ; 
+BOOLEAN_EXPRESSION -> BOOL_TERM BOOLEAN_EXPRESSION' 
+BOOLEAN_EXPRESSION' -> logicor BOOL_TERM BOOLEAN_EXPRESSION'  | epsilon
+BOOL_TERM -> BOOL_TERM_1 BOOL_TERM' 
+BOOL_TERM' -> bitor BOOL_TERM_1 BOOL_TERM'  | epsilon
+BOOL_TERM_1 -> BOOL_TERM_2 BOOL_TERM_1' 
+BOOL_TERM_1' -> logicand BOOL_TERM_2 BOOL_TERM_1'  | epsilon
+BOOL_TERM_2 -> BOOL_TERM_3 BOOL_TERM_2' 
+BOOL_TERM_2' -> bitand BOOL_TERM_3 BOOL_TERM_2'  | epsilon
+BOOL_TERM_3 -> BOOL_FACTOR BOOL_TERM_3' 
+BOOL_TERM_3' -> relop EXPRESSION BOOL_TERM_3'  | epsilon
+BOOL_FACTOR -> notop BOOL_FACTOR  |id  |true  |false  |( BOOLEAN_EXPRESSION ) 
+EXPRESSION -> TERM EXPRESSION'  |addop EXPRESSION EXPRESSION' 
+EXPRESSION' -> addop TERM EXPRESSION'  | epsilon
 TERM -> FACTOR TERM' 
 TERM' -> mulop FACTOR TERM'  | epsilon
-FACTOR -> id  |num  |( EXPRESSION ) 
-SIGN -> +  |- 
-EXPRESSION' -> relop SIMPLE_EXPRESSION  | epsilon
+FACTOR -> id  |( EXPRESSION )  |num FACTOR' 
+FACTOR' -> addop complex_id num  | epsilon
 Non terminal : id 
 Non terminal : ; 
 Non terminal : int 
 Non terminal : float 
+Non terminal : boolean 
+Non terminal : complex 
 Non terminal : if 
 Non terminal : ( 
 Non terminal : ) 
@@ -26,10 +41,16 @@ Non terminal : {
 Non terminal : } 
 Non terminal : else 
 Non terminal : while 
-Non terminal : = 
+Non terminal : assign 
+Non terminal : logicor 
+Non terminal : bitor 
+Non terminal : logicand 
+Non terminal : bitand 
 Non terminal : relop 
+Non terminal : notop 
+Non terminal : true 
+Non terminal : false 
 Non terminal : addop 
 Non terminal : mulop 
 Non terminal : num 
-Non terminal : + 
-Non terminal : - 
+Non terminal : complex_id 

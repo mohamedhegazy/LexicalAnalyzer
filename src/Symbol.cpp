@@ -18,7 +18,7 @@ Symbol::Symbol(bool terminal,string name)
     this->productions=new vector<Production *>;
     this->is_nullable=false;
     this->just_added=false;
-
+    this->is_originaly_nullable=false;
     first = new set<Symbol*>();
     follow = new set<Symbol*>();
 

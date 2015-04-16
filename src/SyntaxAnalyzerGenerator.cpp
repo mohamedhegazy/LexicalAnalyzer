@@ -13,7 +13,7 @@ SyntaxAnalyzer * SyntaxAnalyzerGenerator:: createSyntaxAnalyzer(LexicalAnalyzer 
     cout<<"construct Parsing Table! ";
     ParsingTable* table = new ParsingTable (ll1);
     cout<<"done !"<<endl;
-
+    cout<<"table status:"<<table->is_successful()<<endl;
     SyntaxAnalyzer * analyzer=new SyntaxAnalyzer(table,lex);
     return analyzer;
 

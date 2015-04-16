@@ -1,12 +1,17 @@
 letter = a-z | A-Z
 digit = 0 - 9
+complex_id : #
 id: letter (letter|digit)*
 digits = digit+
-{boolean int float}
+{complex boolean int float true false  if else while}
 num: digit+ | digit+ . digits ( \L | E digits)
-relop: \=\= | !\= | > | >\= | < | <\=
-assign: \=
-{ if else while }
 [; , \( \) { }]
-addop: \+ | \-
+notop: !
 mulop: \* | /
+addop: \+ | \-
+relop: \=\= | !\= | > | >\= | < | <\=
+bitand: &
+logicand : && 
+bitor  :   \|
+logicor : \|\|
+assign: \=
