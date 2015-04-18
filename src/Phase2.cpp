@@ -72,7 +72,6 @@ void Phase2::start_phase2() {
                 cout<<ans->at(i)<<endl;
             }
 
-
  }
 
 

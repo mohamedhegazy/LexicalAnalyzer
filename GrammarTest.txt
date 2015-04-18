@@ -2,7 +2,8 @@ METHOD_BODY -> STATEMENT_LIST
 STATEMENT_LIST -> STATEMENT STATEMENT_LIST' 
 STATEMENT_LIST' -> STATEMENT STATEMENT_LIST'  | epsilon
 STATEMENT -> DECLARATION  |IF  |WHILE  |ASSIGNMENT  |FOR_LOOP 
-DECLARATION -> PRIMITIVE_TYPE id ; 
+DECLARATION -> PRIMITIVE_TYPE ID_TYPE ; 
+ID_TYPE -> id ID_TYPE' 
 PRIMITIVE_TYPE -> int  |float  |boolean  |complex 
 IF -> if ( BOOLEAN_EXPRESSION ) { STATEMENT } else { STATEMENT } 
 WHILE -> while ( BOOLEAN_EXPRESSION ) { STATEMENT } 
@@ -19,13 +20,15 @@ BOOL_TERM_2' -> bitand BOOL_TERM_3 BOOL_TERM_2'  | epsilon
 BOOL_TERM_3 -> BOOL_FACTOR BOOL_TERM_3' 
 BOOL_TERM_3' -> relop EXPRESSION BOOL_TERM_3'  | epsilon
 BOOL_FACTOR -> notop BOOL_FACTOR  |id  |BooleanLiteral  |( BOOLEAN_EXPRESSION ) 
-EXPRESSION -> TERM EXPRESSION' 
+EXPRESSION -> TERM EXPRESSION'  |addop TERM EXPRESSION' 
 EXPRESSION' -> addop TERM EXPRESSION'  | epsilon
 TERM -> FACTOR TERM' 
 TERM' -> mulop FACTOR TERM'  | epsilon
-FACTOR -> id  |RealLiteral  |( EXPRESSION ) 
-Non terminal : id 
+FACTOR -> id  |ComplexLiteral  |RealLiteral  |( EXPRESSION ) 
+ID_TYPE' -> , ID_TYPE  | epsilon
 Non terminal : ; 
+Non terminal : id 
+Non terminal : , 
 Non terminal : int 
 Non terminal : float 
 Non terminal : boolean 
@@ -48,4 +51,5 @@ Non terminal : notop
 Non terminal : BooleanLiteral 
 Non terminal : addop 
 Non terminal : mulop 
+Non terminal : ComplexLiteral 
 Non terminal : RealLiteral 

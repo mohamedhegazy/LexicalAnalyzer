@@ -1,4 +1,4 @@
-int sum;
+int sum,pass,lol;
 while (pass != 10)
 {
 pass = pass + 1 ;
@@ -15,4 +15,11 @@ int i;
 for(i=1;i<1;i=i+1)
 {
 int y;
+}
+y=-6;
+if((x|y) & (m) & !(x)){
+int y;
+}
+else{
+int t;
 }

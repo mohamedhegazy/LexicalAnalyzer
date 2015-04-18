@@ -4,7 +4,8 @@ id: letter (letter|digit)*
 digits = digit+
 {complex boolean int float for if else while}
 num = digit+ | digit+ . digits ( \L | E digits)
-RealLiteral : num \+ i num | num \- i num | num
+RealLiteral : num 
+ComplexLiteral : num \+ i num | num \- i num 
 BooleanLiteral : true | false
 [; , \( \) { }]
 notop: !

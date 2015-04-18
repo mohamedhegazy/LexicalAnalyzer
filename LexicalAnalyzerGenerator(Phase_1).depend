@@ -1070,3 +1070,248 @@
 	"src/Phase2.h"
 	"src/SyntaxAnalyzer.h"
 
+1429129445 source:d:\csed\codeblocksworkspace\lexicalanalyzergenerator\main.cpp
+	<iostream>
+	<map>
+	"src/NFA.h"
+	"src/DFA.h"
+	"src/LL1.h"
+	"src/ParsingTable.h"
+	"src/RegExParser.h"
+	"src/Phase1.h"
+	"src/Phase2.h"
+	"src/SyntaxAnalyzer.h"
+
+1426786372 d:\csed\codeblocksworkspace\lexicalanalyzergenerator\src\nfa.h
+	"State.h"
+	<stdio.h>
+	<iostream>
+	<vector>
+	<set>
+	<queue>
+	<string.h>
+	<map>
+
+1426786372 d:\csed\codeblocksworkspace\lexicalanalyzergenerator\src\state.h
+	<vector>
+	"Edge.h"
+	"TokenClass.h"
+	<set>
+	<queue>
+	<iostream>
+
+1426786372 d:\csed\codeblocksworkspace\lexicalanalyzergenerator\src\edge.h
+	"State.h"
+	"TokenClass.h"
+
+1426786372 d:\csed\codeblocksworkspace\lexicalanalyzergenerator\src\tokenclass.h
+	<string>
+	<iostream>
+
+1426786372 d:\csed\codeblocksworkspace\lexicalanalyzergenerator\src\dfa.h
+	"State.h"
+	"NFA.h"
+	"DFAState.h"
+	"State.h"
+	<vector>
+	<map>
+	<queue>
+	<string>
+	"SubGroup.h"
+
+1426786372 d:\csed\codeblocksworkspace\lexicalanalyzergenerator\src\dfastate.h
+	"TokenClass.h"
+	<iostream>
+	<string>
+	<string.h>
+	<map>
+
+1426786372 d:\csed\codeblocksworkspace\lexicalanalyzergenerator\src\subgroup.h
+	<vector>
+	"DFAState.h"
+
+1428657096 d:\csed\codeblocksworkspace\lexicalanalyzergenerator\src\ll1.h
+	<fstream>
+	<string>
+	"Symbol.h"
+	<vector>
+
+1429213076 d:\csed\codeblocksworkspace\lexicalanalyzergenerator\src\symbol.h
+	<string>
+	<vector>
+	"Production.h"
+	"TokenClass.h"
+	<set>
+	<sstream>
+	<iomanip>
+
+1429122619 d:\csed\codeblocksworkspace\lexicalanalyzergenerator\src\production.h
+	"Symbol.h"
+	<vector>
+	<set>
+	<iostream>
+
+1429212930 d:\csed\codeblocksworkspace\lexicalanalyzergenerator\src\parsingtable.h
+	"Token.h"
+	"Symbol.h"
+	"LL1.h"
+	"Production.h"
+	<map>
+	<sstream>
+	<iomanip>
+	"TokenClass.h"
+
+1429120276 d:\csed\codeblocksworkspace\lexicalanalyzergenerator\src\token.h
+	<string>
+	"TokenClass.h"
+
+1426786372 d:\csed\codeblocksworkspace\lexicalanalyzergenerator\src\regexparser.h
+	<iostream>
+	<cstring>
+	<fstream>
+	<vector>
+	"RegDef.h"
+	"RegEx.h"
+	<string>
+	"Expression.h"
+
+1426786372 d:\csed\codeblocksworkspace\lexicalanalyzergenerator\src\regdef.h
+	<string>
+	"NFA.h"
+
+1426786372 d:\csed\codeblocksworkspace\lexicalanalyzergenerator\src\regex.h
+	<string>
+	"NFA.h"
+
+1426786372 d:\csed\codeblocksworkspace\lexicalanalyzergenerator\src\expression.h
+	<string>
+
+1426862363 d:\csed\codeblocksworkspace\lexicalanalyzergenerator\src\phase1.h
+	<algorithm>
+
+1428359753 d:\csed\codeblocksworkspace\lexicalanalyzergenerator\src\phase2.h
+
+1429129445 d:\csed\codeblocksworkspace\lexicalanalyzergenerator\src\syntaxanalyzer.h
+	"ParsingTable.h"
+	"LexicalAnalyzer.h"
+	<string>
+	<stack>
+
+1426893504 d:\csed\codeblocksworkspace\lexicalanalyzergenerator\src\lexicalanalyzer.h
+	"Token.h"
+	"DFA.h"
+	<iostream>
+	<stdio.h>
+	<fstream>
+	<cstring>
+	<string>
+	<sstream>
+	<iostream>
+
+1429217727 source:d:\csed\codeblocksworkspace\lexicalanalyzergenerator\src\dfa.cpp
+	<fstream>
+	"DFA.h"
+	"SubGroup.h"
+	<algorithm>
+	<sstream>
+	<math.h>
+	<time.h>
+
+1426786372 source:d:\csed\codeblocksworkspace\lexicalanalyzergenerator\src\dfaedge.cpp
+	"DFAEdge.h"
+
+1426786372 d:\csed\codeblocksworkspace\lexicalanalyzergenerator\src\dfaedge.h
+	"DFAState.h"
+
+1426786372 source:d:\csed\codeblocksworkspace\lexicalanalyzergenerator\src\dfastate.cpp
+	"DFAState.h"
+
+1426786372 source:d:\csed\codeblocksworkspace\lexicalanalyzergenerator\src\edge.cpp
+	"Edge.h"
+
+1426786372 source:d:\csed\codeblocksworkspace\lexicalanalyzergenerator\src\expression.cpp
+	"Expression.h"
+
+1429148594 source:d:\csed\codeblocksworkspace\lexicalanalyzergenerator\src\ll1.cpp
+	"LL1.h"
+	<string.h>
+	<stdio.h>
+	<iostream>
+	<cstring>
+
+1429217995 source:d:\csed\codeblocksworkspace\lexicalanalyzergenerator\src\lexicalanalyzer.cpp
+	"LexicalAnalyzer.h"
+
+1426786372 source:d:\csed\codeblocksworkspace\lexicalanalyzergenerator\src\lexicalanalyzergenerator.cpp
+	"LexicalAnalyzerGenerator.h"
+
+1426786372 d:\csed\codeblocksworkspace\lexicalanalyzergenerator\src\lexicalanalyzergenerator.h
+	"LexicalAnalyzer.h"
+	"RegExParser.h"
+	<string>
+
+1426786372 source:d:\csed\codeblocksworkspace\lexicalanalyzergenerator\src\nfa.cpp
+	"NFA.h"
+
+1429212889 source:d:\csed\codeblocksworkspace\lexicalanalyzergenerator\src\parsingtable.cpp
+	"ParsingTable.h"
+	<string.h>
+
+1428360087 source:d:\csed\codeblocksworkspace\lexicalanalyzergenerator\src\phase1.cpp
+	"Phase1.h"
+	"LexicalAnalyzerGenerator.h"
+	<iostream>
+	<stdio.h>
+
+1429319945 source:d:\csed\codeblocksworkspace\lexicalanalyzergenerator\src\phase2.cpp
+	"Phase2.h"
+	"SyntaxAnalyzerGenerator.h"
+	"LexicalAnalyzerGenerator.h"
+	<iostream>
+	<stdio.h>
+
+1428362320 d:\csed\codeblocksworkspace\lexicalanalyzergenerator\src\syntaxanalyzergenerator.h
+	<string>
+	"SyntaxAnalyzer.h"
+	"LexicalAnalyzer.h"
+	<vector>
+	<string>
+	"LL1.h"
+	"ParsingTable.h"
+
+1429129445 source:d:\csed\codeblocksworkspace\lexicalanalyzergenerator\src\production.cpp
+	"Production.h"
+
+1426786372 source:d:\csed\codeblocksworkspace\lexicalanalyzergenerator\src\regdef.cpp
+	"RegDef.h"
+
+1426786372 source:d:\csed\codeblocksworkspace\lexicalanalyzergenerator\src\regex.cpp
+	"RegEx.h"
+
+1429321164 source:d:\csed\codeblocksworkspace\lexicalanalyzergenerator\src\regexparser.cpp
+	"RegExParser.h"
+	<stack>
+	<algorithm>
+	<sstream>
+
+1426786372 source:d:\csed\codeblocksworkspace\lexicalanalyzergenerator\src\state.cpp
+	"State.h"
+
+1426786372 source:d:\csed\codeblocksworkspace\lexicalanalyzergenerator\src\subgroup.cpp
+	"SubGroup.h"
+
+1429212907 source:d:\csed\codeblocksworkspace\lexicalanalyzergenerator\src\symbol.cpp
+	"Symbol.h"
+
+1429215840 source:d:\csed\codeblocksworkspace\lexicalanalyzergenerator\src\syntaxanalyzer.cpp
+	"SyntaxAnalyzer.h"
+
+1429137795 source:d:\csed\codeblocksworkspace\lexicalanalyzergenerator\src\syntaxanalyzergenerator.cpp
+	"SyntaxAnalyzerGenerator.h"
+
+1426786372 source:d:\csed\codeblocksworkspace\lexicalanalyzergenerator\src\token.cpp
+	"Token.h"
+
+1426786372 source:d:\csed\codeblocksworkspace\lexicalanalyzergenerator\src\tokenclass.cpp
+	"TokenClass.h"
+

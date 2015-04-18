@@ -401,6 +401,12 @@ string* RegExParser::prepareIfConcatenation(string line,bool exp_def)
             new_line=new string((*new_line).substr(0,i+1)+string(1,CONCAT_OP)+(*new_line).substr(i+1));
         }
     }
+
+    for(int i=0;i<(*new_line).size();i++){
+    if((*new_line)[i]==CONCAT_OP && i+1 <(*new_line).size() && (*new_line)[i+1]==CONCAT_OP){
+    (*new_line)[i]=' ';
+    }
+    }
     //cout<<(*new_line)<<endl;
     return new_line;
 }
@@ -446,7 +452,7 @@ void RegExParser::evaluateExpression(string temp_lhs_name,vector<Expression *> *
             if(strcmp(exp->name.c_str(),temp_lhs_name.c_str())==0)
                 break;
         }
-        exp->transitions=value->top();
+        exp->transitions=value->top()->clone();
         TokenClass * tok=new TokenClass(temp_lhs_name,exp->priority);
         exp->transitions->get_accepting_state()->set_token_class(tok);
     }
@@ -458,7 +464,7 @@ void RegExParser::evaluateExpression(string temp_lhs_name,vector<Expression *> *
             if(strcmp(def->name.c_str(),temp_lhs_name.c_str())==0)
                 break;
         }
-        def->transitions=value->top();
+        def->transitions=value->top()->clone();
         TokenClass * tok=new TokenClass(temp_lhs_name,0);
         def->transitions->get_accepting_state()->set_token_class(tok);
     }
@@ -516,11 +522,7 @@ NFA * RegExParser::constructNFA()
         nfas->push_back(reg->transitions);
     }
     NFA * temp = NFA::join_NFAs(nfas);
-    vector<State*>*sss = temp->move("10");
-    for(int i = 0; i < sss->size(); i++)
-        cout<<sss->at(i)->get_token_class()->name<<" kkkkkkkkkk \n";
     return temp;
-
 }
 
 
